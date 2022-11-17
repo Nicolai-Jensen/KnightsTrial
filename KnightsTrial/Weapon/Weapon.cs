@@ -12,7 +12,17 @@ namespace KnightsTrial.Weapon
     {
         //Fields
 
+        protected float rotation;
+        protected bool enoughStamina;
+        protected bool useArsenalAnimation;
+
         //Properties
+
+        public float Rotation
+        {
+            get { return rotation; }
+            set { rotation = value; }
+        }
 
         //Constructors
 
@@ -25,6 +35,25 @@ namespace KnightsTrial.Weapon
         public override void Update(GameTime gameTime)
         {
             throw new NotImplementedException();
+        }
+
+        protected void UseArsenal(GameTime gameTime)
+        {
+
+        }
+
+        protected Vector2 ReturnPlayerPostition()
+        {
+            return Vector2.Zero;
+        }
+        protected Vector2 DirectionClosestEnemy(Vector2 playerPosition)
+        {
+            return playerPosition;
+        }
+
+        public override void OnCollision(GameObject other)
+        {
+
         }
     }
 }
