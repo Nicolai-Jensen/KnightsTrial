@@ -6,16 +6,27 @@ namespace KnightsTrial
 {
     public class GameWorld : Game
     {
+        //Fields
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private static Vector2 screenSize;
+        private Texture2D pixel;
+
+        private Texture2D[] gameObject;
+        private Texture2D[] gameObjectsToAdd;
+        private Texture2D[] gameObjectsToRemove;
+
+        //Properties
+        public static Vector2 ScreenSize { get; }
+        //Constructors
         public GameWorld()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
-
+        //Methods
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here

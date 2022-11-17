@@ -8,5 +8,13 @@ namespace KnightsTrial.Weapon
 {
     internal class Shield : Weapon
     {
+        //Fields
+
+        //Properties
+
+        //Constructors
+
+        //Methods
+
     }
 }
