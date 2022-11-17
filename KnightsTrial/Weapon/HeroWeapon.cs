@@ -8,5 +8,13 @@ namespace KnightsTrial.Weapon
 {
     internal class HeroWeapon : Weapon
     {
+        //Fields
+
+        //Properties
+
+        //Constructors
+
+        //Methods
+
     }
 }
