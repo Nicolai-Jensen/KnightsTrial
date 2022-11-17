@@ -23,6 +23,9 @@ namespace KnightsTrial
         //Constructors
 
         //Methods
-        
+        public static void UsePotion()
+        {
+            //Do something.
+        }
     }
 }
