@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsTrial.Boss
+namespace KnightsTrial
 {
     internal class BringerOfDeath : Boss
     {

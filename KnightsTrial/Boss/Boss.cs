@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsTrial.Boss
+namespace KnightsTrial
 {
     internal abstract class Boss : GameObject
     {

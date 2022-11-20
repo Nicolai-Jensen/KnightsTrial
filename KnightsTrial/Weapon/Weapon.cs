@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsTrial.Weapon
+namespace KnightsTrial
 {
     internal class Weapon : GameObject
     {

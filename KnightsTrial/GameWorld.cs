@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace KnightsTrial
 {
@@ -13,9 +14,9 @@ namespace KnightsTrial
         private static Vector2 screenSize;
         private Texture2D pixel;
 
-        private Texture2D[] gameObject;
-        private Texture2D[] gameObjectsToAdd;
-        private Texture2D[] gameObjectsToRemove;
+        private List<Texture2D> gameObject = new List<Texture2D>();
+        private List<Texture2D> gameObjectsToAdd = new List<Texture2D>();
+        private List<Texture2D> gameObjectsToRemove = new List<Texture2D>();
 
         //Properties
         public static Vector2 ScreenSize { get; }
