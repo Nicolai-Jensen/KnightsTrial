@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsTrial.MainMenu
+namespace KnightsTrial
 {
     internal class GameScreen : MainMenu
     {

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace KnightsTrial.Weapon
+namespace KnightsTrial
 {
     internal class HeroWeapon : Weapon
     {
