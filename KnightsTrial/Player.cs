@@ -62,7 +62,7 @@ namespace KnightsTrial
         public Player(Vector2 vector2)
         {
             position = vector2;
-            scale = 1f;
+            scale = 2f;
             health = 100;
             stamina = 100;
             speed = 200f;
@@ -73,12 +73,18 @@ namespace KnightsTrial
         public override void LoadContent(ContentManager content)
         {
             idleAnimation = new Texture2D[7];
-
+            runAnimation = new Texture2D[8];
 
             //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
             for (int i = 0; i < idleAnimation.Length; i++)
             {
                 idleAnimation[i] = content.Load<Texture2D>($"PIdle{i}");
+            }
+
+            //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
+            for (int i = 0; i < runAnimation.Length; i++)
+            {
+                runAnimation[i] = content.Load<Texture2D>($"PRun{i}");
             }
 
             objectSprites = idleAnimation;
@@ -128,33 +134,33 @@ namespace KnightsTrial
             if (keyState.IsKeyDown(Keys.W))
             {
                 velocity += new Vector2(0, -1);
-                //objectSprites = runAnimation;
+                objectSprites = runAnimation;
             }
 
             //Moves the player left when pressing A by removing X position value, and sets the the bool to false to determine which draw method to use
             if (keyState.IsKeyDown(Keys.A))
             {
                 velocity += new Vector2(-1, 0);
-                //objectSprites = runAnimation;
+                objectSprites = runAnimation;
                 isFacingRight = false;
             }
             //Moves the player right when pressing D by adding X position value, and sets the bool to true to determine which draw method to use
             if (keyState.IsKeyDown(Keys.D))
             {
                 velocity += new Vector2(+1, 0);
-                //objectSprites = runAnimation;
+                objectSprites = runAnimation;
                 isFacingRight = true;
             }
             //Moves the player down when pressing S by adding Y position value 
             if (keyState.IsKeyDown(Keys.S))
             {
                 velocity += new Vector2(0, +1);
-                //objectSprites = runAnimation;
+                objectSprites = runAnimation;
             }
 
             if (!keyState.IsKeyDown(Keys.S) && !keyState.IsKeyDown(Keys.W) && !keyState.IsKeyDown(Keys.A) && !keyState.IsKeyDown(Keys.D))
             {
-                //objectSprites = idleAnimation;
+                objectSprites = idleAnimation;
             }
 
             //Code needed so that the objects speed isn't increased when moving diagonally
@@ -164,9 +170,32 @@ namespace KnightsTrial
             }
         }
 
+        /// <summary>
+        /// This Method is used to make sure the object is not moving outside the screenbounds
+        /// It does this with if statements checking if the objects position values are outside the bounders of the screen
+        /// </summary>
         public void ScreenWrap()
         {
-
+            //Checks if the sprite is moving outside the bottom of the screen and blocks it
+            if (position.Y + objectSprites[0].Height / 2 * scale >= GameWorld.ScreenSize.Y)
+            {
+                position.Y = GameWorld.ScreenSize.Y - objectSprites[0].Height / 2 * scale;
+            }
+            //Checks if the sprite is moving outside the top of the screen and blocks it
+            if (position.Y - objectSprites[0].Height / 2 * scale < 0)
+            {
+                position.Y = 0 + objectSprites[0].Height / 2 * scale;
+            }
+            //Checks if the sprite is moving outside the right of the screen and blocks it
+            if (position.X + objectSprites[0].Width / 2 * scale >= GameWorld.ScreenSize.X)
+            {
+                position.X = GameWorld.ScreenSize.X - objectSprites[0].Width / 2 * scale;
+            }
+            //Checks if the sprite is moving outside the left of the screen and blocks it
+            if (position.X - objectSprites[0].Width / 2 * scale < 0)
+            {
+                position.X = 0 + objectSprites[0].Width / 2 * scale;
+            }
         }
 
         public override void OnCollision(GameObject other)
