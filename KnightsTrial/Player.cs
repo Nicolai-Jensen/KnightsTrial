@@ -20,6 +20,7 @@ namespace KnightsTrial
         private bool regenStamina = true;
         private Color color;
         private Texture2D[] block;
+        private Texture2D[] heroWeaponPrep;
         private Texture2D[] heroWeapon;
         private Texture2D[] idleAnimation;
         private Texture2D[] runAnimation;
@@ -98,6 +99,11 @@ namespace KnightsTrial
             position.X = GameWorld.ScreenSize.X / 2;
             position.Y = GameWorld.ScreenSize.Y / 2;
 
+
+            //Loads the textures for the weapons
+            heroWeaponPrep = new Texture2D[1];
+            //heroWeaponPrep[0] = content.Load<Texture2D>("HeavenlyVigilSwordSlash");
+
         }
 
         public override void Update(GameTime gameTime)
@@ -105,6 +111,7 @@ namespace KnightsTrial
             HandleInput(gameTime);
             Move(gameTime);
             Animate(gameTime);
+            ScreenWrap();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
