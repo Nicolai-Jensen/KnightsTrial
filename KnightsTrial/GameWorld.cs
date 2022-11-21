@@ -12,6 +12,12 @@ namespace KnightsTrial
         private SpriteBatch _spriteBatch;
 
         private static Vector2 screenSize;
+
+        private State _currentState;
+        private State _nextState;
+
+        private List<Component> gameComponents;
+
         private Texture2D pixel;
 
         public static List<GameObject> gameObject = new List<GameObject>();
@@ -44,6 +50,7 @@ namespace KnightsTrial
             // TODO: Add your initialization logic here
             Player Knight = new Player(new Vector2(100, 100));
             gameObject.Add(Knight);
+
             base.Initialize();
         }
 
@@ -51,6 +58,7 @@ namespace KnightsTrial
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
 
             foreach (GameObject go in gameObject)
             {
@@ -64,6 +72,16 @@ namespace KnightsTrial
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if (_nextState != null)
+            {
+                _currentState = _nextState;
+
+                _nextState = null;
+            }
+
+            _currentState.Update(gameTime);
+            _currentState.PostUpdate(gameTime);
 
             //SpawnEnemy(gameTime);
             RemoveGameObjects();
@@ -100,6 +118,7 @@ namespace KnightsTrial
 
             _spriteBatch.Begin(SpriteSortMode.FrontToBack);
 
+            _currentState.Draw(gameTime, _spriteBatch);
 
             foreach (GameObject go in gameObject)
             {
@@ -139,7 +158,10 @@ namespace KnightsTrial
         {
            // gameObjectsToAdd.Add(gObject);
         }
-
+        public void ChangeState(State state)
+        {
+            _nextState = state;
+        }
 
 
 

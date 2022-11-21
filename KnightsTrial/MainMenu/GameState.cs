@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,26 +9,34 @@ using System.Threading.Tasks;
 
 namespace KnightsTrial
 {
-    internal class MainMenu
+    internal class GameState : State
     {
+
         //Fields
-        private Song backgroundMusic;
+
         //Properties
 
         //Constructors
+        public GameState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+        {
+
+        }
 
         //Methods
-        public virtual void LoadContent(ContentManager content)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
 
         }
-        public virtual void Update(GameTime gameTime)
+
+        public override void PostUpdate(GameTime gameTime)
         {
 
         }
-        public void Draw(SpriteBatch spriteBatch)
+
+        public override void Update(GameTime gameTime)
         {
 
         }
     }
+
 }
