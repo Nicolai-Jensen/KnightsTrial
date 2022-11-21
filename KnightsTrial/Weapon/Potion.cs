@@ -22,6 +22,8 @@ namespace KnightsTrial
         private int potionStatus;
         private int cooldownCounter;
 
+        private SpriteFont cooldownFont;
+
         //Properties
 
         //Constructors
@@ -41,6 +43,8 @@ namespace KnightsTrial
             objectSprites[0] = content.Load<Texture2D>("Potion1");
             objectSprites[1] = content.Load<Texture2D>("Potion2");
             objectSprites[2] = content.Load<Texture2D>("Potion3");
+
+            cooldownFont = content.Load<SpriteFont>("CooldownFont");
         }
 
         public override void Update(GameTime gameTime)
@@ -51,6 +55,11 @@ namespace KnightsTrial
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(objectSprites[potionStatus], new(500, 500), null, Color.White, 0f, new(objectSprites[0].Width / 2, objectSprites[0].Height / 2), 1f, SpriteEffects.None, 1f);
+            
+            if (cooldownCounter > 0)
+            {
+                spriteBatch.DrawString(cooldownFont, $"{cooldownCounter}", new(500, 500), Color.White, 0f, new(0, 0), 0f, SpriteEffects.None, 2f);
+            }
         }
 
         public void UsePotion(GameTime gameTime)
@@ -67,7 +76,9 @@ namespace KnightsTrial
 
             if (cooldownCounter == 0 && keyState.IsKeyDown(Keys.Q))
             {
-                cooldownCounter = 10;
+                cooldownCounter = 11;
+
+                GetPlayer().Health += 70;
 
             }
         }
@@ -80,11 +91,8 @@ namespace KnightsTrial
                 {
                     return (Player)go;
                 }
-                else
-                {
-                    return null;
-                }
             }
+            return null;
         }
     }
 }

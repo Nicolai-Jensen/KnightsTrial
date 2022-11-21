@@ -13,6 +13,16 @@
 
 #---------------------------------- Content ---------------------------------#
 
+
+
+#begin CooldownFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:CooldownFont.spritefont
+
+
 #begin PIdle0.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -133,6 +143,7 @@
 /processorParam:TextureFormat=Color
 /build:Potion3.png
 
+
 #begin PRun0.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -228,4 +239,5 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:PRun7.png
+
 
