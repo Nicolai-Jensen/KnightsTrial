@@ -31,7 +31,7 @@ namespace KnightsTrial
 
         public Potion()
         {
-            objectSprites = new Texture2D[3];
+            objectSprites = new Texture2D[4];
 
             potionStatus = 0;
             healAmount = 70;
