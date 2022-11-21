@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace KnightsTrial
 
         //Constructors
 
+
+
         //Methods
         public override void LoadContent(ContentManager content)
         {
@@ -44,11 +47,29 @@ namespace KnightsTrial
 
         protected Vector2 ReturnPlayerPostition()
         {
-            return Vector2.Zero;
+            foreach (GameObject go in GameWorld.gameObject)
+            {
+
+                if (go is Player)
+                {
+
+                    return go.Position;
+                }
+            }
+
+            return new Vector2(position.X, -100);
         }
-        protected Vector2 DirectionClosestEnemy(Vector2 playerPosition)
+        protected Vector2 Direction(Vector2 playerPosition)
         {
-            return playerPosition;
+            Vector2 direction;
+            MouseState mouseState = Mouse.GetState();
+            Vector2 mousePosition = mouseState.Position.ToVector2();
+
+            direction = mousePosition - playerPosition;
+            direction.Normalize();
+            rotation = (float)Math.Atan2(mousePosition.Y - position.Y, mousePosition.X - position.X) + 1.4f;
+
+            return direction;
         }
 
         public override void OnCollision(GameObject other)
