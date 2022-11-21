@@ -48,7 +48,7 @@ namespace KnightsTrial
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            Player Knight = new Player(new Vector2(100, 100));
+            Player Knight = new Player(new Vector2(0, 0));
             gameObject.Add(Knight);
 
             base.Initialize();
