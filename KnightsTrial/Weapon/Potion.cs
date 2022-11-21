@@ -15,14 +15,15 @@ namespace KnightsTrial
     internal class Potion : Weapon
     {
         //Fields
-        private int charges;
         private int healAmount;
         private float potionTimer;
-        private bool usePotionAnimation;
-        private int potionStatus;
-        private int cooldownCounter;
-
         private SpriteFont cooldownFont;
+
+        //Controlls the sprite chosen for the draw method as well as the amount of uses/charges left in the potion.
+        private int potionStatus;
+
+        //Counter to show the cooldown on the potion.
+        private int cooldownCounter;
 
         //Properties
 
@@ -43,6 +44,7 @@ namespace KnightsTrial
             objectSprites[0] = content.Load<Texture2D>("Potion1");
             objectSprites[1] = content.Load<Texture2D>("Potion2");
             objectSprites[2] = content.Load<Texture2D>("Potion3");
+            objectSprites[3] = content.Load<Texture2D>("Potion4");
 
             cooldownFont = content.Load<SpriteFont>("CooldownFont");
         }
@@ -55,36 +57,52 @@ namespace KnightsTrial
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(objectSprites[potionStatus], new(500, 500), null, Color.White, 0f, new(objectSprites[0].Width / 2, objectSprites[0].Height / 2), 1f, SpriteEffects.None, 1f);
-            
+
             if (cooldownCounter > 0)
             {
                 spriteBatch.DrawString(cooldownFont, $"{cooldownCounter}", new(500, 500), Color.White, 0f, new(0, 0), 0f, SpriteEffects.None, 2f);
             }
         }
 
-        public void UsePotion(GameTime gameTime)
+        /// <summary>
+        /// Uses the potion if it is off cooldown and the player presses "Q".
+        /// It then removes "use" charge from the potion.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        private void UsePotion(GameTime gameTime)
         {
+            //Gets the keyboardState and saves it in the keyState variable.
             KeyboardState keyState = Microsoft.Xna.Framework.Input.Keyboard.GetState();
 
+            //begins the timer.
             potionTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            //If the timer has passed 1 second and the cooldownCounter is not 0 it will decrease the counter by 1 and reset the timer.
             if (potionTimer >= 1 && cooldownCounter != 0)
             {
                 cooldownCounter--;
                 potionTimer = 0;
             }
 
-            if (cooldownCounter == 0 && keyState.IsKeyDown(Keys.Q))
+            //If the counter is equal to 0 and The "Q" key is pressed as well as the potionStatus(Charges) being less than or equal to 3
+            //it will reset the cooldownCounter, add 1 to the potionStatus and increase player health with the specified amount.
+            if (cooldownCounter == 0 && keyState.IsKeyDown(Keys.Q) && potionStatus <= 2)
             {
                 cooldownCounter = 11;
-
-                GetPlayer().Health += 70;
+                potionStatus++;
+                GetPlayer().Health += healAmount;
 
             }
         }
 
+        /// <summary>
+        /// Gets the player object from the gameObject list in GameWorld.
+        /// If there are no player objects in the list, the methods returns null.
+        /// </summary>
+        /// <returns>The player object</returns>
         private Player GetPlayer()
         {
+            //loops through the gameObject list untill it finds the player, then returns it. 
             foreach (GameObject go in GameWorld.gameObject)
             {
                 if (go is Player)
@@ -92,6 +110,7 @@ namespace KnightsTrial
                     return (Player)go;
                 }
             }
+            //if no player object is found, returns null.
             return null;
         }
     }
