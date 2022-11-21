@@ -17,6 +17,7 @@ namespace KnightsTrial
         private int health;
         private int stamina;
         private bool healthModified = false;
+        private bool regenStamina = true;
         private Color color;
         private Texture2D[] block;
         private Texture2D[] heroWeapon;
@@ -33,6 +34,7 @@ namespace KnightsTrial
         private float hitCooldownTimer;
         private bool attackCooldown = false;
         private float attackCooldownTimer;
+        private float staminaRegenerating;
 
         //Properties
         public int Health
@@ -72,7 +74,7 @@ namespace KnightsTrial
         //Methods
         public override void LoadContent(ContentManager content)
         {
-            idleAnimation = new Texture2D[7];
+            idleAnimation = new Texture2D[8];
             runAnimation = new Texture2D[8];
 
             //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
@@ -220,6 +222,18 @@ namespace KnightsTrial
 
         public void StaminaRegen(GameTime gameTime)
         {
+            int regenTick;
+
+            if (regenStamina == true && stamina < 100)
+            {
+                staminaRegenerating += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                regenTick = (int)staminaRegenerating % 2;
+                if (regenTick == 1)
+                {
+                    stamina += 5;
+                }
+            }
 
         }
 

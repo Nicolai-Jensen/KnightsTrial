@@ -24,7 +24,13 @@ namespace KnightsTrial
 
         public HeroWeapon(Texture2D sprite, Vector2 position)
         {
-
+            objectSprites = new Texture2D[1];
+            objectSprites[0] = sprite;
+            this.position = position;
+            rotation = 0f;
+            speed = 0f;
+            velocity = Direction(ReturnPlayerPostition());
+            damage = 1;
         }
 
         //Methods
@@ -38,5 +44,6 @@ namespace KnightsTrial
         {
             throw new NotImplementedException();
         }
+
     }
 }
