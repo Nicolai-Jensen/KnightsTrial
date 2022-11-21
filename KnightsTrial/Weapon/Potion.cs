@@ -69,10 +69,12 @@ namespace KnightsTrial
             {
                 cooldownCounter = 10;
 
+                GetPlayer().Health += 70;
+
             }
         }
 
-        private Player GetPlayer()
+        public Player GetPlayer()
         {
             foreach (GameObject go in GameWorld.gameObject)
             {
@@ -80,11 +82,8 @@ namespace KnightsTrial
                 {
                     return (Player)go;
                 }
-                else
-                {
-                    return null;
-                }
             }
+            return null;
         }
     }
 }
