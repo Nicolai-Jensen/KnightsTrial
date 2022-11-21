@@ -14,7 +14,7 @@ namespace KnightsTrial
         private static Vector2 screenSize;
         private Texture2D pixel;
 
-        private List<GameObject> gameObject = new List<GameObject>();
+        public static List<GameObject> gameObject = new List<GameObject>();
         private List<GameObject> gameObjectsToAdd = new List<GameObject>();
         private List<GameObject> gameObjectsToRemove = new List<GameObject>();
 
@@ -26,6 +26,7 @@ namespace KnightsTrial
                 return screenSize;
             }
         }
+
         //Constructors
         public GameWorld()
         {
@@ -138,6 +139,7 @@ namespace KnightsTrial
         {
            // gameObjectsToAdd.Add(gObject);
         }
+
 
 
 
