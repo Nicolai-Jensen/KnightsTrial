@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,12 @@ namespace KnightsTrial
         private int stamina;
         private bool healthModified = false;
         private Color color;
-        private Texture2D block;
-        private Texture2D heroWeapon;
-        private Texture2D idleAnimation;
-        private Texture2D runAnimation;
-        private Texture2D dodgeAnimation;
-        private Texture2D blockAnimation;
+        private Texture2D[] block;
+        private Texture2D[] heroWeapon;
+        private Texture2D[] idleAnimation;
+        private Texture2D[] runAnimation;
+        private Texture2D[] dodgeAnimation;
+        private Texture2D[] blockAnimation;
         private SoundEffect attackingSound;
         private SoundEffect potionSound;
         private SoundEffect dodgeSound;
@@ -71,17 +72,96 @@ namespace KnightsTrial
         //Methods
         public override void LoadContent(ContentManager content)
         {
-            throw new NotImplementedException();
+            idleAnimation = new Texture2D[7];
+
+
+            //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
+            for (int i = 0; i < idleAnimation.Length; i++)
+            {
+                idleAnimation[i] = content.Load<Texture2D>($"PIdle{i}");
+            }
+
+            objectSprites = idleAnimation;
+
+            //This line of code places the objects origin within the middle of the sprite assuming all sprites in the array share the same size
+            origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
+
+            //Places the Object in the middle of the game screen upon startup
+            position.X = GameWorld.ScreenSize.X / 2;
+            position.Y = GameWorld.ScreenSize.Y / 2;
+
         }
 
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            HandleInput(gameTime);
+            Move(gameTime);
+            Animate(gameTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            //A Draw Method with different overloads, this particular one has 10 variables which can be defined
+
+            //If the player has last pressed "D" to move right, it calls the first draw method, which doesn't flip the sprites
+            if (isFacingRight)
+            {
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0, origin, scale, SpriteEffects.None, 0);
+            }
+            //If the player has last pressed "A" to move left the draw method with the sprites flipped horizontally will be called
+            else if (!isFacingRight)
+            {
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0, origin, scale, SpriteEffects.FlipHorizontally, 0);
+            }
         }
 
         private void HandleInput(GameTime gameTime)
         {
+            //velocity determines the direction the object is moving, this code sets the vector values to 0
+            velocity = Vector2.Zero;
 
+            //Keystate reads which key is being used
+            KeyboardState keyState = Keyboard.GetState();
+
+
+            //Moves the player up when pressing W by removing Y position value 
+            if (keyState.IsKeyDown(Keys.W))
+            {
+                velocity += new Vector2(0, -1);
+                //objectSprites = runAnimation;
+            }
+
+            //Moves the player left when pressing A by removing X position value, and sets the the bool to false to determine which draw method to use
+            if (keyState.IsKeyDown(Keys.A))
+            {
+                velocity += new Vector2(-1, 0);
+                //objectSprites = runAnimation;
+                isFacingRight = false;
+            }
+            //Moves the player right when pressing D by adding X position value, and sets the bool to true to determine which draw method to use
+            if (keyState.IsKeyDown(Keys.D))
+            {
+                velocity += new Vector2(+1, 0);
+                //objectSprites = runAnimation;
+                isFacingRight = true;
+            }
+            //Moves the player down when pressing S by adding Y position value 
+            if (keyState.IsKeyDown(Keys.S))
+            {
+                velocity += new Vector2(0, +1);
+                //objectSprites = runAnimation;
+            }
+
+            if (!keyState.IsKeyDown(Keys.S) && !keyState.IsKeyDown(Keys.W) && !keyState.IsKeyDown(Keys.A) && !keyState.IsKeyDown(Keys.D))
+            {
+                //objectSprites = idleAnimation;
+            }
+
+            //Code needed so that the objects speed isn't increased when moving diagonally
+            if (velocity != Vector2.Zero)
+            {
+                velocity.Normalize();
+            }
         }
 
         public void ScreenWrap()

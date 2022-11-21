@@ -18,7 +18,7 @@ namespace KnightsTrial
         protected Vector2 origin;
         protected Vector2 velocity;
         protected float animationTime;
-        protected float animationSpeed;
+        protected float animationSpeed =8f;
         protected float scale;
         protected float speed;
         protected int layerDepth;
