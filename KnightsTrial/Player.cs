@@ -19,6 +19,7 @@ namespace KnightsTrial
         private bool healthModified = false;
         private bool regenStamina = true;
         private static bool blocking = false;
+        private bool dodging = false;
         private Color color;
         private Texture2D[] block;
         private Texture2D[] heroWeaponPrep;
@@ -34,12 +35,22 @@ namespace KnightsTrial
         private bool isFacingRight = false;
         private bool hitCooldown = false;
         private float hitCooldownTimer;
+        private float dodgeTimer;
         private bool attackCooldown = false;
         private float attackCooldownTimer;
         private float staminaRegenerating;
 
+        private Vector2 dodgeVelocity;
+        private bool leftD = false;
+        private bool rightD = false;
+        private bool upD = false;
+        private bool downD = false;
+
+
         private MouseState currentMouse;
         private MouseState previousMouse;
+        private KeyboardState currentKey;
+        private KeyboardState previousKey;
 
         //Properties
         public int Health
@@ -114,7 +125,7 @@ namespace KnightsTrial
 
             //Places the Object in the middle of the game screen upon startup
             position.X = GameWorld.ScreenSize.X / 2;
-            position.Y = GameWorld.ScreenSize.Y / 2;
+            position.Y = GameWorld.ScreenSize.Y / 8 * 7;
 
 
             //Loads the textures for the weapons
@@ -131,13 +142,18 @@ namespace KnightsTrial
             previousMouse = currentMouse;
             currentMouse = Mouse.GetState();
 
+            previousKey = currentKey;
+            currentKey = Keyboard.GetState();
+
             HandleInput(gameTime);
+            Dodge(gameTime);
+            SetDodgeVelocity();
             Move(gameTime);
             Animate(gameTime);
             ScreenWrap();
             Block(gameTime);
             StaminaRegen(gameTime);
-
+            
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -158,50 +174,54 @@ namespace KnightsTrial
 
         private void HandleInput(GameTime gameTime)
         {
-            //velocity determines the direction the object is moving, this code sets the vector values to 0
-            velocity = Vector2.Zero;
-
-            //Keystate reads which key is being used
-            KeyboardState keyState = Keyboard.GetState();
-
-
-            //Moves the player up when pressing W by removing Y position value 
-            if (keyState.IsKeyDown(Keys.W) && blocking != true)
+            if (dodging == false)
             {
-                velocity += new Vector2(0, -1);
-                objectSprites = runAnimation;
-            }
+                //velocity determines the direction the object is moving, this code sets the vector values to 0
+                velocity = Vector2.Zero;
 
-            //Moves the player left when pressing A by removing X position value, and sets the the bool to false to determine which draw method to use
-            if (keyState.IsKeyDown(Keys.A) && blocking != true)
-            {
-                velocity += new Vector2(-1, 0);
-                objectSprites = runAnimation;
-                isFacingRight = false;
-            }
-            //Moves the player right when pressing D by adding X position value, and sets the bool to true to determine which draw method to use
-            if (keyState.IsKeyDown(Keys.D) && blocking != true)
-            {
-                velocity += new Vector2(+1, 0);
-                objectSprites = runAnimation;
-                isFacingRight = true;
-            }
-            //Moves the player down when pressing S by adding Y position value 
-            if (keyState.IsKeyDown(Keys.S) && blocking != true)
-            {
-                velocity += new Vector2(0, +1);
-                objectSprites = runAnimation;
-            }
+                //Keystate reads which key is being used
+                KeyboardState keyState = Keyboard.GetState();
 
-            if (!keyState.IsKeyDown(Keys.S) && !keyState.IsKeyDown(Keys.W) && !keyState.IsKeyDown(Keys.A) && !keyState.IsKeyDown(Keys.D) && blocking != true)
-            {
-                objectSprites = idleAnimation;
-            }
 
-            //Code needed so that the objects speed isn't increased when moving diagonally
-            if (velocity != Vector2.Zero)
-            {
-                velocity.Normalize();
+                //Moves the player up when pressing W by removing Y position value 
+                if (keyState.IsKeyDown(Keys.W) && blocking != true)
+                {
+                    velocity += new Vector2(0, -1);
+                    objectSprites = runAnimation;
+                }
+
+                //Moves the player left when pressing A by removing X position value, and sets the the bool to false to determine which draw method to use
+                if (keyState.IsKeyDown(Keys.A) && blocking != true)
+                {
+                    velocity += new Vector2(-1, 0);
+                    objectSprites = runAnimation;
+                    isFacingRight = false;
+                }
+                //Moves the player right when pressing D by adding X position value, and sets the bool to true to determine which draw method to use
+                if (keyState.IsKeyDown(Keys.D) && blocking != true)
+                {
+                    velocity += new Vector2(+1, 0);
+                    objectSprites = runAnimation;
+                    isFacingRight = true;
+                }
+                //Moves the player down when pressing S by adding Y position value 
+                if (keyState.IsKeyDown(Keys.S) && blocking != true)
+                {
+                    velocity += new Vector2(0, +1);
+                    objectSprites = runAnimation;
+                }
+
+                if (!keyState.IsKeyDown(Keys.S) && !keyState.IsKeyDown(Keys.W) && !keyState.IsKeyDown(Keys.A) && !keyState.IsKeyDown(Keys.D) && blocking != true)
+                {
+                    objectSprites = idleAnimation;
+                }
+
+                //Code needed so that the objects speed isn't increased when moving diagonally
+                if (velocity != Vector2.Zero)
+                {
+                    velocity.Normalize();
+                }
+
             }
         }
 
@@ -272,25 +292,64 @@ namespace KnightsTrial
 
         public void Block(GameTime gameTime)
         {
-            if (currentMouse.RightButton == ButtonState.Pressed && previousMouse.RightButton == ButtonState.Released)
-            {
-                Shield blockingSprite = new Shield(block[0], new Vector2(position.X, position.Y));
-                GameState.InstantiateGameObject(blockingSprite);
-            }
 
-            if (blocking == true)
+            if (dodging == false)
             {
-                if (animationTime > 3)
+
+
+                if (currentMouse.RightButton == ButtonState.Pressed && previousMouse.RightButton == ButtonState.Released)
                 {
-                    animationTime = 0;
+                    Shield blockingSprite = new Shield(block[0], new Vector2(position.X, position.Y));
+                    GameState.InstantiateGameObject(blockingSprite);
                 }
-                objectSprites = blockAnimation;
+
+                if (blocking == true)
+                {
+                    if (animationTime > 3)
+                    {
+                        animationTime = 0;
+                    }
+                    objectSprites = blockAnimation;
+                }
+
             }
         }
 
         public void Dodge(GameTime gameTime)
         {
 
+            //Keystate reads which key is being used
+            KeyboardState keyState = Keyboard.GetState();
+
+            //Moves the player left when pressing A by removing X position value, and sets the the bool to false to determine which draw method to use
+            if (blocking != true && currentKey.IsKeyDown(Keys.Space) && previousKey.IsKeyUp(Keys.Space) && dodging == false)
+            {
+                dodging = true;
+                dodgeVelocity = velocity;
+            }
+
+
+            if (dodging == true)
+            {
+
+                dodgeTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (dodgeTimer > 0.3f)
+                {
+                    dodging = false;
+                    dodgeTimer = 0;
+                    
+                }
+            }
+
+        }
+
+
+        public void SetDodgeVelocity()
+        {
+            if (dodging == true)
+            {
+                velocity = dodgeVelocity * 4f;
+            }
         }
 
         public void UsePotion(GameTime gameTime)
