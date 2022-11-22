@@ -87,6 +87,7 @@ namespace KnightsTrial
         {
             idleAnimation = new Texture2D[8];
             runAnimation = new Texture2D[8];
+            blockAnimation = new Texture2D[3];
 
             //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
             for (int i = 0; i < idleAnimation.Length; i++)
@@ -98,6 +99,12 @@ namespace KnightsTrial
             for (int i = 0; i < runAnimation.Length; i++)
             {
                 runAnimation[i] = content.Load<Texture2D>($"PRun{i}");
+            }
+
+            //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
+            for (int i = 0; i < blockAnimation.Length; i++)
+            {
+                blockAnimation[i] = content.Load<Texture2D>($"PShield{i}");
             }
 
             objectSprites = idleAnimation;
@@ -114,8 +121,8 @@ namespace KnightsTrial
             heroWeaponPrep = new Texture2D[1];
             //heroWeaponPrep[0] = content.Load<Texture2D>("HeavenlyVigilSwordSlash");
 
-            blockAnimation = new Texture2D[1];
-            blockAnimation[0] = content.Load<Texture2D>("Block");
+            block = new Texture2D[1];
+            block[0] = content.Load<Texture2D>("Block");
 
         }
 
@@ -159,34 +166,34 @@ namespace KnightsTrial
 
 
             //Moves the player up when pressing W by removing Y position value 
-            if (keyState.IsKeyDown(Keys.W))
+            if (keyState.IsKeyDown(Keys.W) && blocking != true)
             {
                 velocity += new Vector2(0, -1);
                 objectSprites = runAnimation;
             }
 
             //Moves the player left when pressing A by removing X position value, and sets the the bool to false to determine which draw method to use
-            if (keyState.IsKeyDown(Keys.A))
+            if (keyState.IsKeyDown(Keys.A) && blocking != true)
             {
                 velocity += new Vector2(-1, 0);
                 objectSprites = runAnimation;
                 isFacingRight = false;
             }
             //Moves the player right when pressing D by adding X position value, and sets the bool to true to determine which draw method to use
-            if (keyState.IsKeyDown(Keys.D))
+            if (keyState.IsKeyDown(Keys.D) && blocking != true)
             {
                 velocity += new Vector2(+1, 0);
                 objectSprites = runAnimation;
                 isFacingRight = true;
             }
             //Moves the player down when pressing S by adding Y position value 
-            if (keyState.IsKeyDown(Keys.S))
+            if (keyState.IsKeyDown(Keys.S) && blocking != true)
             {
                 velocity += new Vector2(0, +1);
                 objectSprites = runAnimation;
             }
 
-            if (!keyState.IsKeyDown(Keys.S) && !keyState.IsKeyDown(Keys.W) && !keyState.IsKeyDown(Keys.A) && !keyState.IsKeyDown(Keys.D))
+            if (!keyState.IsKeyDown(Keys.S) && !keyState.IsKeyDown(Keys.W) && !keyState.IsKeyDown(Keys.A) && !keyState.IsKeyDown(Keys.D) && blocking != true)
             {
                 objectSprites = idleAnimation;
             }
@@ -267,8 +274,17 @@ namespace KnightsTrial
         {
             if (currentMouse.RightButton == ButtonState.Pressed && previousMouse.RightButton == ButtonState.Released)
             {
-                Shield block = new Shield(blockAnimation[0], new Vector2(position.X, position.Y));
-                GameWorld.InstantiateGameObject(block);
+                Shield blockingSprite = new Shield(block[0], new Vector2(position.X, position.Y));
+                GameWorld.InstantiateGameObject(blockingSprite);
+            }
+
+            if (blocking == true)
+            {
+                if (animationTime > 3)
+                {
+                    animationTime = 0;
+                }
+                objectSprites = blockAnimation;
             }
         }
 
