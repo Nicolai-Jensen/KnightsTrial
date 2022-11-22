@@ -16,12 +16,17 @@ namespace KnightsTrial
         private List<Component> _components;
         private Texture2D[] quitButtonAnimation;
         private Texture2D[] playButtonAnimation;
+        private Texture2D[] backgroundSprite;
 
         //Properties
 
         //Constructors
         public MenuState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
+            backgroundSprite = new Texture2D[1];
+
+            backgroundSprite[0] = _content.Load<Texture2D>("UI/NyBaggrund3");
+
             playButtonAnimation = new Texture2D[20];
             for (int i = 0; i < playButtonAnimation.Length; i++)
             {
@@ -33,6 +38,8 @@ namespace KnightsTrial
             {
                 quitButtonAnimation[i] = _content.Load<Texture2D>($"PlayButton/Play button ani-{i}");
             }
+
+            UserInterface background = new UserInterface(backgroundSprite);
 
             Button startButton = new Button(playButtonAnimation)
             {
@@ -49,6 +56,7 @@ namespace KnightsTrial
 
             _components = new List<Component>()
             {
+                background,
                 startButton,
                 quitButton,
 
