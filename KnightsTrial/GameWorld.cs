@@ -18,10 +18,6 @@ namespace KnightsTrial
 
         private Texture2D pixel;
 
-        public static List<GameObject> gameObject = new List<GameObject>();
-        private static List<GameObject> gameObjectsToAdd = new List<GameObject>();
-        private List<GameObject> gameObjectsToRemove = new List<GameObject>();
-
         //Properties
         public static Vector2 ScreenSize
         {
@@ -47,8 +43,7 @@ namespace KnightsTrial
         {
             // TODO: Add your initialization logic here
             Player Knight = new Player(new Vector2(0, 0));
-            gameObject.Add(Knight);
-
+            GameState.gameObject.Add(Knight);
             base.Initialize();
         }
 
@@ -58,11 +53,11 @@ namespace KnightsTrial
 
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
 
-            foreach (GameObject go in gameObject)
+            foreach (GameObject go in GameState.gameObject)
             {
                 go.LoadContent(Content);
             }
- 
+
             //pixel = Content.Load<Texture2D>("pixel");
         }
 
@@ -81,32 +76,6 @@ namespace KnightsTrial
             _currentState.Update(gameTime);
             _currentState.PostUpdate(gameTime);
 
-            //SpawnEnemy(gameTime);
-            RemoveGameObjects();
-            //ResetInitialize();
-
-            foreach (GameObject go in gameObject)
-            {
-                go.Update(gameTime);
-
-                foreach (GameObject other in gameObject)
-                {
-                    if (go.IsColliding(other))
-                    {
-                        go.OnCollision(other);
-                        other.OnCollision(go);
-                    }
-                }
-            }
-
-            foreach (GameObject gameObjectsToSpawn in gameObjectsToAdd)
-            {
-                gameObjectsToSpawn.LoadContent(Content);
-                gameObject.Add(gameObjectsToSpawn);
-            }
-
-            gameObjectsToAdd.Clear();
-
             base.Update(gameTime);
         }
 
@@ -118,43 +87,9 @@ namespace KnightsTrial
 
             _currentState.Draw(gameTime, _spriteBatch);
 
-            foreach (GameObject go in gameObject)
-            {
-                go.Draw(_spriteBatch);
-                //DrawCollisionBox(go);
-            }
-
-
             _spriteBatch.End();
 
             base.Draw(gameTime);
-        }
-
-        private void RemoveGameObjects()
-        {
-            foreach (GameObject go in gameObject)
-            {
-                bool shouldRemoveGameObject = go.IsOutOfBounds();
-                if (shouldRemoveGameObject || go.ToBeRemoved)
-                {
-                    gameObjectsToRemove.Add(go);
-                }
-            }
-
-            foreach (GameObject goToRemove in gameObjectsToRemove)
-            {
-                gameObject.Remove(goToRemove);
-            }
-
-        }
-
-        /// <summary>
-        /// Adds a Gameobject to the gameObjectsToAdd list.
-        /// </summary>
-        /// <param name="gObject"></param>
-        public static void InstantiateGameObject(GameObject gObject)
-        {
-           gameObjectsToAdd.Add(gObject);
         }
         public void ChangeState(State state)
         {

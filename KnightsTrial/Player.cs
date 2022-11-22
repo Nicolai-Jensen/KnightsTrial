@@ -275,7 +275,7 @@ namespace KnightsTrial
             if (currentMouse.RightButton == ButtonState.Pressed && previousMouse.RightButton == ButtonState.Released)
             {
                 Shield blockingSprite = new Shield(block[0], new Vector2(position.X, position.Y));
-                GameWorld.InstantiateGameObject(blockingSprite);
+                GameState.InstantiateGameObject(blockingSprite);
             }
 
             if (blocking == true)

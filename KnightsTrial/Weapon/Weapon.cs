@@ -47,7 +47,7 @@ namespace KnightsTrial
 
         protected Vector2 ReturnPlayerPostition()
         {
-            foreach (GameObject go in GameWorld.gameObject)
+            foreach (GameObject go in GameState.gameObject)
             {
 
                 if (go is Player)
@@ -62,7 +62,7 @@ namespace KnightsTrial
 
         protected void SetPlayerSpeed(float speedValue)
         {
-            foreach (GameObject go in GameWorld.gameObject)
+            foreach (GameObject go in GameState.gameObject)
             {
                 if (go is Player)
                 {
