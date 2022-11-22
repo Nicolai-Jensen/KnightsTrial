@@ -16,9 +16,6 @@ namespace KnightsTrial
         protected ContentManager _content;
         protected GameWorld _game;
         protected GraphicsDevice _graphicsDevice;
-        protected float animationTime;
-        protected float animationSpeed;
-        protected Texture2D[] buttonAnimation;
 
         //Properties
 
@@ -33,14 +30,6 @@ namespace KnightsTrial
         public abstract void Update(GameTime gameTime);
         public abstract void PostUpdate(GameTime gameTime);
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
-        protected void Animate(GameTime gameTime)
-        {
-            animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds * animationSpeed;
-
-            if (animationTime > buttonAnimation.Length)
-            {
-                animationTime = 0;
-            }
-        }
+        
     }
 }
