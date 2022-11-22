@@ -87,6 +87,11 @@ namespace KnightsTrial
                     Click?.Invoke(this, new EventArgs());
                 }
             }
+            else
+            {
+                animationTime = 0;
+                animationSpeed = 50;
+            }
         }
         protected void Animate(GameTime gameTime)
         {
@@ -94,7 +99,8 @@ namespace KnightsTrial
 
             if (animationTime > _texture.Length)
             {
-                animationTime = 0;
+                animationTime = 19;
+                animationSpeed = 0;
             }
         }
     }

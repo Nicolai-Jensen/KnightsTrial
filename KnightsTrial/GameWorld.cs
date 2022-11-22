@@ -59,6 +59,8 @@ namespace KnightsTrial
                 go.LoadContent(Content);
             }
 
+            _currentState.LoadContent(Content);
+
             //pixel = Content.Load<Texture2D>("pixel");
         }
 
@@ -67,6 +69,9 @@ namespace KnightsTrial
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            _currentState.Update(gameTime);
+            _currentState.PostUpdate(gameTime);
+
             if (_nextState != null)
             {
                 _currentState = _nextState;
@@ -74,8 +79,6 @@ namespace KnightsTrial
                 _nextState = null;
             }
 
-            _currentState.Update(gameTime);
-            _currentState.PostUpdate(gameTime);
 
             base.Update(gameTime);
         }

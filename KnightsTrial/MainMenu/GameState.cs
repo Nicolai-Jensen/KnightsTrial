@@ -31,6 +31,17 @@ namespace KnightsTrial
         }
 
         //Methods
+        public override void LoadContent(ContentManager content)
+        {
+            //Player Knight = new Player(new Vector2(0, 0));
+            //GameState.gameObject.Add(Knight);
+            //BringerOfDeath BoD = new BringerOfDeath();
+
+            //foreach (GameObject go in gameObject)
+            //{
+            //    go.LoadContent(content);
+            //}
+        }
         public override void Update(GameTime gameTime)
         {
 
@@ -98,6 +109,7 @@ namespace KnightsTrial
         {
             gameObjectsToAdd.Add(gObject);
         }
+
     }
 
 }
