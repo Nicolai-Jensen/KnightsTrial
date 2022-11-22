@@ -61,7 +61,7 @@ namespace KnightsTrial
             {
                 position = ReturnPlayerPostition();
 
-                SetPlayerSpeed(100f);
+                SetPlayerSpeed(0f);
                 Player.Blocking = true;
             }
         }
