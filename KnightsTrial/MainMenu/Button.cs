@@ -19,7 +19,10 @@ namespace KnightsTrial
 
         private bool isHovering;
 
-        private Texture2D _texture;
+        private Texture2D[] _texture;
+
+        protected float animationTime;
+        protected float animationSpeed;
 
         //Properties
         public event EventHandler Click;
@@ -34,19 +37,19 @@ namespace KnightsTrial
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y, _texture[0].Width, _texture[0].Height);
             }
         }
         public string Text { get; set; }
 
         //Constructors
-        public Button(Texture2D texture, SpriteFont font)
+        public Button(Texture2D[] texture)
         {
             _texture = texture;
 
-            buttonFont = font;
-
             PenColour = Color.Black;
+
+            animationSpeed = 50;
 
         }
         //Methods
@@ -54,18 +57,15 @@ namespace KnightsTrial
         {
             Color color = Color.White;
 
-            if (isHovering)
-                color = Color.Gray;
+            spriteBatch.Draw(_texture[(int)animationTime], Rectangle, Color.White);
 
-            spriteBatch.Draw(_texture, Rectangle, Color.White);
+            //if (!string.IsNullOrEmpty(Text))
+            //{
+            //    float x = (Rectangle.X + (Rectangle.Width / 2)) - (buttonFont.MeasureString(Text).X / 2);
+            //    float y = (Rectangle.Y + (Rectangle.Height / 2)) - (buttonFont.MeasureString(Text).Y / 2);
 
-            if (!string.IsNullOrEmpty(Text))
-            {
-                float x = (Rectangle.X + (Rectangle.Width / 2)) - (buttonFont.MeasureString(Text).X / 2);
-                float y = (Rectangle.Y + (Rectangle.Height / 2)) - (buttonFont.MeasureString(Text).Y / 2);
-
-                spriteBatch.DrawString(buttonFont, Text, new Vector2(x, y), PenColour);
-            }
+            //    spriteBatch.DrawString(buttonFont, Text, new Vector2(x, y), PenColour);
+            //}
         }
 
         public override void Update(GameTime gameTime)
@@ -80,11 +80,21 @@ namespace KnightsTrial
             if (mouseRectangle.Intersects(Rectangle))
             {
                 isHovering = true;
+                Animate(gameTime);
 
                 if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed)
                 {
                     Click?.Invoke(this, new EventArgs());
                 }
+            }
+        }
+        protected void Animate(GameTime gameTime)
+        {
+            animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds * animationSpeed;
+
+            if (animationTime > _texture.Length)
+            {
+                animationTime = 0;
             }
         }
     }
