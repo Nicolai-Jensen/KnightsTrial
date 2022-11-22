@@ -16,8 +16,6 @@ namespace KnightsTrial
         private State _currentState;
         private State _nextState;
 
-        private List<Component> gameComponents;
-
         private Texture2D pixel;
 
         public static List<GameObject> gameObject = new List<GameObject>();

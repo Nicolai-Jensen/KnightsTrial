@@ -14,6 +14,8 @@ namespace KnightsTrial
 
         //Fields
 
+        private List<Component> gameComponents;
+
         //Properties
 
         //Constructors
