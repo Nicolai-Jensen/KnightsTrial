@@ -45,7 +45,6 @@ namespace KnightsTrial
             Player Knight = new Player(new Vector2(0, 0));
             GameState.gameObject.Add(Knight);
             BringerOfDeath BoD = new BringerOfDeath();
-            GameState.gameObject.Add(BoD);
             base.Initialize();
         }
 

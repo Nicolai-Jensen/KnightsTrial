@@ -19,10 +19,10 @@ namespace KnightsTrial
         //Constructors
         public BringerOfDeath()
         {
+            GameState.InstantiateGameObject(this);
             health = 2500;
             speed = 150f;
             velocity = new Vector2(1, 0);
-            //position = new Vector2(GameWorld.ScreenSize.X / 2, GameWorld.ScreenSize.Y / 2);
             position = new Vector2(200, 200);
 
             objectSprites = new Texture2D[8];
