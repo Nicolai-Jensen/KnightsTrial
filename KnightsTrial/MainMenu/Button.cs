@@ -55,8 +55,6 @@ namespace KnightsTrial
         //Methods
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            Color color = Color.White;
-
             spriteBatch.Draw(_texture[(int)animationTime], Rectangle, Color.White);
 
             //if (!string.IsNullOrEmpty(Text))
@@ -99,7 +97,7 @@ namespace KnightsTrial
 
             if (animationTime > _texture.Length)
             {
-                animationTime = 19;
+                animationTime = 20;
                 animationSpeed = 0;
             }
         }

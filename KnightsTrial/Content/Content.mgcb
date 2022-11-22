@@ -387,7 +387,7 @@
 /processorParam:TextureFormat=Color
 /build:PIdle7.png
 
-#begin PlayButton/Play button ani-0.png
+#begin PlayButton/MenuPLAYButtonANI-export1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -397,9 +397,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-0.png
+/build:PlayButton/MenuPLAYButtonANI-export1.png
 
-#begin PlayButton/Play button ani-1.png
+#begin PlayButton/MenuPLAYButtonANI-export10.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -409,9 +409,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-1.png
+/build:PlayButton/MenuPLAYButtonANI-export10.png
 
-#begin PlayButton/Play button ani-10.png
+#begin PlayButton/MenuPLAYButtonANI-export11.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -421,9 +421,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-10.png
+/build:PlayButton/MenuPLAYButtonANI-export11.png
 
-#begin PlayButton/Play button ani-11.png
+#begin PlayButton/MenuPLAYButtonANI-export12.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -433,9 +433,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-11.png
+/build:PlayButton/MenuPLAYButtonANI-export12.png
 
-#begin PlayButton/Play button ani-12.png
+#begin PlayButton/MenuPLAYButtonANI-export13.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -445,9 +445,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-12.png
+/build:PlayButton/MenuPLAYButtonANI-export13.png
 
-#begin PlayButton/Play button ani-13.png
+#begin PlayButton/MenuPLAYButtonANI-export14.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -457,9 +457,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-13.png
+/build:PlayButton/MenuPLAYButtonANI-export14.png
 
-#begin PlayButton/Play button ani-14.png
+#begin PlayButton/MenuPLAYButtonANI-export15.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -469,9 +469,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-14.png
+/build:PlayButton/MenuPLAYButtonANI-export15.png
 
-#begin PlayButton/Play button ani-15.png
+#begin PlayButton/MenuPLAYButtonANI-export16.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -481,9 +481,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-15.png
+/build:PlayButton/MenuPLAYButtonANI-export16.png
 
-#begin PlayButton/Play button ani-16.png
+#begin PlayButton/MenuPLAYButtonANI-export17.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -493,9 +493,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-16.png
+/build:PlayButton/MenuPLAYButtonANI-export17.png
 
-#begin PlayButton/Play button ani-17.png
+#begin PlayButton/MenuPLAYButtonANI-export18.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -505,9 +505,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-17.png
+/build:PlayButton/MenuPLAYButtonANI-export18.png
 
-#begin PlayButton/Play button ani-18.png
+#begin PlayButton/MenuPLAYButtonANI-export19.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -517,9 +517,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-18.png
+/build:PlayButton/MenuPLAYButtonANI-export19.png
 
-#begin PlayButton/Play button ani-19.png
+#begin PlayButton/MenuPLAYButtonANI-export2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -529,9 +529,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-19.png
+/build:PlayButton/MenuPLAYButtonANI-export2.png
 
-#begin PlayButton/Play button ani-2.png
+#begin PlayButton/MenuPLAYButtonANI-export20.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -541,9 +541,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-2.png
+/build:PlayButton/MenuPLAYButtonANI-export20.png
 
-#begin PlayButton/Play button ani-3.png
+#begin PlayButton/MenuPLAYButtonANI-export21.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -553,9 +553,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-3.png
+/build:PlayButton/MenuPLAYButtonANI-export21.png
 
-#begin PlayButton/Play button ani-4.png
+#begin PlayButton/MenuPLAYButtonANI-export3.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -565,9 +565,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-4.png
+/build:PlayButton/MenuPLAYButtonANI-export3.png
 
-#begin PlayButton/Play button ani-5.png
+#begin PlayButton/MenuPLAYButtonANI-export4.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -577,9 +577,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-5.png
+/build:PlayButton/MenuPLAYButtonANI-export4.png
 
-#begin PlayButton/Play button ani-6.png
+#begin PlayButton/MenuPLAYButtonANI-export5.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -589,9 +589,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-6.png
+/build:PlayButton/MenuPLAYButtonANI-export5.png
 
-#begin PlayButton/Play button ani-7.png
+#begin PlayButton/MenuPLAYButtonANI-export6.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -601,9 +601,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-7.png
+/build:PlayButton/MenuPLAYButtonANI-export6.png
 
-#begin PlayButton/Play button ani-8.png
+#begin PlayButton/MenuPLAYButtonANI-export7.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -613,9 +613,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-8.png
+/build:PlayButton/MenuPLAYButtonANI-export7.png
 
-#begin PlayButton/Play button ani-9.png
+#begin PlayButton/MenuPLAYButtonANI-export8.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -625,7 +625,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayButton/Play button ani-9.png
+/build:PlayButton/MenuPLAYButtonANI-export8.png
+
+#begin PlayButton/MenuPLAYButtonANI-export9.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:PlayButton/MenuPLAYButtonANI-export9.png
 
 #begin Potion1.png
 /importer:TextureImporter
@@ -806,6 +818,258 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:PShield2.png
+
+#begin QuitButton/MenuQUITButtonANI1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI1.png
+
+#begin QuitButton/MenuQUITButtonANI10.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI10.png
+
+#begin QuitButton/MenuQUITButtonANI11.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI11.png
+
+#begin QuitButton/MenuQUITButtonANI12.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI12.png
+
+#begin QuitButton/MenuQUITButtonANI13.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI13.png
+
+#begin QuitButton/MenuQUITButtonANI14.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI14.png
+
+#begin QuitButton/MenuQUITButtonANI15.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI15.png
+
+#begin QuitButton/MenuQUITButtonANI16.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI16.png
+
+#begin QuitButton/MenuQUITButtonANI17.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI17.png
+
+#begin QuitButton/MenuQUITButtonANI18.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI18.png
+
+#begin QuitButton/MenuQUITButtonANI19.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI19.png
+
+#begin QuitButton/MenuQUITButtonANI2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI2.png
+
+#begin QuitButton/MenuQUITButtonANI20.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI20.png
+
+#begin QuitButton/MenuQUITButtonANI21.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI21.png
+
+#begin QuitButton/MenuQUITButtonANI3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI3.png
+
+#begin QuitButton/MenuQUITButtonANI4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI4.png
+
+#begin QuitButton/MenuQUITButtonANI5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI5.png
+
+#begin QuitButton/MenuQUITButtonANI6.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI6.png
+
+#begin QuitButton/MenuQUITButtonANI7.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI7.png
+
+#begin QuitButton/MenuQUITButtonANI8.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI8.png
+
+#begin QuitButton/MenuQUITButtonANI9.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:QuitButton/MenuQUITButtonANI9.png
 
 #begin UI/NyBaggrund3.png
 /importer:TextureImporter

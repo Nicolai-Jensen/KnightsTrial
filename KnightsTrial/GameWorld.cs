@@ -95,6 +95,10 @@ namespace KnightsTrial
 
             base.Draw(gameTime);
         }
+        /// <summary>
+        /// Sets _nextState to the new State.
+        /// </summary>
+        /// <param name="state"></param>
         public void ChangeState(State state)
         {
             _nextState = state;

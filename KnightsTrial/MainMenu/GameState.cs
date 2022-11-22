@@ -22,6 +22,7 @@ namespace KnightsTrial
         public static List<GameObject> gameObject = new List<GameObject>();
         private static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         private List<GameObject> gameObjectsToRemove = new List<GameObject>();
+        private Texture2D[] menuButtonAnimation;
 
         //Properties
 
@@ -41,12 +42,25 @@ namespace KnightsTrial
             //{
             //    go.LoadContent(content);
             //}
+
+            //menuButtonAnimation = new Texture2D[21];
+            //for (int i = 0; i < menuButtonAnimation.Length; i++)
+            //{
+            //    menuButtonAnimation[i] = _content.Load<Texture2D>($"PlayButton/MenuPLAYButtonANI-export{i + 1}");
+            //}
+            //Button menuButton = new Button(menuButtonAnimation)
+            //{
+            //    Position = new Vector2(1900, 100),
+            //};
+            //gameComponents = new List<Component>()
+            //{
+            //    menuButton,
+            //};
         }
+
         public override void Update(GameTime gameTime)
         {
-
             RemoveGameObjects();
-
 
             foreach (GameObject go in gameObject)
             {
@@ -61,6 +75,9 @@ namespace KnightsTrial
                     }
                 }
             }
+
+            //foreach (Component co in gameComponents)
+            //    co.Update(gameTime);
 
             foreach (GameObject gameObjectsToSpawn in gameObjectsToAdd)
             {
@@ -82,6 +99,12 @@ namespace KnightsTrial
                 go.Draw(spriteBatch);
                 //DrawCollisionBox(go);
             }
+
+            //foreach (Component co in gameComponents)
+            //{
+            //    co.Draw(gameTime, spriteBatch);
+            //}
+
         }
         private void RemoveGameObjects()
         {
