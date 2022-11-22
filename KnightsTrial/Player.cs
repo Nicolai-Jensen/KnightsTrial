@@ -18,6 +18,7 @@ namespace KnightsTrial
         private int stamina;
         private bool healthModified = false;
         private bool regenStamina = true;
+        private static bool blocking = false;
         private Color color;
         private Texture2D[] block;
         private Texture2D[] heroWeaponPrep;
@@ -36,6 +37,9 @@ namespace KnightsTrial
         private bool attackCooldown = false;
         private float attackCooldownTimer;
         private float staminaRegenerating;
+
+        private MouseState currentMouse;
+        private MouseState previousMouse;
 
         //Properties
         public int Health
@@ -59,6 +63,12 @@ namespace KnightsTrial
         public bool HitCooldown
         {
             get { return hitCooldown; }
+        }
+
+        public static bool Blocking
+        {
+            get { return blocking; }
+            set { blocking = value; }
         }
 
         //Constructors
@@ -104,14 +114,23 @@ namespace KnightsTrial
             heroWeaponPrep = new Texture2D[1];
             //heroWeaponPrep[0] = content.Load<Texture2D>("HeavenlyVigilSwordSlash");
 
+            blockAnimation = new Texture2D[1];
+            blockAnimation[0] = content.Load<Texture2D>("Block");
+
         }
 
         public override void Update(GameTime gameTime)
         {
+            previousMouse = currentMouse;
+            currentMouse = Mouse.GetState();
+
             HandleInput(gameTime);
             Move(gameTime);
             Animate(gameTime);
             ScreenWrap();
+            Block(gameTime);
+            StaminaRegen(gameTime);
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -246,7 +265,11 @@ namespace KnightsTrial
 
         public void Block(GameTime gameTime)
         {
-
+            if (currentMouse.RightButton == ButtonState.Pressed && previousMouse.RightButton == ButtonState.Released)
+            {
+                Shield block = new Shield(blockAnimation[0], new Vector2(position.X, position.Y));
+                GameWorld.InstantiateGameObject(block);
+            }
         }
 
         public void Dodge(GameTime gameTime)
