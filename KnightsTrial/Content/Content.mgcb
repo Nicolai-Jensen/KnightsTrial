@@ -13,11 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-
-#begin BringerOfDeath/Bosswalk_0.png
-
 #begin Block.png
-
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -27,7 +23,18 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/build:Block.png
 
+#begin BringerOfDeath/Bosswalk_0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
 /build:BringerOfDeath/Bosswalk_0.png
 
 #begin BringerOfDeath/Bosswalk_1.png
@@ -113,9 +120,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:BringerOfDeath/Bosswalk_7.png
-
-/build:Block.png
-
 
 #begin buttonFont.spritefont
 /importer:FontDescriptionImporter
@@ -646,4 +650,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:PShield2.png
+
+#begin UI/NyBaggrund3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/NyBaggrund3.png
 

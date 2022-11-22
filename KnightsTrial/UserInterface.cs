@@ -9,29 +9,29 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KnightsTrial
 {
-    internal class UserInterface
+    internal class UserInterface : Component
     {
         //Fields
-
+        private Texture2D[] UIcomponents;
         private SpriteFont gameFont;
-        private SpriteFont menuFont;
+
 
         //Properties
 
         //Constructors
-
+        public UserInterface(Texture2D[] texture)
+        {
+            UIcomponents = texture;
+        }
         //Methods
-        public virtual void LoadContent(ContentManager content)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-
+            spriteBatch.Draw(UIcomponents[0], Vector2.Zero, Color.White);
         }
-        public virtual void Update(GameTime gameTime)
-        {
 
-        }
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Update(GameTime gameTime)
         {
-
+            
         }
     }
 }
