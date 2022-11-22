@@ -147,7 +147,7 @@ namespace KnightsTrial
         }
         public void PhaseShiftAttack(GameTime gameTime)
         {
-
+            // Attack to run when boss enters a new phase.
         }
     }
 }
