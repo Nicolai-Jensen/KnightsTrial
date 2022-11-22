@@ -16,12 +16,10 @@ namespace KnightsTrial
         private State _currentState;
         private State _nextState;
 
-        private List<Component> gameComponents;
-
         private Texture2D pixel;
 
         public static List<GameObject> gameObject = new List<GameObject>();
-        private List<GameObject> gameObjectsToAdd = new List<GameObject>();
+        private static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         private List<GameObject> gameObjectsToRemove = new List<GameObject>();
 
         //Properties
@@ -156,14 +154,27 @@ namespace KnightsTrial
         /// <param name="gObject"></param>
         public static void InstantiateGameObject(GameObject gObject)
         {
-           // gameObjectsToAdd.Add(gObject);
+           gameObjectsToAdd.Add(gObject);
         }
         public void ChangeState(State state)
         {
             _nextState = state;
         }
 
+        private void DrawCollisionBox(GameObject go)
 
+        {
+            Rectangle top = new Rectangle(go.CollisionBox.X, go.CollisionBox.Y, go.CollisionBox.Width, 1);
+            Rectangle bottom = new Rectangle(go.CollisionBox.X, go.CollisionBox.Y + go.CollisionBox.Height, go.CollisionBox.Width, 1);
+            Rectangle left = new Rectangle(go.CollisionBox.X, go.CollisionBox.Y, 1, go.CollisionBox.Height);
+            Rectangle right = new Rectangle(go.CollisionBox.X + go.CollisionBox.Width, go.CollisionBox.Y, 1, go.CollisionBox.Height);
+
+            _spriteBatch.Draw(pixel, top, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            _spriteBatch.Draw(pixel, bottom, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            _spriteBatch.Draw(pixel, left, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            _spriteBatch.Draw(pixel, right, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+
+        }
 
     }
 }

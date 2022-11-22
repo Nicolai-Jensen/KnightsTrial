@@ -14,24 +14,34 @@ namespace KnightsTrial
 
         //Fields
         private List<Component> _components;
+        private Texture2D[] quitButtonAnimation;
+        private Texture2D[] playButtonAnimation;
 
         //Properties
 
         //Constructors
         public MenuState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            Texture2D buttonTexture = _content.Load<Texture2D>("Potion1");
-            SpriteFont buttonFont = _content.Load<SpriteFont>("buttonFont");
-            Button startButton = new Button(buttonTexture, buttonFont)
+            playButtonAnimation = new Texture2D[20];
+            for (int i = 0; i < playButtonAnimation.Length; i++)
             {
-                Position = new Vector2(GameWorld.ScreenSize.X / 2, 400),
-                Text = "Start Game"
+                playButtonAnimation[i] = _content.Load<Texture2D>($"PlayButton/Play button ani-{i}");
+            }
+
+            quitButtonAnimation = new Texture2D[20];
+            for (int i = 0; i < quitButtonAnimation.Length; i++)
+            {
+                quitButtonAnimation[i] = _content.Load<Texture2D>($"PlayButton/Play button ani-{i}");
+            }
+
+            Button startButton = new Button(playButtonAnimation)
+            {
+                Position = new Vector2(GameWorld.ScreenSize.X / 2 - 75, 400),
             };
 
-            Button quitButton = new Button(buttonTexture, buttonFont)
+            Button quitButton = new Button(quitButtonAnimation)
             {
-                Position = new Vector2(GameWorld.ScreenSize.X / 2, 600),
-                Text = "Quit Game"
+                Position = new Vector2(GameWorld.ScreenSize.X / 2 - 75, 600),
             };
 
             startButton.Click += StartButton_Click;
