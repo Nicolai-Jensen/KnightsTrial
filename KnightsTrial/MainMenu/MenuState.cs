@@ -13,7 +13,7 @@ namespace KnightsTrial
     {
 
         //Fields
-        private List<Component> _components;
+        public static List<Component> _components;
         private Texture2D[] quitButtonAnimation;
         private Texture2D[] playButtonAnimation;
         private Texture2D[] backgroundSprite;
@@ -22,7 +22,11 @@ namespace KnightsTrial
 
         //Constructors
         public MenuState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+        { }
+        //Methods
+        public override void LoadContent(ContentManager content)
         {
+    
             backgroundSprite = new Texture2D[1];
 
             backgroundSprite[0] = _content.Load<Texture2D>("UI/NyBaggrund3");
@@ -50,22 +54,18 @@ namespace KnightsTrial
             {
                 Position = new Vector2(GameWorld.ScreenSize.X / 2 - 75, 600),
             };
-
             startButton.Click += StartButton_Click;
             quitButton.Click += QuitButton_Click;
 
             _components = new List<Component>()
             {
-                background,
-                startButton,
-                quitButton,
+                        background,
+                        startButton,
+                        quitButton,
 
             };
-        }
+}
 
-
-
-        //Methods
         public override void Update(GameTime gameTime)
         {
             foreach (Component co in _components)
@@ -95,5 +95,6 @@ namespace KnightsTrial
         {
             _game.Exit();
         }
+
     }
 }
