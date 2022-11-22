@@ -24,6 +24,12 @@ namespace KnightsTrial
         protected int layerDepth;
         protected bool toBeRemoved;
         //Properties
+
+        public float Speed
+        {
+            get { return speed; }
+            set { speed = value; }
+        }
         private Texture2D CurrentSprite
         {
             get { return objectSprites[(int)animationTime]; }
@@ -43,8 +49,15 @@ namespace KnightsTrial
                     (int)SpriteSize.X, (int)SpriteSize.Y);
             }
         }
-        public Vector2 Position { get; set; }
-        public bool ToBeRemoved { get; set; }
+        public Vector2 Position { get { return position; } set { position = value; } }
+        public bool ToBeRemoved
+        {
+            get
+            {
+                return toBeRemoved;
+            }
+            set { toBeRemoved = value; }
+        }
         //Constructors
 
         //Methods

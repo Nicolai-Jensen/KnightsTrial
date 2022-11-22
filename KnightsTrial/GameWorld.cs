@@ -19,7 +19,7 @@ namespace KnightsTrial
         private Texture2D pixel;
 
         public static List<GameObject> gameObject = new List<GameObject>();
-        private List<GameObject> gameObjectsToAdd = new List<GameObject>();
+        private static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         private List<GameObject> gameObjectsToRemove = new List<GameObject>();
 
         //Properties
@@ -154,7 +154,7 @@ namespace KnightsTrial
         /// <param name="gObject"></param>
         public static void InstantiateGameObject(GameObject gObject)
         {
-           // gameObjectsToAdd.Add(gObject);
+           gameObjectsToAdd.Add(gObject);
         }
         public void ChangeState(State state)
         {
