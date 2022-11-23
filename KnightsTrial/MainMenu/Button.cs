@@ -20,6 +20,7 @@ namespace KnightsTrial
         private bool isHovering;
 
         private Texture2D[] _texture;
+        private Vector2 position;
 
         protected float animationTime;
         protected float animationSpeed;
@@ -37,13 +38,13 @@ namespace KnightsTrial
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture[0].Width, _texture[0].Height);
+                return new Rectangle((int)position.X, (int)position.Y, _texture[0].Width, _texture[0].Height);
             }
         }
         public string Text { get; set; }
 
         //Constructors
-        public Button(Texture2D[] texture)
+        public Button(Texture2D[] texture, Vector2 posValue)
         {
             _texture = texture;
 
@@ -51,11 +52,13 @@ namespace KnightsTrial
 
             animationSpeed = 50;
 
+            position = posValue;
+
         }
         //Methods
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture[(int)animationTime], Rectangle, Color.White);
+            spriteBatch.Draw(_texture[(int)animationTime], position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
             //if (!string.IsNullOrEmpty(Text))
             //{

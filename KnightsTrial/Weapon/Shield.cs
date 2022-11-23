@@ -50,7 +50,7 @@ namespace KnightsTrial
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.Aqua * 0.4f, 0, origin, scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.Aqua * 0.4f, 0, origin, scale, SpriteEffects.None, 1f);
         }
 
         public void HoldBlock(GameTime gameTime)
