@@ -21,7 +21,7 @@ namespace KnightsTrial
 
         public static List<GameObject> gameObject = new List<GameObject>();
         private static List<GameObject> gameObjectsToAdd = new List<GameObject>();
-        private List<GameObject> gameObjectsToRemove = new List<GameObject>();
+        private static List<GameObject> gameObjectsToRemove = new List<GameObject>();
         private Texture2D[] menuButtonAnimation;
 
         //Properties
@@ -34,29 +34,32 @@ namespace KnightsTrial
         //Methods
         public override void LoadContent(ContentManager content)
         {
-            //Player Knight = new Player(new Vector2(0, 0));
-            //GameState.gameObject.Add(Knight);
-            //BringerOfDeath BoD = new BringerOfDeath();
+            Player Knight = new Player(new Vector2(0, 0));
+            gameObject.Add(Knight);
+            BringerOfDeath BoD = new BringerOfDeath();
 
-            //foreach (GameObject go in gameObject)
-            //{
-            //    go.LoadContent(content);
-            //}
+            foreach (GameObject go in gameObject)
+            {
+                go.LoadContent(content);
+            }
 
-            //menuButtonAnimation = new Texture2D[21];
-            //for (int i = 0; i < menuButtonAnimation.Length; i++)
-            //{
-            //    menuButtonAnimation[i] = _content.Load<Texture2D>($"PlayButton/MenuPLAYButtonANI-export{i + 1}");
-            //}
-            //Button menuButton = new Button(menuButtonAnimation)
-            //{
-            //    Position = new Vector2(1900, 100),
-            //};
-            //gameComponents = new List<Component>()
-            //{
-            //    menuButton,
-            //};
+            menuButtonAnimation = new Texture2D[21];
+            for (int i = 0; i < menuButtonAnimation.Length; i++)
+            {
+                menuButtonAnimation[i] = _content.Load<Texture2D>($"PlayButton/MenuPLAYButtonANI-export{i + 1}");
+            }
+            Button menuButton = new Button(menuButtonAnimation)
+            {
+                Position = new Vector2(1600, 50),
+            };
+            gameComponents = new List<Component>()
+            {
+                menuButton,
+            };
+
+            menuButton.Click += MenuButton_Click;
         }
+
 
         public override void Update(GameTime gameTime)
         {
@@ -76,8 +79,8 @@ namespace KnightsTrial
                 }
             }
 
-            //foreach (Component co in gameComponents)
-            //    co.Update(gameTime);
+            foreach (Component co in gameComponents)
+                co.Update(gameTime);
 
             foreach (GameObject gameObjectsToSpawn in gameObjectsToAdd)
             {
@@ -100,10 +103,10 @@ namespace KnightsTrial
                 //DrawCollisionBox(go);
             }
 
-            //foreach (Component co in gameComponents)
-            //{
-            //    co.Draw(gameTime, spriteBatch);
-            //}
+            foreach (Component co in gameComponents)
+            {
+                co.Draw(gameTime, spriteBatch);
+            }
 
         }
         private void RemoveGameObjects()
@@ -121,7 +124,6 @@ namespace KnightsTrial
             {
                 gameObject.Remove(goToRemove);
             }
-
         }
 
         /// <summary>
@@ -131,6 +133,15 @@ namespace KnightsTrial
         public static void InstantiateGameObject(GameObject gObject)
         {
             gameObjectsToAdd.Add(gObject);
+        }
+        private void MenuButton_Click(object sender, EventArgs e)
+        {         
+            foreach (GameObject go in gameObject)
+            {
+                go.ToBeRemoved = true;
+            }          
+            RemoveGameObjects();
+            _game.ChangeState(new MenuState(_game, _graphicsDevice, _content));
         }
 
     }
