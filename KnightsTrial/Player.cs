@@ -20,6 +20,7 @@ namespace KnightsTrial
         private bool regenStamina = true;
         private static bool blocking = false;
         private bool dodging = false;
+        private bool dodgingAnim = false;
         private Color color;
         private Texture2D[] block;
         private Texture2D[] heroWeaponPrep;
@@ -36,17 +37,13 @@ namespace KnightsTrial
         private bool hitCooldown = false;
         private float hitCooldownTimer;
         private float dodgeTimer;
+        private bool dodgeCooldown = false;
+        private float dodgeCooldownTimer;
         private bool attackCooldown = false;
         private float attackCooldownTimer;
         private float staminaRegenerating;
 
         private Vector2 dodgeVelocity;
-        private bool leftD = false;
-        private bool rightD = false;
-        private bool upD = false;
-        private bool downD = false;
-
-
         private MouseState currentMouse;
         private MouseState previousMouse;
         private KeyboardState currentKey;
@@ -99,6 +96,7 @@ namespace KnightsTrial
             idleAnimation = new Texture2D[8];
             runAnimation = new Texture2D[8];
             blockAnimation = new Texture2D[3];
+            dodgeAnimation = new Texture2D[10];
 
             //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
             for (int i = 0; i < idleAnimation.Length; i++)
@@ -118,6 +116,12 @@ namespace KnightsTrial
                 blockAnimation[i] = content.Load<Texture2D>($"PShield{i}");
             }
 
+            //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
+            for (int i = 0; i < dodgeAnimation.Length; i++)
+            {
+                dodgeAnimation[i] = content.Load<Texture2D>($"Dodge/Roll{i}");
+            }
+
             objectSprites = idleAnimation;
 
             //This line of code places the objects origin within the middle of the sprite assuming all sprites in the array share the same size
@@ -128,7 +132,10 @@ namespace KnightsTrial
             position.Y = GameWorld.ScreenSize.Y / 8 * 7;
 
 
-            //Loads the textures for the weapons
+            //Loads the textures for the player
+
+
+
             heroWeaponPrep = new Texture2D[1];
             //heroWeaponPrep[0] = content.Load<Texture2D>("HeavenlyVigilSwordSlash");
 
@@ -317,32 +324,47 @@ namespace KnightsTrial
 
         public void Dodge(GameTime gameTime)
         {
-
-            //Keystate reads which key is being used
-            KeyboardState keyState = Keyboard.GetState();
-
-            //Moves the player left when pressing A by removing X position value, and sets the the bool to false to determine which draw method to use
-            if (blocking != true && currentKey.IsKeyDown(Keys.Space) && previousKey.IsKeyUp(Keys.Space) && dodging == false)
+            if (blocking != true && currentKey.IsKeyDown(Keys.Space) && previousKey.IsKeyUp(Keys.Space) && dodging == false && dodgeCooldown == false)
             {
                 dodging = true;
+                dodgingAnim = true;
+                dodgeCooldown = true;
+                animationTime = 0;
                 dodgeVelocity = velocity;
             }
 
-
             if (dodging == true)
             {
-
                 dodgeTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (dodgeTimer > 0.3f)
                 {
                     dodging = false;
-                    dodgeTimer = 0;
-                    
+                    dodgeTimer = 0;                   
                 }
             }
 
-        }
+            if (dodgingAnim == true)
+            {
+                animationSpeed = 16f;
+                objectSprites = dodgeAnimation;
+                if (animationTime > 9)
+                {
+                    dodgingAnim = false;
+                    animationSpeed = 8f;
+                }
+            }   
+            
+            if (dodgeCooldown == true)
+            {
+                dodgeCooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
 
+            if (dodgeCooldownTimer > 1f)
+            {
+                dodgeCooldown = false;
+                dodgeCooldownTimer = 0;
+            }
+        }
 
         public void SetDodgeVelocity()
         {
