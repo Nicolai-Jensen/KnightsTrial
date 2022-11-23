@@ -20,7 +20,7 @@ namespace KnightsTrial
         public static State gameState;
         public static State menuState;
 
-        private Texture2D pixel;
+        public Texture2D pixel;
 
         //Properties
         public static Vector2 ScreenSize
@@ -69,7 +69,7 @@ namespace KnightsTrial
             //}
 
 
-            //pixel = Content.Load<Texture2D>("pixel");
+            pixel = Content.Load<Texture2D>("pixel");
         }
 
         protected override void Update(GameTime gameTime)
@@ -113,7 +113,7 @@ namespace KnightsTrial
             _nextState = state;
         }
 
-        private void DrawCollisionBox(GameObject go)
+        public void DrawCollisionBox(GameObject go)
 
         {
             Rectangle top = new Rectangle(go.CollisionBox.X, go.CollisionBox.Y, go.CollisionBox.Width, 1);
