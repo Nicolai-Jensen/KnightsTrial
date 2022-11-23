@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KnightsTrial
 {
-    internal abstract class Boss : GameObject
+    internal abstract class GameBoss : GameObject
     {
         //Fields
         protected int health;
