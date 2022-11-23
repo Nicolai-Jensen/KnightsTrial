@@ -21,6 +21,7 @@ namespace KnightsTrial
         {
             GameState.InstantiateGameObject(this);
             position = inputPosition;
+            scale = 1.5f;
         }
 
         //Methods
@@ -45,7 +46,7 @@ namespace KnightsTrial
         public override void Draw(SpriteBatch spriteBatch)
         {
 
-            spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, 1.5f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 1f);
 
         }
     }

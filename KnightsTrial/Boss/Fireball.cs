@@ -30,6 +30,7 @@ namespace KnightsTrial
             velocity = projectileDirection;
             hasCollided = false;
             telegraph = new Beware(playerPosition);
+            scale = 2f;
         }
 
         //Methods
@@ -61,29 +62,31 @@ namespace KnightsTrial
         public override void Draw(SpriteBatch spriteBatch)
         {
 
-            spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, 2f, SpriteEffects.None, 1f);
-
             if (objectSprites == explosionSprites)
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, 4f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale*2, SpriteEffects.None, 1f);
             }
             else
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, 2f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 1f);
             }
         }
 
         public override void OnCollision(GameObject other)
         {
-            if (other is Beware)
+            if (other is Beware && !hasCollided)
             {
-                return;
+                hasCollided = true;
+                animationTime = 0;
+                velocity = Vector2.Zero;
+                objectSprites = explosionSprites;
+                //other.ToBeRemoved = true;
             }
-            hasCollided = true;
-            animationTime = 0;
-            velocity = Vector2.Zero;
-            objectSprites = explosionSprites;
-            other.ToBeRemoved = true;
+
+            if (other is Player && objectSprites == explosionSprites && hasCollided)
+            {
+                hasCollided = false;
+            }
         }
 
         private void CheckForRemove()
