@@ -46,7 +46,7 @@ namespace KnightsTrial.Boss
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, 2f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.MediumBlue, 0f, origin, 2f, SpriteEffects.None, 1f);
         }
     }
 }
