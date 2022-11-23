@@ -29,7 +29,6 @@ namespace KnightsTrial
         //Methods
         public abstract void LoadContent(ContentManager content);
         public abstract void Update(GameTime gameTime);
-        public abstract void PostUpdate(GameTime gameTime);
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
     }
 }
