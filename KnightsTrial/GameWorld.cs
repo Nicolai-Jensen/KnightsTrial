@@ -17,6 +17,9 @@ namespace KnightsTrial
         private State _currentState;
         private State _nextState;
 
+        public static State gameState;
+        public static State menuState;
+
         private Texture2D pixel;
 
         //Properties
@@ -43,18 +46,20 @@ namespace KnightsTrial
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            //Player Knight = new Player(new Vector2(0, 0));
-            //GameState.gameObject.Add(Knight);
-            //BringerOfDeath BoD = new BringerOfDeath();
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            GameState game = new GameState(this, _graphics.GraphicsDevice, Content);
+            gameState = game;
+
+            MenuState menu = new MenuState(this, _graphics.GraphicsDevice, Content);
+            menuState = menu;
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
+            _currentState = menuState;
 
             _currentState.LoadContent(Content);
 

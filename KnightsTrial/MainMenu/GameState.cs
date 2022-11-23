@@ -29,19 +29,9 @@ namespace KnightsTrial
         //Constructors
         public GameState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-        }
-
-        //Methods
-        public override void LoadContent(ContentManager content)
-        {
             Player Knight = new Player(new Vector2(0, 0));
             gameObject.Add(Knight);
             BringerOfDeath BoD = new BringerOfDeath();
-
-            foreach (GameObject go in gameObject)
-            {
-                go.LoadContent(content);
-            }
 
             menuButtonAnimation = new Texture2D[21];
             for (int i = 0; i < menuButtonAnimation.Length; i++)
@@ -58,6 +48,15 @@ namespace KnightsTrial
             };
 
             menuButton.Click += MenuButton_Click;
+        }
+
+        //Methods
+        public override void LoadContent(ContentManager content)
+        {
+            foreach (GameObject go in gameObject)
+            {
+                go.LoadContent(content);
+            }
         }
 
 
@@ -132,14 +131,14 @@ namespace KnightsTrial
         }
         private void MenuButton_Click(object sender, EventArgs e)
         {
-            foreach (GameObject go in gameObject)
-            {
-                go.ToBeRemoved = true;
-            }
+            //foreach (GameObject go in gameObject)
+            //{
+            //    go.ToBeRemoved = true;
+            //}
 
-            RemoveGameObjects();
+            //RemoveGameObjects();
 
-            _game.ChangeState(new MenuState(_game, _graphicsDevice, _content));
+            _game.ChangeState(GameWorld.menuState);
         }
 
     }
