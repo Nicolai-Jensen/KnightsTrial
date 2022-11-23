@@ -14,6 +14,7 @@ namespace KnightsTrial
         //Fields
         private Texture2D[] uiComponents;
         private SpriteFont gameFont;
+        private Vector2 position;
 
 
         //Properties
@@ -25,7 +26,7 @@ namespace KnightsTrial
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, uiComponents[0].Width, uiComponents[0].Height);
+                return new Rectangle((int)position.X, (int)position.Y, uiComponents[0].Width, uiComponents[0].Height);
             }
         }
         public string Text;
@@ -33,11 +34,13 @@ namespace KnightsTrial
 
 
         //Constructors
-        public UserInterface(Texture2D[] texture)
+        public UserInterface(Texture2D[] texture, Vector2 posValue)
         {
             uiComponents = texture;
 
             PenColor = Color.White;
+
+            position = posValue;
         }
         //Methods
 
@@ -47,7 +50,7 @@ namespace KnightsTrial
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(uiComponents[0], Vector2.Zero, Color.White);
+            spriteBatch.Draw(uiComponents[0], Position, null, Color.White, 0f, new Vector2(Rectangle.X / 2, Rectangle.Y / 2), 1f, SpriteEffects.None, 0f);
 
             if (!string.IsNullOrEmpty(Text))
             {
