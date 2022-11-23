@@ -75,40 +75,15 @@ namespace KnightsTrial
 
         public override void OnCollision(GameObject other)
         {
-
-            if (Player.Blocking == true)
+            if (other is Beware)
             {
-                if (other is Player && !hasCollided)
-                {
-                    hasCollided = true;
-                    animationTime = 0;
-                    velocity = Vector2.Zero;
-                    objectSprites = explosionSprites;
-                }
+                return;
             }
-
-            if (Player.Dodging == false)
-            {
-                if (other is Player && !hasCollided)
-                {
-                    hasCollided = true;
-                    animationTime = 0;
-                    velocity = Vector2.Zero;
-                    objectSprites = explosionSprites;
-                }
-
-
-                if (other is Beware && !hasCollided)
-                {
-                    hasCollided = true;
-                    animationTime = 0;
-                    velocity = Vector2.Zero;
-                    objectSprites = explosionSprites;
-                    other.ToBeRemoved = true;
-
-                }
-
-            }
+            hasCollided = true;
+            animationTime = 0;
+            velocity = Vector2.Zero;
+            objectSprites = explosionSprites;
+            other.ToBeRemoved = true;
         }
 
         private void CheckForRemove()
