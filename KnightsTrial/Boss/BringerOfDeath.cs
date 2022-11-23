@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using KnightsTrial.Boss;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace KnightsTrial
 {
-    internal class BringerOfDeath : Boss
+    internal class BringerOfDeath : GameBoss
     {
         //Fields
         private Vector2 playerPosition;
@@ -116,6 +117,7 @@ namespace KnightsTrial
             }
             else if (behaviourTimer > randomTimeCount + 1)
             {
+                RainOfFire(gameTime);
                 randomTimeCount = rndBehaviour.Next(1, 6);
                 behaviourTimer = 0;
                 animationReset = true;
@@ -137,9 +139,9 @@ namespace KnightsTrial
         {
             //Normal attack
         }
-        public void MagicAttack(GameTime gameTime)
+        public void RainOfFire(GameTime gameTime)
         {
-            // Ranged attack
+            Fireball rangedProjektile = new Fireball(new Vector2(playerPosition.X, 0), new Vector2(0,1));
         }
         public void AOEAttack(GameTime gameTime)
         {
