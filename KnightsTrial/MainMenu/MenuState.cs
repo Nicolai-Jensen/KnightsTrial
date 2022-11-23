@@ -24,12 +24,9 @@ namespace KnightsTrial
 
         //Constructors
         public MenuState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
-        { }
-        //Methods
-        public override void LoadContent(ContentManager content)
         {
             gameName = _content.Load<SpriteFont>("buttonFont");
-    
+
             backgroundSprite = new Texture2D[1];
 
             backgroundSprite[0] = _content.Load<Texture2D>("UI/NyBaggrund3");
@@ -67,7 +64,12 @@ namespace KnightsTrial
                         quitButton,
 
             };
-}
+        }
+        //Methods
+        public override void LoadContent(ContentManager content)
+        {
+            
+        }
 
         public override void Update(GameTime gameTime)
         {
@@ -93,7 +95,7 @@ namespace KnightsTrial
         private void StartButton_Click(object sender, EventArgs e)
         {
             //Starts the game or chooses boss?.
-            _game.ChangeState(new GameState(_game, _graphicsDevice,_content));
+            _game.ChangeState(GameWorld.gameState);
         }
         /// <summary>
         /// Quits the game.
