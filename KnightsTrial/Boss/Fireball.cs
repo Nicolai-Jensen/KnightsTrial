@@ -16,6 +16,7 @@ namespace KnightsTrial.Boss
         private Vector2 playerPosition;
         private Texture2D[] explosionSprites;
         private bool hasCollided;
+        private Beware telegraph;
         //Properties
 
         //Constructors
@@ -28,6 +29,7 @@ namespace KnightsTrial.Boss
             speed = 800f;
             velocity = projectileDirection;
             hasCollided = false;
+            telegraph = new Beware(playerPosition);
         }
 
         //Methods
@@ -74,12 +76,13 @@ namespace KnightsTrial.Boss
         public override void OnCollision(GameObject other)
         {
 
-            if (other is Player && !hasCollided)
+            if (other is Beware && !hasCollided)
             {
                 hasCollided = true;
                 animationTime = 0;
                 velocity = Vector2.Zero;
                 objectSprites = explosionSprites;
+                other.ToBeRemoved = true;
             }
         }
 
