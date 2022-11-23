@@ -26,7 +26,7 @@ namespace KnightsTrial
             playerPosition = currentPlayerPosition;
             GameState.InstantiateGameObject(this);
             position = spawnPosition;
-            speed = 800f;
+            speed = 1500f;
             velocity = projectileDirection;
             hasCollided = false;
             telegraph = new Beware(playerPosition);

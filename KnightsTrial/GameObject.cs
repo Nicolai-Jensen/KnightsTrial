@@ -98,7 +98,14 @@ namespace KnightsTrial
         }
         public bool IsOutOfBounds()
         {
-            return (position.Y > GameWorld.ScreenSize.Y || position.X > GameWorld.ScreenSize.X || position.Y < -50 || position.X < -50);
+            if (this is not Fireball)
+            {
+                return (position.Y > GameWorld.ScreenSize.Y || position.X > GameWorld.ScreenSize.X || position.Y < -50 || position.X < -50);
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
