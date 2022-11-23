@@ -23,6 +23,7 @@ namespace KnightsTrial
         private static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         private static List<GameObject> gameObjectsToRemove = new List<GameObject>();
         private Texture2D[] menuButtonAnimation;
+        private Texture2D[] gameBackground;
 
         //Properties
 
@@ -32,6 +33,11 @@ namespace KnightsTrial
             Player Knight = new Player(new Vector2(GameWorld.ScreenSize.X / 2, GameWorld.ScreenSize.Y / 8 * 7));
             gameObject.Add(Knight);
             BringerOfDeath BoD = new BringerOfDeath();
+
+            gameBackground = new Texture2D[1];
+            gameBackground[0] = _content.Load<Texture2D>("UI/KnightsTrialBackground");
+
+            UserInterface Background = new UserInterface(gameBackground);
 
             menuButtonAnimation = new Texture2D[21];
             for (int i = 0; i < menuButtonAnimation.Length; i++)
@@ -44,6 +50,7 @@ namespace KnightsTrial
             };
             gameComponents = new List<Component>()
             {
+                Background,
                 menuButton,
             };
 
