@@ -19,7 +19,7 @@ namespace KnightsTrial
         private bool healthModified = false;
         private bool regenStamina = true;
         private static bool blocking = false;
-        private bool dodging = false;
+        private static bool dodging = false;
         private bool dodgingAnim = false;
         private Color color;
         private Texture2D[] block;
@@ -80,6 +80,12 @@ namespace KnightsTrial
             set { blocking = value; }
         }
 
+        public static bool Dodging
+        {
+            get { return dodging; }
+            set { dodging = value; }
+        }
+
         //Constructors
         public Player(Vector2 vector2)
         {
@@ -132,9 +138,6 @@ namespace KnightsTrial
             //Loads the textures for the player
 
 
-
-            heroWeaponPrep = new Texture2D[1];
-            heroWeaponPrep[0] = content.Load<Texture2D>("");
 
             block = new Texture2D[1];
             block[0] = content.Load<Texture2D>("Block");
@@ -278,7 +281,7 @@ namespace KnightsTrial
             {
                 if (currentMouse.LeftButton == ButtonState.Pressed && previousMouse.LeftButton == ButtonState.Released)
                 {
-                    HeroWeaponCharge chargeSprite = new HeroWeaponCharge(heroWeaponPrep[0], new Vector2(position.X, position.Y));
+                    HeroWeaponCharge chargeSprite = new HeroWeaponCharge(new Vector2(position.X, position.Y));
                     GameState.InstantiateGameObject(chargeSprite);
                 }
             }

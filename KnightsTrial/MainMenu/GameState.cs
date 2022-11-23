@@ -95,7 +95,7 @@ namespace KnightsTrial
             foreach (GameObject go in gameObject)
             {
                 go.Draw(spriteBatch);
-                //DrawCollisionBox(go);
+                _game.DrawCollisionBox(go);
             }
 
             foreach (Component co in gameComponents)
@@ -140,6 +140,8 @@ namespace KnightsTrial
 
             _game.ChangeState(GameWorld.menuState);
         }
+
+
 
     }
 
