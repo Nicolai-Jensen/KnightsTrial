@@ -141,7 +141,7 @@ namespace KnightsTrial
         }
         public void RainOfFire(GameTime gameTime)
         {
-            Fireball rangedProjektile = new Fireball(playerPosition, new Vector2(playerPosition.X, 0), new Vector2(0, 1));
+            Fireball rangedProjektile = new Fireball(playerPosition, new Vector2(playerPosition.X, playerPosition.Y - 1080), new Vector2(0, 1));
         }
         public void AOEAttack(GameTime gameTime)
         {
