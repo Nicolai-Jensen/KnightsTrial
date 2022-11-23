@@ -29,14 +29,14 @@ namespace KnightsTrial
         //Constructors
         public GameState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            Player Knight = new Player(new Vector2(0, 0));
+            Player Knight = new Player(new Vector2(GameWorld.ScreenSize.X / 2, GameWorld.ScreenSize.Y / 8 * 7));
             gameObject.Add(Knight);
             BringerOfDeath BoD = new BringerOfDeath();
 
             menuButtonAnimation = new Texture2D[21];
             for (int i = 0; i < menuButtonAnimation.Length; i++)
             {
-                menuButtonAnimation[i] = _content.Load<Texture2D>($"PlayButton/MenuPLAYButtonANI-export{i + 1}");
+                menuButtonAnimation[i] = _content.Load<Texture2D>($"MenuButton/MenuButton{i + 1}");
             }
             Button menuButton = new Button(menuButtonAnimation)
             {
