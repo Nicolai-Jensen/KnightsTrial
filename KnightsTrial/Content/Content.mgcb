@@ -543,7 +543,11 @@
 /processorParam:TextureFormat=Color
 /build:Dodge/Roll9.png
 
+
 #begin MenuButton/MenuButton1.png
+
+#begin HeroWeapon/Shine0.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -553,9 +557,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:MenuButton/MenuButton1.png
 
 #begin MenuButton/MenuButton10.png
+
+/build:HeroWeapon/Shine0.png
+
+#begin HeroWeapon/Shine1.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -565,9 +575,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:MenuButton/MenuButton10.png
 
 #begin MenuButton/MenuButton11.png
+
+/build:HeroWeapon/Shine1.png
+
+#begin HeroWeapon/Shine2.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -577,9 +593,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:MenuButton/MenuButton11.png
 
 #begin MenuButton/MenuButton12.png
+
+/build:HeroWeapon/Shine2.png
+
+#begin HeroWeapon/Shine3.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -589,6 +611,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:MenuButton/MenuButton12.png
 
 #begin MenuButton/MenuButton13.png
@@ -794,6 +817,9 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:MenuButton/MenuButton9.png
+
+/build:HeroWeapon/Shine3.png
+
 
 #begin PIdle0.png
 /importer:TextureImporter

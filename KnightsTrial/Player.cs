@@ -25,6 +25,7 @@ namespace KnightsTrial
         private Texture2D[] block;
         private Texture2D[] heroWeaponPrep;
         private Texture2D[] heroWeapon;
+        private Texture2D[] heroWeapon2;
         private Texture2D[] idleAnimation;
         private Texture2D[] runAnimation;
         private Texture2D[] dodgeAnimation;
@@ -133,7 +134,7 @@ namespace KnightsTrial
 
 
             heroWeaponPrep = new Texture2D[1];
-            //heroWeaponPrep[0] = content.Load<Texture2D>("HeavenlyVigilSwordSlash");
+            heroWeaponPrep[0] = content.Load<Texture2D>("");
 
             block = new Texture2D[1];
             block[0] = content.Load<Texture2D>("Block");
@@ -273,7 +274,14 @@ namespace KnightsTrial
 
         public void Attack(GameTime gameTime)
         {
-
+            if (dodging == false & blocking == false)
+            {
+                if (currentMouse.LeftButton == ButtonState.Pressed && previousMouse.LeftButton == ButtonState.Released)
+                {
+                    HeroWeaponCharge chargeSprite = new HeroWeaponCharge(heroWeaponPrep[0], new Vector2(position.X, position.Y));
+                    GameState.InstantiateGameObject(chargeSprite);
+                }
+            }
         }
 
         public void StaminaRegen(GameTime gameTime)
