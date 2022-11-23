@@ -55,7 +55,7 @@ namespace KnightsTrial
         public override void Update(GameTime gameTime)
         {
             playerPosition = GetPlayer().Position;
-            origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height);
+            origin = new Vector2(objectSprites[(int)animationTime].Width / 2, objectSprites[(int)animationTime].Height / 2);
 
             MovementBehaviour(gameTime);
             Move(gameTime);
@@ -100,7 +100,7 @@ namespace KnightsTrial
             if (behaviourTimer < randomTimeCount)
             {
                 objectSprites = walkAnimation;
-                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height);
+                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
                 FollowPlayer();
             }
             else if (behaviourTimer > randomTimeCount && behaviourTimer < randomTimeCount + 1)
@@ -112,7 +112,7 @@ namespace KnightsTrial
                 }
 
                 objectSprites = magicAnimation;
-                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height);
+                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
                 velocity = new(0, 0);
             }
             else if (behaviourTimer > randomTimeCount + 1)

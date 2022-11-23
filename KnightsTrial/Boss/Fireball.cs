@@ -48,12 +48,12 @@ namespace KnightsTrial
             {
                 explosionSprites[i] = content.Load<Texture2D>($"BringerOfDeath/Fireball/Explosion{i + 1}");
             }
-
-            origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height);
         }
 
         public override void Update(GameTime gameTime)
         {
+            origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
+
             Move(gameTime);
             Animate(gameTime);
             CheckForRemove();
@@ -64,11 +64,15 @@ namespace KnightsTrial
 
             if (objectSprites == explosionSprites)
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale*2, SpriteEffects.None, 1f);
+
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 1f);
+                scale = 4f;
             }
             else
             {
+
                 spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 1f);
+                scale = 2f;
             }
         }
 
@@ -80,12 +84,14 @@ namespace KnightsTrial
                 animationTime = 0;
                 velocity = Vector2.Zero;
                 objectSprites = explosionSprites;
-                //other.ToBeRemoved = true;
+                other.ToBeRemoved = true;
             }
 
             if (other is Player && objectSprites == explosionSprites && hasCollided)
             {
                 hasCollided = false;
+
+
             }
         }
 

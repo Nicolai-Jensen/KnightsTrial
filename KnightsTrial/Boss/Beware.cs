@@ -15,6 +15,18 @@ namespace KnightsTrial
 
         //Properties
 
+        public override Rectangle CollisionBox
+        {
+            get
+            {
+                return new Rectangle(
+
+                    (int)(position.X - SpriteSize.X / 2),
+                    (int)(position.Y),
+                    (int)SpriteSize.X, 10);
+            }
+        }
+
         //Constructors
 
         public Beware(Vector2 inputPosition)
