@@ -42,9 +42,9 @@ namespace KnightsTrial
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            Player Knight = new Player(new Vector2(0, 0));
-            GameState.gameObject.Add(Knight);
-            BringerOfDeath BoD = new BringerOfDeath();
+            //Player Knight = new Player(new Vector2(0, 0));
+            //GameState.gameObject.Add(Knight);
+            //BringerOfDeath BoD = new BringerOfDeath();
             base.Initialize();
         }
 
@@ -54,12 +54,13 @@ namespace KnightsTrial
 
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
 
-            foreach (GameObject go in GameState.gameObject)
-            {
-                go.LoadContent(Content);
-            }
-
             _currentState.LoadContent(Content);
+
+            //foreach (GameObject go in GameState.gameObject)
+            //{
+            //    go.LoadContent(Content);
+            //}
+
 
             //pixel = Content.Load<Texture2D>("pixel");
         }
@@ -75,6 +76,8 @@ namespace KnightsTrial
             if (_nextState != null)
             {
                 _currentState = _nextState;
+
+                _currentState.LoadContent(Content);
 
                 _nextState = null;
             }
