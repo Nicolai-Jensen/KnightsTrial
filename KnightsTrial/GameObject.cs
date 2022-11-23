@@ -38,7 +38,7 @@ namespace KnightsTrial
         {
             get { return new Vector2(CurrentSprite.Width * scale, CurrentSprite.Height * scale); }
         }
-        public Rectangle CollisionBox
+        public virtual Rectangle CollisionBox
         {
             get
             {
