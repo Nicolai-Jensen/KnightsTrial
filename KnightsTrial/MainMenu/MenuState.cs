@@ -13,11 +13,12 @@ namespace KnightsTrial
     {
 
         //Fields
-        public static List<Component> _components;
+        public static List<Component> components;
         private Texture2D[] quitButtonAnimation;
         private Texture2D[] playButtonAnimation;
         private Texture2D[] backgroundSprite;
         private SpriteFont gameName;
+        private bool ToBeRemoved = false;
 
         //Properties
 
@@ -59,7 +60,7 @@ namespace KnightsTrial
             startButton.Click += StartButton_Click;
             quitButton.Click += QuitButton_Click;
 
-            _components = new List<Component>()
+            components = new List<Component>()
             {
                         background,
                         startButton,
@@ -70,20 +71,14 @@ namespace KnightsTrial
 
         public override void Update(GameTime gameTime)
         {
-            foreach (Component co in _components)
+            foreach (Component co in components)
                 co.Update(gameTime);
         }
-
-        public override void PostUpdate(GameTime gameTime)
-        {
-            //remove sprites if they are not needed.
-        }
-
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             //spriteBatch.Begin();
 
-            foreach (Component co in _components)
+            foreach (Component co in components)
                 co.Draw(gameTime, spriteBatch);
 
             spriteBatch.DrawString(gameName, "KNIGHTS TRIAL", new Vector2(GameWorld.ScreenSize.X / 2 - 475, 200), Color.DarkRed);
@@ -98,7 +93,7 @@ namespace KnightsTrial
         private void StartButton_Click(object sender, EventArgs e)
         {
             //Starts the game or chooses boss?.
-            _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+            _game.ChangeState(new GameState(_game, _graphicsDevice,_content));
         }
         /// <summary>
         /// Quits the game.

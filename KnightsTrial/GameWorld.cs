@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -50,6 +51,7 @@ namespace KnightsTrial
 
         protected override void LoadContent()
         {
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
@@ -69,9 +71,8 @@ namespace KnightsTrial
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+                    
             _currentState.Update(gameTime);
-            _currentState.PostUpdate(gameTime);
 
             if (_nextState != null)
             {

@@ -91,10 +91,6 @@ namespace KnightsTrial
             gameObjectsToAdd.Clear();
         }
 
-        public override void PostUpdate(GameTime gameTime)
-        {
-
-        }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             foreach (GameObject go in gameObject)
@@ -109,7 +105,7 @@ namespace KnightsTrial
             }
 
         }
-        private void RemoveGameObjects()
+        public static void RemoveGameObjects()
         {
             foreach (GameObject go in gameObject)
             {
@@ -135,12 +131,14 @@ namespace KnightsTrial
             gameObjectsToAdd.Add(gObject);
         }
         private void MenuButton_Click(object sender, EventArgs e)
-        {         
+        {
             foreach (GameObject go in gameObject)
             {
                 go.ToBeRemoved = true;
-            }          
+            }
+
             RemoveGameObjects();
+
             _game.ChangeState(new MenuState(_game, _graphicsDevice, _content));
         }
 
