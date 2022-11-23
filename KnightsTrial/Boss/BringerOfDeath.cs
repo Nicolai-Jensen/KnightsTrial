@@ -31,6 +31,7 @@ namespace KnightsTrial
             position = new Vector2(200, 200);
             randomTimeCount = 3;
             animationReset = true;
+            scale = 3f;
 
             walkAnimation = new Texture2D[8];
             magicAnimation = new Texture2D[9];
@@ -65,11 +66,11 @@ namespace KnightsTrial
         {
             if (playerPosition.X < position.X)
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, 3f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 1f);
             }
             else
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, 3f, SpriteEffects.FlipHorizontally, 1f);
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.FlipHorizontally, 1f);
             }
         }
 
