@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsTrial.Boss
+namespace KnightsTrial
 {
     internal class Fireball : GameObject
     {
@@ -86,7 +86,7 @@ namespace KnightsTrial.Boss
                     objectSprites = explosionSprites;
                 }
             }
-            
+
             if (Player.Dodging == false)
             {
                 if (other is Player && !hasCollided)
@@ -98,16 +98,17 @@ namespace KnightsTrial.Boss
                 }
 
 
-            if (other is Beware && !hasCollided)
-            {
-                hasCollided = true;
-                animationTime = 0;
-                velocity = Vector2.Zero;
-                objectSprites = explosionSprites;
-                other.ToBeRemoved = true;
+                if (other is Beware && !hasCollided)
+                {
+                    hasCollided = true;
+                    animationTime = 0;
+                    velocity = Vector2.Zero;
+                    objectSprites = explosionSprites;
+                    other.ToBeRemoved = true;
+
+                }
 
             }
-            
         }
 
         private void CheckForRemove()
