@@ -20,11 +20,16 @@ namespace KnightsTrial
         private bool animationReset;
 
         //Properties
+        public int Health
+        {
+            get { return health; }
+            set { health = value; }
+        }
 
         //Constructors
         public BringerOfDeath()
         {
-            GameState.InstantiateGameObject(this);
+            //GameState.InstantiateGameObject(this);
             health = 2500;
             speed = 120f;
             velocity = new Vector2(1, 0);
