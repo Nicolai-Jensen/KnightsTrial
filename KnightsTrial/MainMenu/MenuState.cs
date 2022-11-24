@@ -43,7 +43,7 @@ namespace KnightsTrial
                 quitButtonAnimation[i] = _content.Load<Texture2D>($"QuitButton/MenuQuitButtonANI{i + 1}");
             }
 
-            UserInterface background = new UserInterface(backgroundSprite, new Vector2(0, 0));
+            UserInterface background = new UserInterface(backgroundSprite, new Vector2(0, 0), 1f, 0f);
 
             Button startButton = new Button(playButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 400));
 

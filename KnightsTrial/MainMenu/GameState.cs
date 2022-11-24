@@ -22,22 +22,38 @@ namespace KnightsTrial
         public static List<GameObject> gameObject = new List<GameObject>();
         private static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         private static List<GameObject> gameObjectsToRemove = new List<GameObject>();
+
         private Texture2D[] menuButtonAnimation;
         private Texture2D[] gameBackground;
+        private Texture2D[] playerHealthBar;
+        private Texture2D[] playerStaminaBar;
+        private Texture2D[] bossHealthBar;
 
         //Properties
 
         //Constructors
         public GameState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            Player Knight = new Player(new Vector2(GameWorld.ScreenSize.X / 2, GameWorld.ScreenSize.Y / 8 * 7));
+            Player Knight = new Player(new Vector2(GameWorld.ScreenSize.X / 2, GameWorld.ScreenSize.Y / 8 * 6));
             gameObject.Add(Knight);
             BringerOfDeath BoD = new BringerOfDeath();
 
             gameBackground = new Texture2D[1];
             gameBackground[0] = _content.Load<Texture2D>("UI/KnightsTrialBackground");
 
-            UserInterface Background = new UserInterface(gameBackground, new Vector2(0, 0));
+            UserInterface Background = new UserInterface(gameBackground, new Vector2(0, 0), 1f, 0f);
+
+            playerHealthBar = new Texture2D[1];
+            playerHealthBar[0] = _content.Load<Texture2D>("UI/Knight_Trial_HPBar");
+            UserInterface hpBar = new UserInterface(playerHealthBar, new Vector2(20, 10), 1.5f, 1f);
+
+            playerStaminaBar = new Texture2D[1];
+            playerStaminaBar[0] = _content.Load<Texture2D>("UI/Knight_Trial_StaminaBar");
+            UserInterface staminaBar = new UserInterface(playerStaminaBar, new Vector2(60, 80), 1.5f, 1f);
+
+            bossHealthBar = new Texture2D[1];
+            bossHealthBar[0] = _content.Load<Texture2D>("UI/Knights_Trial_BossHPBar");
+            UserInterface bossHP = new UserInterface(bossHealthBar, new Vector2(575, 890), 2f, 1f);
 
             menuButtonAnimation = new Texture2D[21];
             for (int i = 0; i < menuButtonAnimation.Length; i++)
@@ -50,6 +66,9 @@ namespace KnightsTrial
             {
                 Background,
                 menuButton,
+                staminaBar,
+                hpBar,
+                bossHP,
             };
 
             menuButton.Click += MenuButton_Click;

@@ -32,8 +32,6 @@ namespace KnightsTrial
 
         public Color PenColour { get; set; }
 
-        public Vector2 Position { get; set; }
-
         public Rectangle Rectangle
         {
             get
