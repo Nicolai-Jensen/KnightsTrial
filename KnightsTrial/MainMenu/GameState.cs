@@ -121,6 +121,9 @@ namespace KnightsTrial
                     }
                 }
             }
+            hpRectangle.Width = GetPlayer().Health * 2 + 30;
+            staminaRectangle.Width = GetPlayer().Stamina * 2 + 30;
+            bossHPRectangle.Width = GetBoss().Health / 5 + 60;
 
             foreach (Component co in gameComponents)
                 co.Update(gameTime);
@@ -142,9 +145,9 @@ namespace KnightsTrial
                 _game.DrawCollisionBox(go);
             }
 
-            spriteBatch.Draw(playerStamina[0], staminaRectangle, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.5f);
-            spriteBatch.Draw(playerHealth[0], hpRectangle, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.5f);
-            spriteBatch.Draw(bossHealth[0], bossHPRectangle, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.5f);
+            spriteBatch.Draw(playerStamina[0], staminaRectangle, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.6f);
+            spriteBatch.Draw(playerHealth[0], hpRectangle, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.6f);
+            spriteBatch.Draw(bossHealth[0], bossHPRectangle, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.6f);
 
             foreach (Component co in gameComponents)
             {

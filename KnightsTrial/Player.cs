@@ -170,12 +170,12 @@ namespace KnightsTrial
             //If the player has last pressed "D" to move right, it calls the first draw method, which doesn't flip the sprites
             if (isFacingRight)
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0, origin, scale, SpriteEffects.None, 1f);
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0, origin, scale, SpriteEffects.None, 0.5f);
             }
             //If the player has last pressed "A" to move left the draw method with the sprites flipped horizontally will be called
             else if (!isFacingRight)
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0, origin, scale, SpriteEffects.FlipHorizontally, 1f);
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0, origin, scale, SpriteEffects.FlipHorizontally, 0.5f);
             }
         }
 
