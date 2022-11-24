@@ -26,6 +26,18 @@ namespace KnightsTrial
             set { health = value; }
         }
 
+        public override Rectangle CollisionBox
+        {
+            get
+            {
+                return new Rectangle(
+
+                    (int)(position.X - SpriteSize.X / 2),
+                    (int)(position.Y - SpriteSize.Y),
+                    (int)SpriteSize.X, (int)SpriteSize.Y);
+            }
+        }
+
         //Constructors
         public BringerOfDeath()
         {
@@ -105,7 +117,7 @@ namespace KnightsTrial
             if (behaviourTimer < randomTimeCount)
             {
                 objectSprites = walkAnimation;
-                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
+                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height);
                 FollowPlayer();
             }
             else if (behaviourTimer > randomTimeCount && behaviourTimer < randomTimeCount + 1)
@@ -117,7 +129,7 @@ namespace KnightsTrial
                 }
 
                 objectSprites = magicAnimation;
-                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
+                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height);
                 velocity = new(0, 0);
             }
             else if (behaviourTimer > randomTimeCount + 1)
