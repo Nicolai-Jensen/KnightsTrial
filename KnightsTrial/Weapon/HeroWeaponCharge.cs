@@ -107,7 +107,7 @@ namespace KnightsTrial
                 HeroWeapon slashSprite = new HeroWeapon(new Vector2(position.X, position.Y));
                 GameState.InstantiateGameObject(slashSprite);
                 chargeTimer = 0;
-
+                Player.ChargeAtkAnim = false;
                 ToBeRemoved = true;
                 SetPlayerSpeed(0f);      
             }
@@ -116,6 +116,9 @@ namespace KnightsTrial
             {
                 HeroWeaponHeavy thrust = new HeroWeaponHeavy(new Vector2(position.X, position.Y));
                 GameState.InstantiateGameObject(thrust);
+                Player.ChargeAtkAnim = false;
+                Player.HeavyAtkAnim = true;
+                SetPlayerAnimationTime(0);
                 chargeTimer = 0;
                 animationTime = 0;
                 animationSpeed = 15f;

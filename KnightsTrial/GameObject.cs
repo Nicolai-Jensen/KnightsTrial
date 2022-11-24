@@ -30,6 +30,12 @@ namespace KnightsTrial
             get { return speed; }
             set { speed = value; }
         }
+
+        public float AnimationTime
+        {
+            get { return animationTime; }
+            set { animationTime = value; }
+        }
         private Texture2D CurrentSprite
         {
             get { return objectSprites[(int)animationTime]; }

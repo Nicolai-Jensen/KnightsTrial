@@ -60,6 +60,17 @@ namespace KnightsTrial
             return new Vector2(position.X, -100);
         }
 
+        protected void SetPlayerAnimationTime(float timeValue)
+        {
+            foreach (GameObject go in GameState.gameObject)
+            {
+                if (go is Player)
+                {
+                    go.AnimationTime = timeValue;
+                }
+            }
+        }
+
         protected void SetPlayerSpeed(float speedValue)
         {
             foreach (GameObject go in GameState.gameObject)

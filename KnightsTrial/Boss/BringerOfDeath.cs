@@ -31,7 +31,7 @@ namespace KnightsTrial
         {
             //GameState.InstantiateGameObject(this);
             health = 2500;
-            speed = 120f;
+            speed = 100f;
             velocity = new Vector2(1, 0);
             position = new Vector2(200, 200);
             randomTimeCount = 3;

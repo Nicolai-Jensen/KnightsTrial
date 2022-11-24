@@ -66,7 +66,8 @@ namespace KnightsTrial
             {
                 ToBeRemoved = true;
                 SetPlayerSpeed(200f);
-                Player.Atacking = false;
+                //Player.Atacking = false;
+                //Player.HeavyAtkAnim = false;
             }
         }
     }

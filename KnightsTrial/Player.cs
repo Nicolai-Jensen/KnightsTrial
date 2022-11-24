@@ -21,6 +21,9 @@ namespace KnightsTrial
         private static bool blocking = false;
         private static bool dodging = false;
         private static bool attacking = false;
+        private static bool heavyAtkAnim = false;
+        private static bool lightAtkAnim = false;
+        private static bool chargeAtkAnim = false;
         private bool dodgingAnim = false;
         private Color color;
         private Texture2D[] block;
@@ -92,11 +95,30 @@ namespace KnightsTrial
             get { return attacking; }
             set { attacking = value; }
         }
+        
+        public static bool HeavyAtkAnim
+        {
+            get { return heavyAtkAnim; }
+            set { heavyAtkAnim = value; }
+        }
+
+        public static bool LightAtkAnim
+        {
+            get { return lightAtkAnim; }
+            set { lightAtkAnim = value; }
+        }
+
+        public static bool ChargeAtkAnim
+        {
+            get { return chargeAtkAnim; }
+            set { chargeAtkAnim = value; }
+        }
 
         public static bool IsFacingRight
         {
             get { return isFacingRight; }
         }
+
 
         //Constructors
         public Player(Vector2 vector2)
@@ -116,12 +138,16 @@ namespace KnightsTrial
             runAnimation = new Texture2D[8];
             blockAnimation = new Texture2D[3];
             dodgeAnimation = new Texture2D[10];
+            heroWeapon2 = new Texture2D[5];
+            heroWeaponPrep = new Texture2D[1];
 
             //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
             for (int i = 0; i < idleAnimation.Length; i++)
             {
                 idleAnimation[i] = content.Load<Texture2D>($"PIdle{i}");
             }
+
+            heroWeaponPrep[0] = content.Load<Texture2D>("PlayerAttackAnimations/Pthrust1");
 
             //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
             for (int i = 0; i < runAnimation.Length; i++)
@@ -141,11 +167,17 @@ namespace KnightsTrial
                 dodgeAnimation[i] = content.Load<Texture2D>($"Dodge/Roll{i}");
             }
 
+            //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
+            for (int i = 0; i < heroWeapon2.Length; i++)
+            {
+                heroWeapon2[i] = content.Load<Texture2D>($"PlayerAttackAnimations/Pthrust{i + 2}");
+            }
+
             objectSprites = idleAnimation;
+
 
             //This line of code places the objects origin within the middle of the sprite assuming all sprites in the array share the same size
             origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
-
 
             //Loads the textures for the player
 
@@ -168,6 +200,8 @@ namespace KnightsTrial
             FacingAttack();
             Dodge(gameTime);
             SetDodgeVelocity();
+            AttackingAnimations();
+            Setorigin();
             Move(gameTime);
             Animate(gameTime);
             ScreenWrap();
@@ -246,6 +280,29 @@ namespace KnightsTrial
             }
         }
 
+        public void Setorigin()
+        {
+            if (chargeAtkAnim == true)
+            {
+
+                if (isFacingRight != true)
+                {
+                    origin = new Vector2(objectSprites[0].Width - 14, objectSprites[0].Height / 2);
+                }
+                if (isFacingRight == true)
+                {
+                    origin = new Vector2(objectSprites[0].Width - 29, objectSprites[0].Height / 2);
+                }
+                
+            }
+
+            if (chargeAtkAnim == false && heavyAtkAnim == false && lightAtkAnim == false)
+            {
+                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
+            }
+
+        }
+
         /// <summary>
         /// This Method is used to make sure the object is not moving outside the screenbounds
         /// It does this with if statements checking if the objects position values are outside the bounders of the screen
@@ -291,13 +348,35 @@ namespace KnightsTrial
 
         public void Attack(GameTime gameTime)
         {
-            if (dodging == false && blocking == false && attacking == false)
+            if (dodging == false && blocking == false && attacking == false && dodgingAnim == false)
             {
                 if (currentMouse.LeftButton == ButtonState.Pressed && previousMouse.LeftButton == ButtonState.Released)
                 {
                     HeroWeaponCharge chargeSprite = new HeroWeaponCharge(new Vector2(position.X, position.Y));
                     GameState.InstantiateGameObject(chargeSprite);
                     attacking = true;
+                    chargeAtkAnim = true;
+                }
+            }
+        }
+
+        public void AttackingAnimations()
+        {
+
+            if (chargeAtkAnim == true)
+            {
+                objectSprites = heroWeaponPrep;
+            }
+
+            if (heavyAtkAnim == true)
+            {
+                animationSpeed = 8f;
+                objectSprites = heroWeapon2;
+
+                if(animationTime > 4)
+                {
+                    attacking = false;
+                    heavyAtkAnim = false;
                 }
             }
         }
