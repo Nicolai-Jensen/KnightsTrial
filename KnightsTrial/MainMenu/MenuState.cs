@@ -17,16 +17,20 @@ namespace KnightsTrial
         private Texture2D[] quitButtonAnimation;
         private Texture2D[] playButtonAnimation;
         private Texture2D[] backgroundSprite;
-        private SpriteFont gameName;
-        private bool ToBeRemoved = false;
+        private Texture2D[] knightsLogo;
+        private Texture2D[] trialLogo;
 
         //Properties
 
         //Constructors
         public MenuState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            gameName = _content.Load<SpriteFont>("buttonFont");
+            #region Instatiated Objects and Components
+            knightsLogo = new Texture2D[1];
+            knightsLogo[0] = _content.Load<Texture2D>("UI/Knights_logo");
 
+            trialLogo = new Texture2D[1];
+            trialLogo[0] = _content.Load<Texture2D>("UI/Trial_logo");
             backgroundSprite = new Texture2D[1];
 
             backgroundSprite[0] = _content.Load<Texture2D>("UI/NyBaggrund3");
@@ -45,9 +49,9 @@ namespace KnightsTrial
 
             UserInterface background = new UserInterface(backgroundSprite, new Vector2(0, 0), 1f, 0f);
 
-            Button startButton = new Button(playButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 400));
+            Button startButton = new Button(playButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 650));
 
-            Button quitButton = new Button(quitButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 600));
+            Button quitButton = new Button(quitButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 800));
 
             startButton.Click += StartButton_Click;
             quitButton.Click += QuitButton_Click;
@@ -59,6 +63,7 @@ namespace KnightsTrial
                         quitButton,
 
             };
+            #endregion
         }
         //Methods
         public override void LoadContent(ContentManager content)
@@ -73,15 +78,14 @@ namespace KnightsTrial
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            //spriteBatch.Begin();
-
             foreach (Component co in components)
                 co.Draw(gameTime, spriteBatch);
 
-            spriteBatch.DrawString(gameName, "KNIGHTS TRIAL", new Vector2(GameWorld.ScreenSize.X / 2 - 475, 200), Color.DarkRed);
-
-            //spriteBatch.End();
+            spriteBatch.Draw(knightsLogo[0], new Vector2(350, 100), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(trialLogo[0], new Vector2(850, 325), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
         }
+
+
         /// <summary>
         /// Runs ChangeState methods and instantiates a new GameState.
         /// </summary>
