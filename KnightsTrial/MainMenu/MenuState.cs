@@ -28,14 +28,14 @@ namespace KnightsTrial
         {
             #region Instatiated Objects and Components
             knightsLogo = new Texture2D[1];
-            knightsLogo[0] = _content.Load<Texture2D>("UI/Knights_logo");
+            knightsLogo[0] = _content.Load<Texture2D>("UI/KnightsTrialLogo");
 
-            trialLogo = new Texture2D[1];
-            trialLogo[0] = _content.Load<Texture2D>("UI/Trial_logo");
+            //trialLogo = new Texture2D[1];
+           // trialLogo[0] = _content.Load<Texture2D>("UI/Trial_logo");
             backgroundSprite = new Texture2D[1];
 
-            swordLogo = new Texture2D[1];
-            swordLogo[0] = _content.Load<Texture2D>("UI/Sword_logo");
+            //swordLogo = new Texture2D[1];
+            //swordLogo[0] = _content.Load<Texture2D>("UI/Sword_logo");
 
             backgroundSprite[0] = _content.Load<Texture2D>("UI/NyBaggrund3");
 
@@ -85,9 +85,9 @@ namespace KnightsTrial
             foreach (Component co in components)
                 co.Draw(gameTime, spriteBatch);
 
-            spriteBatch.Draw(knightsLogo[0], new Vector2(350, 150), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            spriteBatch.Draw(trialLogo[0], new Vector2(950, 375), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            spriteBatch.Draw(swordLogo[0], new Vector2(1310, 0), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
+            spriteBatch.Draw(knightsLogo[0], new Vector2(450, 50), null, Color.White, 0f, Vector2.Zero, 0.75f, SpriteEffects.None, 1f);
+            //spriteBatch.Draw(trialLogo[0], new Vector2(950, 375), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            //spriteBatch.Draw(swordLogo[0], new Vector2(1310, 0), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
         }
 
 
