@@ -80,7 +80,7 @@ namespace KnightsTrial
 
             direction = mousePosition - playerPosition;
             direction.Normalize();
-            rotation = (float)Math.Atan2(mousePosition.Y - position.Y, mousePosition.X - position.X) + 1.4f;
+            rotation = (float)Math.Atan2(mousePosition.Y - position.Y, mousePosition.X - position.X) - 0.1f;
 
             return direction;
         }

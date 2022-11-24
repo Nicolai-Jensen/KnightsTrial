@@ -20,6 +20,7 @@ namespace KnightsTrial
         private bool regenStamina = true;
         private static bool blocking = false;
         private static bool dodging = false;
+        private static bool attacking = false;
         private bool dodgingAnim = false;
         private Color color;
         private Texture2D[] block;
@@ -34,7 +35,7 @@ namespace KnightsTrial
         private SoundEffect potionSound;
         private SoundEffect dodgeSound;
         private SoundEffect blockSound;
-        private bool isFacingRight = false;
+        private  static bool isFacingRight = false;
         private bool hitCooldown = false;
         private float hitCooldownTimer;
         private float dodgeTimer;
@@ -84,6 +85,17 @@ namespace KnightsTrial
         {
             get { return dodging; }
             set { dodging = value; }
+        }
+
+        public static bool Atacking
+        {
+            get { return attacking; }
+            set { attacking = value; }
+        }
+
+        public static bool IsFacingRight
+        {
+            get { return isFacingRight; }
         }
 
         //Constructors
@@ -153,12 +165,14 @@ namespace KnightsTrial
             currentKey = Keyboard.GetState();
 
             HandleInput(gameTime);
+            FacingAttack();
             Dodge(gameTime);
             SetDodgeVelocity();
             Move(gameTime);
             Animate(gameTime);
             ScreenWrap();
             Block(gameTime);
+            Attack(gameTime);
             StaminaRegen(gameTime);
             
         }
@@ -277,12 +291,13 @@ namespace KnightsTrial
 
         public void Attack(GameTime gameTime)
         {
-            if (dodging == false & blocking == false)
+            if (dodging == false && blocking == false && attacking == false)
             {
                 if (currentMouse.LeftButton == ButtonState.Pressed && previousMouse.LeftButton == ButtonState.Released)
                 {
                     HeroWeaponCharge chargeSprite = new HeroWeaponCharge(new Vector2(position.X, position.Y));
                     GameState.InstantiateGameObject(chargeSprite);
+                    attacking = true;
                 }
             }
         }
@@ -307,7 +322,7 @@ namespace KnightsTrial
         public void Block(GameTime gameTime)
         {
 
-            if (dodging == false)
+            if (dodging == false && attacking == false && dodgingAnim == false)
             {
 
 
@@ -331,7 +346,7 @@ namespace KnightsTrial
 
         public void Dodge(GameTime gameTime)
         {
-            if (blocking != true && currentKey.IsKeyDown(Keys.Space) && previousKey.IsKeyUp(Keys.Space) && dodging == false && dodgeCooldown == false)
+            if (blocking != true && attacking != true && currentKey.IsKeyDown(Keys.Space) && previousKey.IsKeyUp(Keys.Space) && dodging == false && dodgeCooldown == false)
             {
                 dodging = true;
                 dodgingAnim = true;
@@ -384,6 +399,25 @@ namespace KnightsTrial
         public void UsePotion(GameTime gameTime)
         {
 
+        }
+
+        public void FacingAttack()
+        {
+            if (attacking == true)
+            {
+                MouseState mouseState = Mouse.GetState();
+                Vector2 mousePosition = mouseState.Position.ToVector2();
+
+                if (mousePosition.X > position.X)
+                {
+                    isFacingRight = true;
+                }
+
+                if (mousePosition.X < position.X)
+                {
+                    isFacingRight = false;
+                }
+            }
         }
     }
 }

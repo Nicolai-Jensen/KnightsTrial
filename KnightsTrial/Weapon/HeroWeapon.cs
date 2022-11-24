@@ -12,38 +12,85 @@ namespace KnightsTrial
     internal class HeroWeapon : Weapon
     {
         //Fields
+        private Texture2D[] sprite;
 
         private int damage;
-        private bool attacked;
-        private float attackedTimer;
-        private float travelDistance;
 
         //Properties
 
         //Constructors
 
-        public HeroWeapon(Texture2D sprite, Vector2 position)
+        public HeroWeapon(Vector2 position)
         {
-            objectSprites = new Texture2D[1];
-            objectSprites[0] = sprite;
+            
             this.position = position;
-            rotation = 0f;
+            rotation = -1.5f;
             speed = 0f;
-            velocity = Direction(ReturnPlayerPostition());
+            scale = 2f;
             damage = 1;
+            animationSpeed = 12f;
         }
 
         //Methods
 
         public override void LoadContent(ContentManager content)
         {
-            throw new NotImplementedException();
+            sprite = new Texture2D[5];
+
+            //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
+            for (int i = 0; i < sprite.Length; i++)
+            {
+                sprite[i] = content.Load<Texture2D>($"HeroWeapon/Slash{i}");
+            }
+
+            objectSprites = sprite;
+
+            origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
         }
 
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            Move(gameTime);
+            Animate(gameTime);
+            ChooseDirection();
+            EndAttack();
         }
 
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (Player.IsFacingRight == true)
+            {
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.AntiqueWhite, rotation, origin, scale, SpriteEffects.None, 1f);
+            }
+
+            if (Player.IsFacingRight != true)
+            {
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.AntiqueWhite, rotation, origin, scale, SpriteEffects.FlipVertically, 1f);
+            }
+            
+        }
+
+        public void ChooseDirection()
+        {
+            if (Player.IsFacingRight == true)
+            {
+                position.X = ReturnPlayerPostition().X + 50;
+            }
+
+            if (Player.IsFacingRight != true)
+            {
+                position.X = ReturnPlayerPostition().X - 50;
+            }
+        }
+
+        public void EndAttack()
+        {
+            if (animationTime > 4)
+            {
+                ToBeRemoved = true;
+                SetPlayerSpeed(200f);
+                Player.Atacking = false;
+            }
+        }
     }
 }
