@@ -13,17 +13,20 @@ namespace KnightsTrial
     {
         //Fields
 
+        private float rotation;
+
         //Properties
 
         //Constructors
 
-        public Icicle(Vector2 inputVelocity, Vector2 position)
+        public Icicle(Vector2 inputVelocity, Vector2 position, float rotation)
         {
             GameState.InstantiateGameObject(this);
             this.position = position;
-            speed = 500f;
-            scale = 1f;
+            speed = 200f;
+            scale = 2f;
             velocity = inputVelocity;
+            this.rotation = rotation;
         }
 
         //Methods
@@ -43,7 +46,7 @@ namespace KnightsTrial
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(objectSprites[0], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 1f);
+            spriteBatch.Draw(objectSprites[0], position, null, Color.White, rotation, origin, scale, SpriteEffects.None, 1f);
         }
 
         public override void OnCollision(GameObject other)

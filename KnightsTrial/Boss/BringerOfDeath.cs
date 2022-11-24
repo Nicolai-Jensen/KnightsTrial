@@ -122,7 +122,7 @@ namespace KnightsTrial
             }
             else if (behaviourTimer > randomTimeCount + 1)
             {
-                RainOfFire(gameTime);
+                AttackBehaviour(gameTime);
                 randomTimeCount = rndBehaviour.Next(1, 6);
                 behaviourTimer = 0;
                 animationReset = true;
@@ -139,6 +139,24 @@ namespace KnightsTrial
 
         //-----------------------ATTACKS & SPELLS-----------------------------
 
+        private void AttackBehaviour(GameTime gameTime)
+        {
+            int randomAttack = rndBehaviour.Next(1, 3);
+
+            switch (randomAttack)
+            {
+                case 1:
+                    RainOfFire(gameTime);
+                    break;
+
+                case 2:
+                    IcicleWall(gameTime);
+                    break;
+
+                default:
+                    break;
+            }
+        }
 
         public void SwingAttack(GameTime gameTime)
         {
@@ -148,12 +166,86 @@ namespace KnightsTrial
         {
             Fireball rangedProjektile = new Fireball(playerPosition, new Vector2(playerPosition.X, playerPosition.Y - 1080), new Vector2(0, 1));
         }
-        public void AOEAttack(GameTime gameTime)
+        public void IcicleWall(GameTime gameTime)
         {
-            // Area of effect attack.
 
-            //Marcus
+            int icicleDirection = rndBehaviour.Next(1, 5);
+
+            switch (icicleDirection)
+            {
+                case 1:
+                    //From right of screen
+
+                    int icicleWallHoleRight = rndBehaviour.Next(1, 17);
+
+                    for (int i = 0; i < 16; i++)
+                    {
+                        if (i != icicleWallHoleRight)
+                        {
+                            if (i != icicleWallHoleRight + 1)
+                            {
+                                Icicle icicleWallUnit = new Icicle(new Vector2(-1, 0), new Vector2(1920, i * 68), 1.55f);
+                            }
+                        }
+                    }
+                    break;
+
+                case 2:
+                    //From left of screen
+
+                    int icicleWallHoleLeft = rndBehaviour.Next(1, 17);
+
+                    for (int i = 0; i < 16; i++)
+                    {
+                        if (i != icicleWallHoleLeft)
+                        {
+                            if (i != icicleWallHoleLeft + 1)
+                            {
+                                Icicle icicleWallUnit = new Icicle(new Vector2(1, 0), new Vector2(0, i * 68), -1.55f);
+                            }
+                        }
+                    }
+                    break;
+
+                case 3:
+                    //From bottom of screen.
+
+                    int icicleWallHoleBottom = rndBehaviour.Next(1, 30);
+
+                    for (int i = 0; i < 29; i++)
+                    {
+                        if (i != icicleWallHoleBottom)
+                        {
+                            if (i != icicleWallHoleBottom + 1)
+                            {
+                                Icicle icicleWallUnit = new Icicle(new Vector2(0, -1), new Vector2(i * 68, 1080), 3.15f);
+                            }
+                        }
+                    }
+                    break;
+
+                case 4:
+                    //From top of screen.
+
+                    int icicleWallHoleTop = rndBehaviour.Next(1, 30);
+
+                    for (int i = 0; i < 29; i++)
+                    {
+                        if (i != icicleWallHoleTop)
+                        {
+                            if (i != icicleWallHoleTop + 1)
+                            {
+                                Icicle icicleWallUnit = new Icicle(new Vector2(0, 1), new Vector2(i * 68, 0), 0f);
+                            }
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
         }
+
         public void PhaseShiftAttack(GameTime gameTime)
         {
             // Attack to run when boss enters a new phase.
