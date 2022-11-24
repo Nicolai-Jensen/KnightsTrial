@@ -46,7 +46,7 @@ namespace KnightsTrial
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(objectSprites[0], position, null, Color.White, rotation, origin, scale, SpriteEffects.None, 1f);
+            spriteBatch.Draw(objectSprites[0], position, null, Color.White, rotation, origin, scale, SpriteEffects.None, 0.5f);
         }
 
         public override void OnCollision(GameObject other)
