@@ -71,11 +71,11 @@ namespace KnightsTrial
         {
             if (playerPosition.X < position.X)
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 1f);
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0.5f);
             }
             else
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.FlipHorizontally, 1f);
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.FlipHorizontally, 0.5f);
             }
         }
 
