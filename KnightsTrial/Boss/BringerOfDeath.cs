@@ -77,6 +77,7 @@ namespace KnightsTrial
             MovementBehaviour(gameTime);
             Move(gameTime);
             Animate(gameTime);
+            SetOrigin();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -117,7 +118,6 @@ namespace KnightsTrial
             if (behaviourTimer < randomTimeCount)
             {
                 objectSprites = walkAnimation;
-                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height);
                 FollowPlayer();
             }
             else if (behaviourTimer > randomTimeCount && behaviourTimer < randomTimeCount + 1)
@@ -129,7 +129,6 @@ namespace KnightsTrial
                 }
 
                 objectSprites = magicAnimation;
-                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height);
                 velocity = new(0, 0);
             }
             else if (behaviourTimer > randomTimeCount + 1)
@@ -138,6 +137,22 @@ namespace KnightsTrial
                 randomTimeCount = rndBehaviour.Next(1, 6);
                 behaviourTimer = 0;
                 animationReset = true;
+            }
+        }
+
+        private void SetOrigin()
+        {
+            if (objectSprites == walkAnimation)
+            {
+                origin = new Vector2(walkAnimation[0].Width / 2, walkAnimation[0].Height);
+            }
+            else if (objectSprites == magicAnimation)
+            {
+                origin = new Vector2(magicAnimation[0].Width / 2, magicAnimation[0].Height);
+            }
+            else
+            {
+                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height);
             }
         }
 
