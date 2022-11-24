@@ -1,14 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using SharpDX.Direct2D1;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using SpriteBatch = Microsoft.Xna.Framework.Graphics.SpriteBatch;
+using Microsoft.Xna.Framework.Content;
 
 namespace KnightsTrial
 {
@@ -25,35 +23,55 @@ namespace KnightsTrial
 
         private Texture2D[] menuButtonAnimation;
         private Texture2D[] gameBackground;
-        private Texture2D[] playerHealthBar;
-        private Texture2D[] playerStaminaBar;
-        private Texture2D[] bossHealthBar;
+        private Texture2D[] playerHealth;
+        private Texture2D[] playerHealthUI;
+        private Texture2D[] playerStamina;
+        private Texture2D[] playerStaminaUI;
+        private Texture2D[] bossHealthUI;
+        private Texture2D[] bossHealth;
+
+        private Rectangle hpRectangle;
+        private Rectangle staminaRectangle;
+        private Rectangle bossHPRectangle;
 
         //Properties
 
         //Constructors
         public GameState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
+            #region Instantiate Objects and Components
             Player Knight = new Player(new Vector2(GameWorld.ScreenSize.X / 2, GameWorld.ScreenSize.Y / 8 * 6));
             gameObject.Add(Knight);
             BringerOfDeath BoD = new BringerOfDeath();
+            gameObject.Add(BoD);
 
             gameBackground = new Texture2D[1];
             gameBackground[0] = _content.Load<Texture2D>("UI/KnightsTrialBackground");
-
             UserInterface Background = new UserInterface(gameBackground, new Vector2(0, 0), 1f, 0f);
 
-            playerHealthBar = new Texture2D[1];
-            playerHealthBar[0] = _content.Load<Texture2D>("UI/Knight_Trial_HPBar");
-            UserInterface hpBar = new UserInterface(playerHealthBar, new Vector2(20, 10), 1.5f, 1f);
+            hpRectangle = new Rectangle(95, 40, GetPlayer().Health * 2 + 30, 25);
+            playerHealth = new Texture2D[1];
+            playerHealth[0] = _content.Load<Texture2D>("UI/RedHealth");
 
-            playerStaminaBar = new Texture2D[1];
-            playerStaminaBar[0] = _content.Load<Texture2D>("UI/Knight_Trial_StaminaBar");
-            UserInterface staminaBar = new UserInterface(playerStaminaBar, new Vector2(60, 80), 1.5f, 1f);
+            staminaRectangle = new Rectangle(135, 112, GetPlayer().Stamina * 2 + 30, 25);
+            playerStamina = new Texture2D[1];
+            playerStamina[0] = _content.Load<Texture2D>("UI/YellowStamina");
 
-            bossHealthBar = new Texture2D[1];
-            bossHealthBar[0] = _content.Load<Texture2D>("UI/Knights_Trial_BossHPBar");
-            UserInterface bossHP = new UserInterface(bossHealthBar, new Vector2(575, 890), 2f, 1f);
+            bossHPRectangle = new Rectangle(735, 946, GetBoss().Health / 5 + 60, 52);
+            bossHealth = new Texture2D[1];
+            bossHealth[0] = _content.Load<Texture2D>("UI/RedHealth");
+
+            playerHealthUI = new Texture2D[1];
+            playerHealthUI[0] = _content.Load<Texture2D>("UI/Knight_Trial_HPBar");
+            UserInterface hpUI = new UserInterface(playerHealthUI, new Vector2(20, 10), 1.5f, 1f);
+
+            playerStaminaUI = new Texture2D[1];
+            playerStaminaUI[0] = _content.Load<Texture2D>("UI/Knight_Trial_StaminaBar");
+            UserInterface staminaUI = new UserInterface(playerStaminaUI, new Vector2(60, 80), 1.5f, 1f);
+
+            bossHealthUI = new Texture2D[1];
+            bossHealthUI[0] = _content.Load<Texture2D>("UI/Knights_Trial_BossHPBar");
+            UserInterface bossHP = new UserInterface(bossHealthUI, new Vector2(575, 890), 2f, 1f);
 
             menuButtonAnimation = new Texture2D[21];
             for (int i = 0; i < menuButtonAnimation.Length; i++)
@@ -62,12 +80,14 @@ namespace KnightsTrial
             }
             Button menuButton = new Button(menuButtonAnimation, new Vector2(1600, 50));
 
+            #endregion
+
             gameComponents = new List<Component>()
             {
                 Background,
                 menuButton,
-                staminaBar,
-                hpBar,
+                staminaUI,
+                hpUI,
                 bossHP,
             };
 
@@ -122,6 +142,10 @@ namespace KnightsTrial
                 _game.DrawCollisionBox(go);
             }
 
+            spriteBatch.Draw(playerStamina[0], staminaRectangle, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.5f);
+            spriteBatch.Draw(playerHealth[0], hpRectangle, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.5f);
+            spriteBatch.Draw(bossHealth[0], bossHPRectangle, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.5f);
+
             foreach (Component co in gameComponents)
             {
                 co.Draw(gameTime, spriteBatch);
@@ -163,6 +187,32 @@ namespace KnightsTrial
             //RemoveGameObjects();
 
             _game.ChangeState(GameWorld.menuState);
+        }
+        private Player GetPlayer()
+        {
+            //loops through the gameObject list untill it finds the player, then returns it. 
+            foreach (GameObject go in gameObject)
+            {
+                if (go is Player)
+                {
+                    return (Player)go;
+                }
+            }
+            //if no player object is found, returns null.
+            return null;
+        }
+        private BringerOfDeath GetBoss()
+        {
+            //loops through the gameObject list untill it finds the player, then returns it. 
+            foreach (GameObject go in gameObject)
+            {
+                if (go is BringerOfDeath)
+                {
+                    return (BringerOfDeath)go;
+                }
+            }
+            //if no player object is found, returns null.
+            return null;
         }
 
 
