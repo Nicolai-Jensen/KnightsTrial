@@ -72,7 +72,6 @@ namespace KnightsTrial
         public override void Update(GameTime gameTime)
         {
             playerPosition = GetPlayer().Position;
-            origin = new Vector2(objectSprites[(int)animationTime].Width / 2, objectSprites[(int)animationTime].Height / 2);
 
             MovementBehaviour(gameTime);
             Move(gameTime);
