@@ -20,7 +20,7 @@ namespace KnightsTrial
         protected Texture2D[] magicAnimation;
         protected Texture2D[] aoeAnimation;
         protected Texture2D[] deathAnimation;
-
+        Weapon hitBoss = new Weapon();
         protected SoundEffect swingSound;
         protected SoundEffect magicSound;
         protected SoundEffect aoeSound;
@@ -32,7 +32,13 @@ namespace KnightsTrial
         //Methods
         public override void OnCollision(GameObject other)
         {
-            //Do something
+
+            if (other is Weapon && other != hitBoss)
+            {
+                health -= Weapon.DamageValue;
+                hitBoss = (Weapon)other;
+            }
+
         }
         public void CheckPhase(GameTime gameTime)
         {

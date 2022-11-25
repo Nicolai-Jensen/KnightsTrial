@@ -17,6 +17,7 @@ namespace KnightsTrial
         protected bool enoughStamina;
         protected bool useArsenalAnimation;
         protected float scale;
+        protected static int damageValue;
 
         //Properties
 
@@ -24,6 +25,11 @@ namespace KnightsTrial
         {
             get { return rotation; }
             set { rotation = value; }
+        }
+
+        public static int DamageValue
+        {
+            get { return damageValue; }
         }
 
         //Constructors
@@ -121,5 +127,7 @@ namespace KnightsTrial
             //if no player object is found, returns null.
             return null;
         }
+
+
     }
 }

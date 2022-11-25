@@ -31,6 +31,7 @@ namespace KnightsTrial
             hasCollided = false;
             telegraph = new Beware(playerPosition);
             scale = 2f;
+            damageValue = 15;
         }
 
         //Methods
@@ -39,9 +40,9 @@ namespace KnightsTrial
             objectSprites = new Texture2D[4];
             explosionSprites = new Texture2D[7];
 
-            for(int i = 0; i < objectSprites.Length; i++)
+            for (int i = 0; i < objectSprites.Length; i++)
             {
-                objectSprites[i] = content.Load<Texture2D>($"BringerOfDeath/Fireball/Fireball{i+1}");
+                objectSprites[i] = content.Load<Texture2D>($"BringerOfDeath/Fireball/Fireball{i + 1}");
             }
 
             for (int i = 0; i < explosionSprites.Length; i++)
@@ -91,8 +92,36 @@ namespace KnightsTrial
             {
                 hasCollided = false;
 
+                if (Player.Blocking == true && Player.Dodging != true)
+                {
+                    if(GetPlayer().Stamina < damageValue)
+                    {
+                        GetPlayer().Health -= damageValue;
+                        GetPlayer().HealthModified = true;
+                    }
+                    GetPlayer().Stamina -= damageValue * 2;
+                }
 
+                if (Player.Blocking == false && Player.Dodging == false)
+                {
+                    GetPlayer().Health -= damageValue;
+                    GetPlayer().HealthModified = true;
+                }
             }
+        }
+
+        protected Player GetPlayer()
+        {
+            //loops through the gameObject list untill it finds the player, then returns it. 
+            foreach (GameObject go in GameState.gameObject)
+            {
+                if (go is Player)
+                {
+                    return (Player)go;
+                }
+            }
+            //if no player object is found, returns null.
+            return null;
         }
 
         private void CheckForRemove()
@@ -103,4 +132,5 @@ namespace KnightsTrial
             }
         }
     }
+
 }
