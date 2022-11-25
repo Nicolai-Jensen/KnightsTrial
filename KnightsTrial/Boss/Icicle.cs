@@ -16,6 +16,29 @@ namespace KnightsTrial
         private float rotation;
 
         //Properties
+        public override Rectangle CollisionBox
+        {
+            get
+            {
+                if (rotation == 1.55f || rotation == -1.55f)
+                {
+                     return new Rectangle(
+
+                        (int)(position.X - SpriteSize.X),
+                        (int)(position.Y - SpriteSize.Y / 4),
+                        (int)SpriteSize.Y, (int)SpriteSize.X);
+
+                }
+                else
+                {
+                    return new Rectangle(
+
+                        (int)(position.X - SpriteSize.X / 2),
+                        (int)(position.Y - SpriteSize.Y / 2),
+                        (int)SpriteSize.X, (int)SpriteSize.Y);
+                }
+            }
+        }
 
         //Constructors
 
