@@ -40,7 +40,7 @@ namespace KnightsTrial
         {
             get { return objectSprites[(int)animationTime]; }
         }
-        protected Vector2 SpriteSize
+        protected virtual Vector2 SpriteSize
         {
             get { return new Vector2(CurrentSprite.Width * scale, CurrentSprite.Height * scale); }
         }

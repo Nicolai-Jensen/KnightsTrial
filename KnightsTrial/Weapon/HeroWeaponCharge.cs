@@ -108,8 +108,10 @@ namespace KnightsTrial
                 GameState.InstantiateGameObject(slashSprite);
                 chargeTimer = 0;
                 Player.ChargeAtkAnim = false;
+                Player.LightAtkAnim = true;
+                SetPlayerAnimationTime(0);
                 ToBeRemoved = true;
-                SetPlayerSpeed(0f);      
+                SetPlayerSpeed(150f);      
             }
 
             if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer > 0.7f)

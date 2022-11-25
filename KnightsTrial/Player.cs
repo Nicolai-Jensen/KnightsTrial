@@ -34,6 +34,7 @@ namespace KnightsTrial
         private Texture2D[] runAnimation;
         private Texture2D[] dodgeAnimation;
         private Texture2D[] blockAnimation;
+        private Texture2D[] collisionSprite;
         private SoundEffect attackingSound;
         private SoundEffect potionSound;
         private SoundEffect dodgeSound;
@@ -76,6 +77,11 @@ namespace KnightsTrial
         public bool HitCooldown
         {
             get { return hitCooldown; }
+        }
+
+        protected override Vector2 SpriteSize
+        {
+            get { return new Vector2(collisionSprite[0].Width * scale / 2, collisionSprite[0].Height * scale / 2); }
         }
 
         public static bool Blocking
@@ -138,6 +144,7 @@ namespace KnightsTrial
             runAnimation = new Texture2D[8];
             blockAnimation = new Texture2D[3];
             dodgeAnimation = new Texture2D[10];
+            heroWeapon = new Texture2D[4];
             heroWeapon2 = new Texture2D[5];
             heroWeaponPrep = new Texture2D[1];
 
@@ -173,7 +180,14 @@ namespace KnightsTrial
                 heroWeapon2[i] = content.Load<Texture2D>($"PlayerAttackAnimations/Pthrust{i + 2}");
             }
 
+            //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
+            for (int i = 0; i < heroWeapon.Length; i++)
+            {
+                heroWeapon[i] = content.Load<Texture2D>($"PlayerAttackAnimations/Pslash{i}");
+            }
+
             objectSprites = idleAnimation;
+            collisionSprite = idleAnimation;
 
 
             //This line of code places the objects origin within the middle of the sprite assuming all sprites in the array share the same size
@@ -287,13 +301,92 @@ namespace KnightsTrial
 
                 if (isFacingRight != true)
                 {
-                    origin = new Vector2(objectSprites[0].Width - 14, objectSprites[0].Height / 2);
+                    origin = new Vector2(objectSprites[0].Width - 16, objectSprites[0].Height - 16);
                 }
                 if (isFacingRight == true)
                 {
-                    origin = new Vector2(objectSprites[0].Width - 29, objectSprites[0].Height / 2);
+                    origin = new Vector2(objectSprites[0].Width - 27, objectSprites[0].Height - 16);
+                }               
+            }
+
+            if (heavyAtkAnim == true)
+            {
+                if (animationTime == 0 && isFacingRight != true)
+                {
+                    origin = new Vector2(objectSprites[0].Width - 12, objectSprites[0].Height - 16);
                 }
-                
+                if (animationTime == 0 && isFacingRight == true)
+                {
+                    origin = new Vector2(objectSprites[0].Width - 31, objectSprites[0].Height - 16);
+                }
+                if (animationTime == 1 && isFacingRight != true)
+                {
+                    origin = new Vector2(objectSprites[0].Width - 13, objectSprites[0].Height - 16);
+                }
+                if (animationTime == 1 && isFacingRight == true)
+                {
+                    origin = new Vector2(objectSprites[0].Width - 30, objectSprites[0].Height - 16);
+                }
+                if (animationTime == 2 && isFacingRight != true)
+                {
+                    origin = new Vector2(objectSprites[0].Width - 14, objectSprites[0].Height - 16);
+                }
+                if (animationTime == 2 && isFacingRight == true)
+                {
+                    origin = new Vector2(objectSprites[0].Width - 29, objectSprites[0].Height - 16);
+                }
+                if (animationTime == 3 && isFacingRight != true)
+                {
+                    origin = new Vector2(objectSprites[0].Width - 15, objectSprites[0].Height - 16);
+                }
+                if (animationTime == 3 && isFacingRight == true)
+                {
+                    origin = new Vector2(objectSprites[0].Width - 28, objectSprites[0].Height - 16);
+                }
+            }
+
+            if (lightAtkAnim == true)
+            {
+
+                if (isFacingRight != true)
+                {
+                    if (animationTime > 0)
+                    {
+                        origin = new Vector2(objectSprites[0].Width - 29, objectSprites[0].Height - 16);
+                    }
+                    if (animationTime > 1)
+                    {
+                        origin = new Vector2(objectSprites[1].Width - 30, objectSprites[0].Height - 12);
+                    }
+                    if (animationTime > 2)
+                    {
+                        origin = new Vector2(objectSprites[2].Width - 18, objectSprites[0].Height - 16);
+                    }
+                    if (animationTime > 3)
+                    {
+                        origin = new Vector2(objectSprites[3].Width - 32, objectSprites[0].Height - 16);
+                    }
+                }
+
+                if (isFacingRight == true)
+                {
+                    if (animationTime > 0)
+                    {
+                        origin = new Vector2(objectSprites[0].Width - 13, objectSprites[0].Height - 16);
+                    }
+                    if (animationTime > 1)
+                    {
+                        origin = new Vector2(objectSprites[1].Width - 36, objectSprites[0].Height - 12);
+                    }
+                    if (animationTime > 2)
+                    {
+                        origin = new Vector2(objectSprites[2].Width - 36, objectSprites[0].Height - 16);
+                    }
+                    if (animationTime > 3)
+                    {
+                        origin = new Vector2(objectSprites[3].Width - 36, objectSprites[0].Height - 16);
+                    }
+                }
             }
 
             if (chargeAtkAnim == false && heavyAtkAnim == false && lightAtkAnim == false)
@@ -377,6 +470,18 @@ namespace KnightsTrial
                 {
                     attacking = false;
                     heavyAtkAnim = false;
+                }
+            }
+
+            if (lightAtkAnim == true)
+            {
+                animationSpeed = 8f;
+                objectSprites = heroWeapon;
+
+                if (animationTime > 3)
+                {
+                    attacking = false;
+                    lightAtkAnim = false;
                 }
             }
         }
