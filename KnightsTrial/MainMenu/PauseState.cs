@@ -46,7 +46,7 @@ namespace KnightsTrial.MainMenu
             newGameButtonAnimation = new Texture2D[21];
             for (int i = 0; i < newGameButtonAnimation.Length; i++)
             {
-                newGameButtonAnimation[i] = _content.Load<Texture2D>($"NewGameButton/NewGameButton{1}");
+                newGameButtonAnimation[i] = _content.Load<Texture2D>($"NewGameButton/NewGameButton{i + 1}");
             }
 
             UserInterface background = new UserInterface(backgroundSprite, new Vector2(0, 0), 1f, 0f);
