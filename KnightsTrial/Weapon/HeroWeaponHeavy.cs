@@ -14,7 +14,7 @@ namespace KnightsTrial
 
         //Fields
         private Texture2D[] sprite;
-        private int damage;
+
 
 
         //Properties
@@ -28,7 +28,7 @@ namespace KnightsTrial
             speed = 0f;
             scale = 1.2f;
             velocity = Direction(ReturnPlayerPostition());
-            damage = 5;
+            damageValue = 100;
             animationSpeed = 12f;
         }
 
