@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using KnightsTrial.MainMenu;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -19,6 +20,7 @@ namespace KnightsTrial
 
         public static State gameState;
         public static State menuState;
+        public static State pauseState;
 
         public Texture2D pixel;
 
@@ -56,6 +58,9 @@ namespace KnightsTrial
 
             MenuState menu = new MenuState(this, _graphics.GraphicsDevice, Content);
             menuState = menu;
+
+            PauseState paused = new PauseState(this, _graphics.GraphicsDevice, Content);
+            pauseState = paused;
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
