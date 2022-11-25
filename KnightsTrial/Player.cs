@@ -144,7 +144,7 @@ namespace KnightsTrial
             runAnimation = new Texture2D[8];
             blockAnimation = new Texture2D[3];
             dodgeAnimation = new Texture2D[10];
-            heroWeapon = new Texture2D[4];
+            heroWeapon = new Texture2D[5];
             heroWeapon2 = new Texture2D[5];
             heroWeaponPrep = new Texture2D[1];
 
@@ -364,7 +364,7 @@ namespace KnightsTrial
                     }
                     if (animationTime > 3)
                     {
-                        origin = new Vector2(objectSprites[3].Width - 32, objectSprites[0].Height - 16);
+                        origin = new Vector2(objectSprites[3].Width - 18, objectSprites[0].Height - 16);
                     }
                 }
 
@@ -478,7 +478,7 @@ namespace KnightsTrial
                 animationSpeed = 8f;
                 objectSprites = heroWeapon;
 
-                if (animationTime > 3)
+                if (animationTime > 4)
                 {
                     attacking = false;
                     lightAtkAnim = false;
