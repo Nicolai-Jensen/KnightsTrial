@@ -133,6 +133,7 @@ namespace KnightsTrial
             else if (behaviourTimer > randomTimeCount + 1)
             {
                 AttackBehaviour(gameTime);
+
                 randomTimeCount = rndBehaviour.Next(1, 6);
                 behaviourTimer = 0;
                 animationReset = true;
@@ -202,7 +203,7 @@ namespace KnightsTrial
                 case 1:
                     //From right of screen
 
-                    int icicleWallHoleRight = rndBehaviour.Next(1, 17);
+                    int icicleWallHoleRight = rndBehaviour.Next(2, 15);
 
                     for (int i = 0; i < 16; i++)
                     {
@@ -210,7 +211,7 @@ namespace KnightsTrial
                         {
                             if (i != icicleWallHoleRight + 1)
                             {
-                                Icicle icicleWallUnit = new Icicle(new Vector2(-1, 0), new Vector2(1920, i * 68), 1.55f);
+                                Icicle icicleWallUnit = new Icicle(new Vector2(-1, 0), new Vector2(1920, i * 68 + 34), 1.55f);
                             }
                         }
                     }
@@ -219,7 +220,7 @@ namespace KnightsTrial
                 case 2:
                     //From left of screen
 
-                    int icicleWallHoleLeft = rndBehaviour.Next(1, 17);
+                    int icicleWallHoleLeft = rndBehaviour.Next(2, 15);
 
                     for (int i = 0; i < 16; i++)
                     {
@@ -227,7 +228,7 @@ namespace KnightsTrial
                         {
                             if (i != icicleWallHoleLeft + 1)
                             {
-                                Icicle icicleWallUnit = new Icicle(new Vector2(1, 0), new Vector2(0, i * 68), -1.55f);
+                                Icicle icicleWallUnit = new Icicle(new Vector2(1, 0), new Vector2(0, i * 68 + 34), -1.55f);
                             }
                         }
                     }
@@ -236,7 +237,7 @@ namespace KnightsTrial
                 case 3:
                     //From bottom of screen.
 
-                    int icicleWallHoleBottom = rndBehaviour.Next(1, 30);
+                    int icicleWallHoleBottom = rndBehaviour.Next(2, 28);
 
                     for (int i = 0; i < 29; i++)
                     {
@@ -253,7 +254,7 @@ namespace KnightsTrial
                 case 4:
                     //From top of screen.
 
-                    int icicleWallHoleTop = rndBehaviour.Next(1, 30);
+                    int icicleWallHoleTop = rndBehaviour.Next(2, 28);
 
                     for (int i = 0; i < 29; i++)
                     {
