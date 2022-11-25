@@ -215,14 +215,14 @@ namespace KnightsTrial
             Dodge(gameTime);
             SetDodgeVelocity();
             AttackingAnimations();
-            Setorigin();
             Move(gameTime);
             Animate(gameTime);
             ScreenWrap();
             Block(gameTime);
             Attack(gameTime);
             StaminaRegen(gameTime);
-            
+            Setorigin();
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -350,21 +350,21 @@ namespace KnightsTrial
 
                 if (isFacingRight != true)
                 {
-                    if (animationTime > 0)
+                    if ((int)animationTime == 0)
                     {
                         origin = new Vector2(objectSprites[0].Width - 29, objectSprites[0].Height - 16);
                     }
-                    if (animationTime > 1)
+                    if ((int)animationTime == 1)
                     {
                         origin = new Vector2(objectSprites[1].Width - 30, objectSprites[0].Height - 12);
                     }
-                    if (animationTime > 2)
+                    if ((int)animationTime == 2)
                     {
                         origin = new Vector2(objectSprites[2].Width - 18, objectSprites[0].Height - 16);
                     }
-                    if (animationTime > 3)
+                    if ((int)animationTime == 3)
                     {
-                        origin = new Vector2(objectSprites[3].Width - 18, objectSprites[0].Height - 16);
+                        origin = new Vector2(objectSprites[3].Width - 32, objectSprites[0].Height - 16);
                     }
                 }
 
