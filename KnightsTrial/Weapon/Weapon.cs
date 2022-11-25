@@ -71,6 +71,13 @@ namespace KnightsTrial
             }
         }
 
+        protected void SetPlayerStamina(int value)
+        {
+
+            GetPlayer().Stamina -= value;
+          
+        }
+
         protected void SetPlayerSpeed(float speedValue)
         {
             foreach (GameObject go in GameState.gameObject)
@@ -99,6 +106,20 @@ namespace KnightsTrial
         public override void OnCollision(GameObject other)
         {
 
+        }
+
+        protected Player GetPlayer()
+        {
+            //loops through the gameObject list untill it finds the player, then returns it. 
+            foreach (GameObject go in GameState.gameObject)
+            {
+                if (go is Player)
+                {
+                    return (Player)go;
+                }
+            }
+            //if no player object is found, returns null.
+            return null;
         }
     }
 }
