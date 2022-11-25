@@ -26,7 +26,7 @@ namespace KnightsTrial
 
         public HeroWeaponCharge(Vector2 position)
         {
-          
+            damageValue = 0;
             this.position = position;
             rotation = 0f;
             speed = 0f;

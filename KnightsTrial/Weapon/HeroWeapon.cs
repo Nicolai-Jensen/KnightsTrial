@@ -14,7 +14,7 @@ namespace KnightsTrial
         //Fields
         private Texture2D[] sprite;
 
-        private int damage;
+
 
         //Properties
 
@@ -22,12 +22,11 @@ namespace KnightsTrial
 
         public HeroWeapon(Vector2 position)
         {
-            
+            damageValue = 30;
             this.position = position;
             rotation = -1.5f;
             speed = 0f;
             scale = 2f;
-            damage = 1;
             animationSpeed = 12f;
         }
 
@@ -69,6 +68,7 @@ namespace KnightsTrial
             }
             
         }
+
 
         public void ChooseDirection()
         {

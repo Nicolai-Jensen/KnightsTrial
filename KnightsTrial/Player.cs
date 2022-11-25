@@ -228,6 +228,7 @@ namespace KnightsTrial
             Attack(gameTime);
             StaminaRegen(gameTime);
             Setorigin();
+            Damaged(gameTime);
 
         }
 
@@ -412,9 +413,42 @@ namespace KnightsTrial
 
         }
 
+        /// <summary>
+        /// A Method that waits for an enemy to damage the player
+        /// when the player is damaged it makes the enemy unable to hit the player and marks the player as red
+        /// a timer starts and when it is over the player is tangible again for enemies to hit reseting the timer and color.
+        /// </summary>
+        /// <param name="gameTime">A parameter from the Framework that acts as a timer</param>
         public void Damaged(GameTime gameTime)
         {
+            //When Damaged by an enemy they set this value to true on their collision method
+            if (healthModified == true)
+            {
+                //when hit cooldown is true it turns the player red and prevents enemies from doing damage to the player. It also starts the a timer
+                hitCooldown = true;
+                if (hitCooldown == true)
+                {
+                    color = Color.Red;
+                }
+                hitCooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                //this timer if statement is hit almost immediately, making the code inside only able to play effectly once
+                //if (hitCooldownTimer <= 0.05f)
+                //{
+                //    //plays a Sound effect that indicates the player has been hit
+                //    //SoundEffectInstance hurtSoundIntance = hurtSound.CreateInstance();
+                //    //hurtSoundIntance.Volume = 0.3f;
+                //    //hurtSoundIntance.Play();
+                //}
 
+                //When the timer hits over this value it makes the player normal colored and enables them to be hit again
+                if (hitCooldownTimer >= 0.5f)
+                {
+                    hitCooldown = false;
+                    color = Color.White;
+                    hitCooldownTimer = 0;
+                    healthModified = false;
+                }
+            }
         }
 
         public void Death()
@@ -486,16 +520,18 @@ namespace KnightsTrial
 
         public void StaminaRegen(GameTime gameTime)
         {
-            int regenTick;
+            //int regenTick;
 
             if (regenStamina == true && stamina < 100)
             {
                 staminaRegenerating += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                regenTick = (int)staminaRegenerating % 2;
-                if (regenTick == 1)
+                //regenTick = (int)staminaRegenerating % 3;
+                //if (regenTick == 1)
+                if (staminaRegenerating > 0.05f)
                 {
                     stamina += 1;
+                    staminaRegenerating = 0;
                 }
             }
 

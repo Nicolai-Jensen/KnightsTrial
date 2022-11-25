@@ -12,7 +12,7 @@ namespace KnightsTrial
     internal class Icicle : GameObject
     {
         //Fields
-
+        private int damageValue;
         private float rotation;
 
         //Properties
@@ -50,6 +50,7 @@ namespace KnightsTrial
             scale = 2f;
             velocity = inputVelocity;
             this.rotation = rotation;
+            damageValue = 10;
         }
 
         //Methods
@@ -74,7 +75,42 @@ namespace KnightsTrial
 
         public override void OnCollision(GameObject other)
         {
-            
+            if (other is Player)
+            {
+                
+                if (Player.Blocking == true && Player.Dodging != true)
+                {
+
+                    if (GetPlayer().Stamina < damageValue)
+                    {
+                        GetPlayer().Health -= damageValue;
+                        GetPlayer().HealthModified = true;
+                    }
+                    GetPlayer().Stamina -= damageValue * 2;
+                    ToBeRemoved = true;
+                }
+
+                if (Player.Blocking == false && Player.Dodging == false)
+                {
+                    GetPlayer().Health -= damageValue;
+                    GetPlayer().HealthModified = true;
+                    ToBeRemoved = true;
+                }
+            }
+        }
+
+        protected Player GetPlayer()
+        {
+            //loops through the gameObject list untill it finds the player, then returns it. 
+            foreach (GameObject go in GameState.gameObject)
+            {
+                if (go is Player)
+                {
+                    return (Player)go;
+                }
+            }
+            //if no player object is found, returns null.
+            return null;
         }
     }
 }
