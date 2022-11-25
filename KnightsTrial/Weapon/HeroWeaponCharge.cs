@@ -101,24 +101,26 @@ namespace KnightsTrial
 
         public void Release(GameTime gameTime)
         {
-            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer < 0.7f)
+            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer < 0.7f && GetPlayer().Stamina > 20)
             {
 
                 HeroWeapon slashSprite = new HeroWeapon(new Vector2(position.X, position.Y));
                 GameState.InstantiateGameObject(slashSprite);
                 chargeTimer = 0;
                 Player.ChargeAtkAnim = false;
+                SetPlayerStamina(20);
                 Player.LightAtkAnim = true;
                 SetPlayerAnimationTime(0);
                 ToBeRemoved = true;
                 SetPlayerSpeed(150f);      
             }
 
-            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer > 0.7f)
+            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer > 0.7f && GetPlayer().Stamina > 40)
             {
                 HeroWeaponHeavy thrust = new HeroWeaponHeavy(new Vector2(position.X, position.Y));
                 GameState.InstantiateGameObject(thrust);
                 Player.ChargeAtkAnim = false;
+                SetPlayerStamina(40);
                 Player.HeavyAtkAnim = true;
                 SetPlayerAnimationTime(0);
                 chargeTimer = 0;
@@ -129,6 +131,27 @@ namespace KnightsTrial
                 objectSprites = releaseAnimation;
                 SetPlayerSpeed(0f);
             }
+
+            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer < 0.7f && GetPlayer().Stamina < 20)
+            {
+                Player.Atacking = false;
+                Player.ChargeAtkAnim = false;                
+                Player.RegenStamina = true;
+                chargeTimer = 0;
+                ToBeRemoved = true;
+                SetPlayerSpeed(200f);
+            }
+
+            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer > 0.7f && GetPlayer().Stamina < 40)
+            {
+                Player.Atacking = false;
+                Player.ChargeAtkAnim = false;
+                Player.RegenStamina = true;
+                chargeTimer = 0;
+                ToBeRemoved = true;
+                SetPlayerSpeed(200f);
+            }
+
 
             if (animationTime > 4)
             {

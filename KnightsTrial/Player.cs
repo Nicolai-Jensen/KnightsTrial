@@ -17,7 +17,7 @@ namespace KnightsTrial
         private int health;
         private int stamina;
         private bool healthModified = false;
-        private bool regenStamina = true;
+        private static bool regenStamina = true;
         private static bool blocking = false;
         private static bool dodging = false;
         private static bool attacking = false;
@@ -82,6 +82,12 @@ namespace KnightsTrial
         protected override Vector2 SpriteSize
         {
             get { return new Vector2(collisionSprite[0].Width * scale / 2, collisionSprite[0].Height * scale / 2); }
+        }
+
+        public static bool RegenStamina
+        {
+            get { return regenStamina; }
+            set { regenStamina = value; }
         }
 
         public static bool Blocking
@@ -319,30 +325,7 @@ namespace KnightsTrial
                 {
                     origin = new Vector2(objectSprites[0].Width - 31, objectSprites[0].Height - 16);
                 }
-                if (animationTime == 1 && isFacingRight != true)
-                {
-                    origin = new Vector2(objectSprites[0].Width - 13, objectSprites[0].Height - 16);
-                }
-                if (animationTime == 1 && isFacingRight == true)
-                {
-                    origin = new Vector2(objectSprites[0].Width - 30, objectSprites[0].Height - 16);
-                }
-                if (animationTime == 2 && isFacingRight != true)
-                {
-                    origin = new Vector2(objectSprites[0].Width - 14, objectSprites[0].Height - 16);
-                }
-                if (animationTime == 2 && isFacingRight == true)
-                {
-                    origin = new Vector2(objectSprites[0].Width - 29, objectSprites[0].Height - 16);
-                }
-                if (animationTime == 3 && isFacingRight != true)
-                {
-                    origin = new Vector2(objectSprites[0].Width - 15, objectSprites[0].Height - 16);
-                }
-                if (animationTime == 3 && isFacingRight == true)
-                {
-                    origin = new Vector2(objectSprites[0].Width - 28, objectSprites[0].Height - 16);
-                }
+
             }
 
             if (lightAtkAnim == true)
@@ -364,7 +347,7 @@ namespace KnightsTrial
                     }
                     if ((int)animationTime == 3)
                     {
-                        origin = new Vector2(objectSprites[3].Width - 32, objectSprites[0].Height - 16);
+                        origin = new Vector2(objectSprites[3].Width - 18, objectSprites[0].Height - 16);
                     }
                 }
 
@@ -441,7 +424,7 @@ namespace KnightsTrial
 
         public void Attack(GameTime gameTime)
         {
-            if (dodging == false && blocking == false && attacking == false && dodgingAnim == false)
+            if (dodging == false && blocking == false && attacking == false && dodgingAnim == false && attackCooldown == false)
             {
                 if (currentMouse.LeftButton == ButtonState.Pressed && previousMouse.LeftButton == ButtonState.Released)
                 {
@@ -449,6 +432,17 @@ namespace KnightsTrial
                     GameState.InstantiateGameObject(chargeSprite);
                     attacking = true;
                     chargeAtkAnim = true;
+                    regenStamina = false;
+                }
+            }
+
+            if (attackCooldown == true)
+            {
+                attackCooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (attackCooldownTimer > 0.5f)
+                {
+                    attackCooldownTimer = 0;
+                    attackCooldown = false;
                 }
             }
         }
@@ -470,6 +464,8 @@ namespace KnightsTrial
                 {
                     attacking = false;
                     heavyAtkAnim = false;
+                    attackCooldown = true;
+                    regenStamina = true;
                 }
             }
 
@@ -482,6 +478,8 @@ namespace KnightsTrial
                 {
                     attacking = false;
                     lightAtkAnim = false;
+                    attackCooldown = true;
+                    regenStamina = true;
                 }
             }
         }
@@ -497,7 +495,7 @@ namespace KnightsTrial
                 regenTick = (int)staminaRegenerating % 2;
                 if (regenTick == 1)
                 {
-                    stamina += 5;
+                    stamina += 1;
                 }
             }
 
@@ -514,6 +512,7 @@ namespace KnightsTrial
                 {
                     Shield blockingSprite = new Shield(block[0], new Vector2(position.X, position.Y));
                     GameState.InstantiateGameObject(blockingSprite);
+                    regenStamina = false;
                 }
 
                 if (blocking == true)
@@ -530,11 +529,13 @@ namespace KnightsTrial
 
         public void Dodge(GameTime gameTime)
         {
-            if (blocking != true && attacking != true && currentKey.IsKeyDown(Keys.Space) && previousKey.IsKeyUp(Keys.Space) && dodging == false && dodgeCooldown == false)
+            if (blocking != true && attacking != true && currentKey.IsKeyDown(Keys.Space) && previousKey.IsKeyUp(Keys.Space) && dodging == false && dodgeCooldown == false && stamina > 0)
             {
                 dodging = true;
                 dodgingAnim = true;
                 dodgeCooldown = true;
+                regenStamina = false;
+                stamina -= 20;
                 animationTime = 0;
                 dodgeVelocity = velocity;
             }
@@ -556,6 +557,7 @@ namespace KnightsTrial
                 if (animationTime > 9)
                 {
                     dodgingAnim = false;
+                    regenStamina = true;
                     animationSpeed = 8f;
                 }
             }   

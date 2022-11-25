@@ -72,6 +72,7 @@ namespace KnightsTrial
             {
                 ToBeRemoved = true;
                 Player.Blocking = false;
+                Player.RegenStamina = true;
                 SetPlayerSpeed(200f);
             }
         }
