@@ -49,11 +49,11 @@ namespace KnightsTrial
             gameBackground[0] = _content.Load<Texture2D>("UI/KnightsTrialBackground");
             UserInterface Background = new UserInterface(gameBackground, new Vector2(0, 0), 1f, 0f);
 
-            hpRectangle = new Rectangle(95, 40, GetPlayer().Health * 2 + 30, 25);
+            hpRectangle = new Rectangle(95, 40, GetPlayer().Health * 2 + 30, 26);
             playerHealth = new Texture2D[1];
             playerHealth[0] = _content.Load<Texture2D>("UI/RedHealth");
 
-            staminaRectangle = new Rectangle(135, 112, GetPlayer().Stamina * 2 + 30, 25);
+            staminaRectangle = new Rectangle(135, 112, GetPlayer().Stamina * 2 + 30, 26);
             playerStamina = new Texture2D[1];
             playerStamina[0] = _content.Load<Texture2D>("UI/YellowStamina");
 
@@ -63,35 +63,35 @@ namespace KnightsTrial
 
             playerHealthUI = new Texture2D[1];
             playerHealthUI[0] = _content.Load<Texture2D>("UI/Knight_Trial_HPBar");
-            UserInterface hpUI = new UserInterface(playerHealthUI, new Vector2(20, 10), 1.5f, 1f);
+            UserInterface hpUI = new UserInterface(playerHealthUI, new Vector2(20, 10), 1.5f, 0.8f);
 
             playerStaminaUI = new Texture2D[1];
             playerStaminaUI[0] = _content.Load<Texture2D>("UI/Knight_Trial_StaminaBar");
-            UserInterface staminaUI = new UserInterface(playerStaminaUI, new Vector2(60, 80), 1.5f, 1f);
+            UserInterface staminaUI = new UserInterface(playerStaminaUI, new Vector2(60, 80), 1.5f, 0.8f);
 
             bossHealthUI = new Texture2D[1];
             bossHealthUI[0] = _content.Load<Texture2D>("UI/Knights_Trial_BossHPBar");
-            UserInterface bossHP = new UserInterface(bossHealthUI, new Vector2(575, 890), 2f, 1f);
+            UserInterface bossHP = new UserInterface(bossHealthUI, new Vector2(575, 890), 2f, 0.8f);
 
             menuButtonAnimation = new Texture2D[21];
             for (int i = 0; i < menuButtonAnimation.Length; i++)
             {
                 menuButtonAnimation[i] = _content.Load<Texture2D>($"MenuButton/MenuButton{i + 1}");
             }
-            Button menuButton = new Button(menuButtonAnimation, new Vector2(1600, 50));
+            Button pauseButton = new Button(menuButtonAnimation, new Vector2(1600, 50));
 
             #endregion
 
             gameComponents = new List<Component>()
             {
                 Background,
-                menuButton,
+                pauseButton,
                 staminaUI,
                 hpUI,
                 bossHP,
             };
 
-            menuButton.Click += MenuButton_Click;
+            pauseButton.Click += PauseButton_Click;
         }
 
         //Methods
@@ -172,6 +172,7 @@ namespace KnightsTrial
             }
         }
 
+
         /// <summary>
         /// Adds a Gameobject to the gameObjectsToAdd list.
         /// </summary>
@@ -180,17 +181,17 @@ namespace KnightsTrial
         {
             gameObjectsToAdd.Add(gObject);
         }
-        private void MenuButton_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Changes State to PauseState when Clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PauseButton_Click(object sender, EventArgs e)
         {
-            //foreach (GameObject go in gameObject)
-            //{
-            //    go.ToBeRemoved = true;
-            //}
-
-            //RemoveGameObjects();
-
-            _game.ChangeState(GameWorld.menuState);
+            _game.ChangeState(GameWorld.pauseState);
         }
+
         private Player GetPlayer()
         {
             //loops through the gameObject list untill it finds the player, then returns it. 
@@ -204,6 +205,7 @@ namespace KnightsTrial
             //if no player object is found, returns null.
             return null;
         }
+
         private BringerOfDeath GetBoss()
         {
             //loops through the gameObject list untill it finds the player, then returns it. 
