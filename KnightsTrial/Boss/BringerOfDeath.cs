@@ -77,6 +77,7 @@ namespace KnightsTrial
             Move(gameTime);
             Animate(gameTime);
             SetOrigin();
+            CheckForDeath();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -163,6 +164,13 @@ namespace KnightsTrial
             velocity = outputVelocity;
         }
 
+        private void CheckForDeath()
+        {
+            if (health <= 0)
+            {
+                toBeRemoved = true;
+            }
+        }
 
         //-----------------------ATTACKS & SPELLS-----------------------------
 
