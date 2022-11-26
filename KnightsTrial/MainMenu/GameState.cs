@@ -46,7 +46,7 @@ namespace KnightsTrial
             gameObject.Add(BoD);
 
             gameBackground = new Texture2D[1];
-            gameBackground[0] = _content.Load<Texture2D>("UI/KnightsTrialBackground");
+            gameBackground[0] = _content.Load<Texture2D>("UI/NewKnightsTrialBackground");
             UserInterface Background = new UserInterface(gameBackground, new Vector2(0, 0), 1f, 0f);
 
             hpRectangle = new Rectangle(95, 40, GetPlayer().Health * 2 + 30, 26);
@@ -57,7 +57,7 @@ namespace KnightsTrial
             playerStamina = new Texture2D[1];
             playerStamina[0] = _content.Load<Texture2D>("UI/YellowStamina");
 
-            bossHPRectangle = new Rectangle(735, 946, GetBoss().Health / 5 + 60, 52);
+            bossHPRectangle = new Rectangle(710, 946, GetBoss().Health / 5 + 60, 52);
             bossHealth = new Texture2D[1];
             bossHealth[0] = _content.Load<Texture2D>("UI/RedHealth");
 
@@ -71,14 +71,14 @@ namespace KnightsTrial
 
             bossHealthUI = new Texture2D[1];
             bossHealthUI[0] = _content.Load<Texture2D>("UI/Knights_Trial_BossHPBar");
-            UserInterface bossHP = new UserInterface(bossHealthUI, new Vector2(575, 890), 2f, 0.8f);
+            UserInterface bossHP = new UserInterface(bossHealthUI, new Vector2(550, 890), 2f, 0.8f);
 
             menuButtonAnimation = new Texture2D[21];
             for (int i = 0; i < menuButtonAnimation.Length; i++)
             {
                 menuButtonAnimation[i] = _content.Load<Texture2D>($"MenuButton/MenuButton{i + 1}");
             }
-            Button pauseButton = new Button(menuButtonAnimation, new Vector2(1600, 50));
+            Button pauseButton = new Button(menuButtonAnimation, new Vector2(1600, 30));
 
             #endregion
 
