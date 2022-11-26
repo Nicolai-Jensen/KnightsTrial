@@ -16,7 +16,6 @@ namespace KnightsTrial.MainMenu
         private Texture2D[] quitButtonAnimation;
         private Texture2D[] resumeButtonAnimation;
         private Texture2D[] newGameButtonAnimation;
-        private Texture2D[] backgroundSprite;
         private Texture2D[] knightsLogo;
 
         //Properties
@@ -28,10 +27,6 @@ namespace KnightsTrial.MainMenu
             knightsLogo = new Texture2D[1];
             knightsLogo[0] = _content.Load<Texture2D>("UI/pause");
 
-            backgroundSprite = new Texture2D[1];
-
-            backgroundSprite[0] = _content.Load<Texture2D>("UI/KnightsTrialBackground");
-
             resumeButtonAnimation = new Texture2D[21];
             for (int i = 0; i < resumeButtonAnimation.Length; i++)
             {
@@ -41,15 +36,13 @@ namespace KnightsTrial.MainMenu
             quitButtonAnimation = new Texture2D[21];
             for (int i = 0; i < quitButtonAnimation.Length; i++)
             {
-                quitButtonAnimation[i] = _content.Load<Texture2D>($"QuitButton/MenuQuitButtonANI{i + 1}");
+                quitButtonAnimation[i] = _content.Load<Texture2D>($"MenuButton/MenuButton{i + 1}");
             }
             newGameButtonAnimation = new Texture2D[21];
             for (int i = 0; i < newGameButtonAnimation.Length; i++)
             {
                 newGameButtonAnimation[i] = _content.Load<Texture2D>($"NewGameButton/NewGameButton{i + 1}");
             }
-
-            UserInterface background = new UserInterface(backgroundSprite, new Vector2(0, 0), 1f, 0f);
 
             Button resumeButton = new Button(resumeButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 500));
 
@@ -65,7 +58,6 @@ namespace KnightsTrial.MainMenu
 
             components = new List<Component>()
             {
-                        background,
                         resumeButton,
                         newGameButton,
                         quitButton,
