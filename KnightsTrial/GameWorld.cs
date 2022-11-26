@@ -18,6 +18,9 @@ namespace KnightsTrial
         private State _currentState;
         private State _nextState;
 
+        private KeyboardState currentKey;
+        private KeyboardState previousKey;
+
         public static State gameState;
         public static State menuState;
         public static State pauseState;
@@ -79,8 +82,18 @@ namespace KnightsTrial
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                ChangeState(menuState);
+            previousKey = currentKey;
+            currentKey = Keyboard.GetState();
+
+            if (currentKey.IsKeyDown(Keys.Escape) && previousKey.IsKeyUp(Keys.Escape) || GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            {
+                if(_currentState != pauseState && _currentState != menuState)
+                    ChangeState(pauseState);
+
+                if (_currentState == pauseState)
+                    ChangeState(gameState);
+            }
+
                     
             _currentState.Update(gameTime);
 
