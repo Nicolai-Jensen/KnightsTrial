@@ -26,7 +26,7 @@ namespace KnightsTrial.MainMenu
         {
             #region Instatiated Objects and Components
             knightsLogo = new Texture2D[1];
-            knightsLogo[0] = _content.Load<Texture2D>("UI/NewKnightsTrialLogo");
+            knightsLogo[0] = _content.Load<Texture2D>("UI/pause");
 
             backgroundSprite = new Texture2D[1];
 
@@ -51,11 +51,11 @@ namespace KnightsTrial.MainMenu
 
             UserInterface background = new UserInterface(backgroundSprite, new Vector2(0, 0), 1f, 0f);
 
-            Button resumeButton = new Button(resumeButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 700));
+            Button resumeButton = new Button(resumeButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 500));
 
-            Button newGameButton = new Button(newGameButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 825));
+            Button newGameButton = new Button(newGameButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 625));
 
-            Button quitButton = new Button(quitButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 950));
+            Button quitButton = new Button(quitButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 750));
 
 
             resumeButton.Click += ResumeButton_Click;
@@ -130,7 +130,7 @@ namespace KnightsTrial.MainMenu
         /// <param name="e"></param>
         private void QuitButton_Click(object sender, EventArgs e)
         {
-            _game.Exit();
+            _game.ChangeState(GameWorld.menuState);
         }
     }
 }
