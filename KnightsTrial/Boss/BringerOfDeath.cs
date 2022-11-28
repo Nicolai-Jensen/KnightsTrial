@@ -50,6 +50,7 @@ namespace KnightsTrial
             randomTimeCount = 3;
             animationReset = true;
             scale = 3f;
+            color = Color.White;
 
             swingAnimation = new Texture2D[10];
             walkAnimation = new Texture2D[8];
@@ -84,17 +85,23 @@ namespace KnightsTrial
             Animate(gameTime);
             SetOrigin();
             CheckForDeath();
+
+
+
+            DamagedFeedBack(gameTime);
+            HeavyDamaged(gameTime);
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (playerPosition.X < position.X)
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0f, origin, scale, SpriteEffects.None, 0.5f);
             }
             else
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.FlipHorizontally, 0.5f);
+                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0f, origin, scale, SpriteEffects.FlipHorizontally, 0.5f);
             }
         }
 

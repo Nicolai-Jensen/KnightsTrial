@@ -110,7 +110,7 @@ namespace KnightsTrial
             }
         }
 
-        protected Player GetPlayer()
+        private Player GetPlayer()
         {
             //loops through the gameObject list untill it finds the player, then returns it. 
             foreach (GameObject go in GameState.gameObject)
