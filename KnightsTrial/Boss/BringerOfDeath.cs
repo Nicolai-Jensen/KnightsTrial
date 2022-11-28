@@ -311,6 +311,9 @@ namespace KnightsTrial
         public void PhaseShiftAttack(GameTime gameTime)
         {
             // Attack to run when boss enters a new phase.
+
+            RangedAttack attack = new RangedAttack(new Vector2(position.X, position.Y - 100));
+            GameState.InstantiateGameObject(attack);
         }
 
         public void ArcaneMissile()

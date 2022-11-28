@@ -15,7 +15,7 @@ namespace KnightsTrial.Boss
 
         private int damageValue;
         private Vector2 position;
-
+        private bool hasDamaged;
         private float timer;
 
 
@@ -44,6 +44,7 @@ namespace KnightsTrial.Boss
             this.position = posValue;
             scale = 1f;
             damageValue = 25;
+            hasDamaged = false;
         }
         //Methods
         public override void LoadContent(ContentManager content)
@@ -79,9 +80,25 @@ namespace KnightsTrial.Boss
         }
         public override void OnCollision(GameObject other)
         {
-            if (other is Player)
+            if (other is Player && hasDamaged == false)
             {
-                (other as Player).Health -= damageValue;
+                hasDamaged = true;
+
+                if (Player.Blocking == true && Player.Dodging != true)
+                {
+                    if (GetPlayer().Stamina < damageValue)
+                    {
+                        GetPlayer().Health -= damageValue;
+                        GetPlayer().HealthModified = true;
+                    }
+                    GetPlayer().Stamina -= damageValue * 2;
+                }
+
+                if (Player.Blocking == false && Player.Dodging == false)
+                {
+                    GetPlayer().Health -= damageValue;
+                    GetPlayer().HealthModified = true;
+                }
 
                 toBeRemoved = true;
             }
