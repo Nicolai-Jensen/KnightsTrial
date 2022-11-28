@@ -191,6 +191,7 @@ namespace KnightsTrial
         public static void InstantiateGameObject(GameObject gObject)
         {
             gameObjectsToAdd.Add(gObject);
+
         }
 
         /// <summary>

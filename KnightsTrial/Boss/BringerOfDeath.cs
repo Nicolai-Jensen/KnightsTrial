@@ -79,8 +79,12 @@ namespace KnightsTrial
             Animate(gameTime);
             SetOrigin();
             CheckForDeath();
+
+
+
             DamagedFeedBack(gameTime);
             HeavyDamaged(gameTime);
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
