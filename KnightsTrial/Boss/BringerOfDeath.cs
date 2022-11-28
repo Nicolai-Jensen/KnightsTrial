@@ -190,7 +190,7 @@ namespace KnightsTrial
 
         private void AttackBehaviour(GameTime gameTime)
         {
-            int randomAttack = rndBehaviour.Next(1, 4);
+            int randomAttack = rndBehaviour.Next(1, 5);
 
             switch (randomAttack)
             {
@@ -203,6 +203,10 @@ namespace KnightsTrial
                     break;
 
                 case 3:
+                    PillarOfRock(gameTime);
+                    break;
+
+                case 4:
                     SwingAttack(gameTime);
                     break;
 
@@ -297,6 +301,11 @@ namespace KnightsTrial
                 default:
                     break;
             }
+        }
+
+        public void PillarOfRock(GameTime gameTime)
+        {
+            Beware rockBeware = new Beware(playerPosition, true);
         }
 
         public void PhaseShiftAttack(GameTime gameTime)

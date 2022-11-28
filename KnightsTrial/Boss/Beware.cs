@@ -13,6 +13,9 @@ namespace KnightsTrial
     {
         //Fields
 
+        private bool isRockPillar;
+        private float rockPillarTimer;
+
         //Properties
 
         public override Rectangle CollisionBox
@@ -34,6 +37,15 @@ namespace KnightsTrial
             GameState.InstantiateGameObject(this);
             position = inputPosition;
             scale = 1.5f;
+            isRockPillar = false;
+        }
+
+        public Beware(Vector2 inputPosition, bool isRockPillar)
+        {
+            GameState.InstantiateGameObject(this);
+            position = inputPosition;
+            scale = 1.5f;
+            this.isRockPillar = isRockPillar;
         }
 
         //Methods
@@ -43,7 +55,7 @@ namespace KnightsTrial
 
             for (int i = 0; i < objectSprites.Length; i++)
             {
-                objectSprites[i] = content.Load<Texture2D>($"Beware/Beware{i+1}");
+                objectSprites[i] = content.Load<Texture2D>($"Beware/Beware{i + 1}");
             }
 
             origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
@@ -52,6 +64,11 @@ namespace KnightsTrial
 
         public override void Update(GameTime gameTime)
         {
+            if (isRockPillar)
+            {
+                SpawnRockPillar(gameTime);
+            }
+
             Animate(gameTime);
         }
 
@@ -59,6 +76,18 @@ namespace KnightsTrial
         {
 
             spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 1f);
+
+        }
+
+        private void SpawnRockPillar(GameTime gameTime)
+        {
+            rockPillarTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (rockPillarTimer >= 0.5f)
+            {
+                rockPillarTimer = 0;
+                RockPillar rock = new RockPillar(new Vector2(position.X, position.Y - 40));
+            }
 
         }
     }
