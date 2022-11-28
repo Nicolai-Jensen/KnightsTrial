@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SharpDX.DirectWrite;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 
 namespace KnightsTrial
 {/// <summary>
@@ -30,6 +32,8 @@ namespace KnightsTrial
         private Texture2D[] playerStaminaUI;
         private Texture2D[] bossHealthUI;
         private Texture2D[] bossHealth;
+
+        public static bool isBossAlive = true;
         
         //Rectangles for the players Health and Stamina, and the boss health.
         private Rectangle hpRectangle;
@@ -129,9 +133,18 @@ namespace KnightsTrial
                     }
                 }
             }
+
             hpRectangle.Width = GetPlayer().Health * 2 + 30;
             staminaRectangle.Width = GetPlayer().Stamina * 2 + 30;
-            bossHPRectangle.Width = GetBoss().Health / 5 + 60;
+            
+            if (isBossAlive == true)
+            {
+                bossHPRectangle.Width = GetBoss().Health / 5 + 60;
+            }
+            else
+            {
+                bossHPRectangle.Width = 0;
+            }
 
             foreach (Component co in gameComponents)
                 co.Update(gameTime);
@@ -237,9 +250,6 @@ namespace KnightsTrial
             //if no BringerOfDeath object is found, returns null.
             return null;
         }
-
-
-
     }
 
 }

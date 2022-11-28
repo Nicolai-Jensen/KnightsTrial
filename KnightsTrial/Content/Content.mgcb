@@ -421,7 +421,11 @@
 /processorParam:TextureFormat=Color
 /build:BringerOfDeath/Icicle.png
 
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_1.png
+
 #begin BringerOfDeath/RockPillarHoleAni1.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -431,9 +435,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_1.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_10.png
+
 /build:BringerOfDeath/RockPillarHoleAni1.png
 
 #begin BringerOfDeath/RockPillarHoleAni10.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -443,9 +453,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_10.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_2.png
+
 /build:BringerOfDeath/RockPillarHoleAni10.png
 
 #begin BringerOfDeath/RockPillarHoleAni2.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -455,9 +471,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_2.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_3.png
+
 /build:BringerOfDeath/RockPillarHoleAni2.png
 
 #begin BringerOfDeath/RockPillarHoleAni3.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -467,9 +489,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_3.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_4.png
+
 /build:BringerOfDeath/RockPillarHoleAni3.png
 
 #begin BringerOfDeath/RockPillarHoleAni4.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -479,9 +507,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_4.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_5.png
+
 /build:BringerOfDeath/RockPillarHoleAni4.png
 
 #begin BringerOfDeath/RockPillarHoleAni5.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -491,9 +525,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_5.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_6.png
+
 /build:BringerOfDeath/RockPillarHoleAni5.png
 
 #begin BringerOfDeath/RockPillarHoleAni6.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -503,9 +543,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_6.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_7.png
+
 /build:BringerOfDeath/RockPillarHoleAni6.png
 
 #begin BringerOfDeath/RockPillarHoleAni7.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -515,9 +561,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_7.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_8.png
+
 /build:BringerOfDeath/RockPillarHoleAni7.png
 
 #begin BringerOfDeath/RockPillarHoleAni8.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -527,9 +579,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_8.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_9.png
+
 /build:BringerOfDeath/RockPillarHoleAni8.png
 
 #begin BringerOfDeath/RockPillarHoleAni9.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -539,7 +597,11 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_9.png
+
 /build:BringerOfDeath/RockPillarHoleAni9.png
+
 
 #begin buttonFont.spritefont
 /importer:FontDescriptionImporter
