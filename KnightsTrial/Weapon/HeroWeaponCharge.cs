@@ -122,6 +122,10 @@ namespace KnightsTrial
                 Player.ChargeAtkAnim = false;
                 SetPlayerStamina(40);
                 Player.HeavyAtkAnim = true;
+                HiddenHitBox hitBox = new HiddenHitBox(new Vector2(position.X, position.Y));
+                HiddenHitBox2 hitBox2 = new HiddenHitBox2(new Vector2(position.X, position.Y));
+                GameState.InstantiateGameObject(hitBox2);
+                GameState.InstantiateGameObject(hitBox);
                 SetPlayerAnimationTime(0);
                 chargeTimer = 0;
                 animationTime = 0;

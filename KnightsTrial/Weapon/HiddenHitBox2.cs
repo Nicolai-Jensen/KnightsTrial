@@ -1,33 +1,34 @@
 ﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace KnightsTrial
 {
-    class HeroWeaponHeavy : Weapon
+    class HiddenHitBox2 : Weapon
     {
-
         //Fields
         private Texture2D[] sprite;
 
 
         //Properties
-       
+
 
         //Constructors
 
-        public HeroWeaponHeavy(Vector2 position)
+        public HiddenHitBox2(Vector2 position)
         {
-            this.position = position;
             rotation = 0f;
             speed = 0f;
-            scale = 1.2f;
+            scale = 0.3f;
             velocity = Direction(ReturnPlayerPostition());
+            this.position = position + velocity * 125;
+            this.position.X -= 30;
+            damageValue = 100;
             animationSpeed = 12f;
         }
 
@@ -35,17 +36,16 @@ namespace KnightsTrial
 
         public override void LoadContent(ContentManager content)
         {
-            sprite = new Texture2D[7];
+            sprite = new Texture2D[1];
 
-            //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
-            for (int i = 0; i < sprite.Length; i++)
-            {
-                sprite[i] = content.Load<Texture2D>($"HeroWeapon/Thrust{i}");
-            }
+
+            sprite[0] = content.Load<Texture2D>($"HeroWeapon/Thrust6");
+
 
             objectSprites = sprite;
 
-            origin = new Vector2(objectSprites[0].Width / 10 , objectSprites[0].Height / 2);
+
+            origin = new Vector2(objectSprites[0].Width / 10, objectSprites[0].Height / 2);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -61,12 +61,9 @@ namespace KnightsTrial
 
         public void EndAttack()
         {
-            if (animationTime > 6)
+            if (Player.HeavyAtkAnim == false)
             {
                 ToBeRemoved = true;
-                SetPlayerSpeed(200f);
-                //Player.Atacking = false;
-                //Player.HeavyAtkAnim = false;
             }
         }
     }
