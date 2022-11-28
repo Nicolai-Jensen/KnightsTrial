@@ -232,6 +232,7 @@ namespace KnightsTrial
             HealthCheck();
             Setorigin();
             Damaged(gameTime);
+            UsePotion(gameTime);
 
         }
 
@@ -632,7 +633,11 @@ namespace KnightsTrial
 
         public void UsePotion(GameTime gameTime)
         {
-      
+             if (currentKey.IsKeyDown(Keys.R) && previousKey.IsKeyUp(Keys.R))
+             {
+                RangedAttack attack = new RangedAttack(new Vector2 (1000,200));
+                GameState.InstantiateGameObject(attack);
+             }
         }
 
         public void FacingAttack()
