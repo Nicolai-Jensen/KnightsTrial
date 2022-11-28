@@ -19,6 +19,7 @@ namespace KnightsTrial
         private int damageValue = 20;
         private bool homing = false;
         private float homingTimer;
+        private bool hasDamaged;
 
         //Properties
 
@@ -48,6 +49,7 @@ namespace KnightsTrial
             scale = 2f;
             homing = true;
             animationSpeed = 60f;
+            hasDamaged = false;
         }
 
         //Methods
@@ -93,8 +95,10 @@ namespace KnightsTrial
 
         public override void OnCollision(GameObject other)
         {
-            if (other is Player)
+            if (other is Player && hasDamaged == false)
             {
+                hasDamaged = true;
+
                 if (Player.Blocking == true && Player.Dodging != true)
                 {
                     if (GetPlayer().Stamina < damageValue)

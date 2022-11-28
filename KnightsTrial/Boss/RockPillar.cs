@@ -15,7 +15,7 @@ namespace KnightsTrial
         //Fields
         private Texture2D[] rockPillarAnimation;
         private Texture2D[] rockPillarStatic;
-
+        private int damageValue = 25;
         private int health;
         //Properties
 
@@ -72,12 +72,39 @@ namespace KnightsTrial
             spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0.5f);
 
         }
+        private Player GetPlayer()
+        {
+            //loops through the gameObject list untill it finds the player, then returns it. 
+            foreach (GameObject go in GameState.gameObject)
+            {
+                if (go is Player)
+                {
+                    return (Player)go;
+                }
+            }
+            //if no player object is found, returns null.
+            return null;
+        }
 
         public override void OnCollision(GameObject other)
         {
-            if (other is Player && objectSprites == rockPillarAnimation)
+            if (other is Player && objectSprites == rockPillarAnimation && GetPlayer().HealthModified == false)
             {
-                (other as Player).Health -= 25;
+                if (Player.Blocking == true && Player.Dodging != true)
+                {
+                    if (GetPlayer().Stamina < damageValue)
+                    {
+                        GetPlayer().Health -= damageValue;
+                        GetPlayer().HealthModified = true;
+                    }
+                    GetPlayer().Stamina -= damageValue * 2;
+                }
+
+                if (Player.Blocking == false && Player.Dodging == false)
+                {
+                    GetPlayer().Health -= damageValue;
+                    GetPlayer().HealthModified = true;
+                }
             }
             else if (other is Icicle)
             {
