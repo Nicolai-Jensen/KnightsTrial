@@ -421,6 +421,126 @@
 /processorParam:TextureFormat=Color
 /build:BringerOfDeath/Icicle.png
 
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_1.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_10.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_10.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_2.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_3.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_4.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_5.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_6.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_6.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_7.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_7.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_8.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_8.png
+
+#begin BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_9.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_9.png
+
 #begin buttonFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

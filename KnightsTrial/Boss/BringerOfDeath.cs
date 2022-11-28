@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using KnightsTrial.Boss;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -50,6 +51,7 @@ namespace KnightsTrial
             animationReset = true;
             scale = 3f;
 
+            swingAnimation = new Texture2D[10];
             walkAnimation = new Texture2D[8];
             magicAnimation = new Texture2D[9];
         }
@@ -60,6 +62,10 @@ namespace KnightsTrial
             for (int i = 0; i < walkAnimation.Length; i++)
             {
                 walkAnimation[i] = content.Load<Texture2D>($"BringerOfDeath/Bosswalk_{i}");
+            }
+            for (int i = 0; i < swingAnimation.Length; i++)
+            {
+                swingAnimation[i] = content.Load<Texture2D>($"BringerOfDeath/SwingAttack/Bringer-of-Death_Attack_{i + 1}");
             }
             for (int i = 0; i < magicAnimation.Length; i++)
             {
@@ -168,6 +174,7 @@ namespace KnightsTrial
         {
             if (health <= 0)
             {
+                GameState.isBossAlive = false;
                 toBeRemoved = true;
             }
         }
@@ -176,7 +183,7 @@ namespace KnightsTrial
 
         private void AttackBehaviour(GameTime gameTime)
         {
-            int randomAttack = rndBehaviour.Next(1, 3);
+            int randomAttack = rndBehaviour.Next(1, 4);
 
             switch (randomAttack)
             {
@@ -188,6 +195,10 @@ namespace KnightsTrial
                     IcicleWall(gameTime);
                     break;
 
+                case 3:
+                    SwingAttack(gameTime);
+                    break;
+
                 default:
                     break;
             }
@@ -195,7 +206,7 @@ namespace KnightsTrial
 
         public void SwingAttack(GameTime gameTime)
         {
-            //Normal attack
+            SwingProjectile melee = new SwingProjectile(position);
         }
         public void RainOfFire(GameTime gameTime)
         {
