@@ -16,7 +16,6 @@ namespace KnightsTrial
         protected float rotation;
         protected bool enoughStamina;
         protected bool useArsenalAnimation;
-        protected float scale;
         protected static int damageValue;
 
         //Properties
@@ -94,7 +93,6 @@ namespace KnightsTrial
                 }
             }          
         }
-
 
         protected Vector2 Direction(Vector2 playerPosition)
         {

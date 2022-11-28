@@ -25,7 +25,6 @@ namespace KnightsTrial
         private static bool lightAtkAnim = false;
         private static bool chargeAtkAnim = false;
         private bool dodgingAnim = false;
-        private Color color;
         private Texture2D[] block;
         private Texture2D[] heroWeaponPrep;
         private Texture2D[] heroWeapon;
@@ -528,7 +527,7 @@ namespace KnightsTrial
 
                 //regenTick = (int)staminaRegenerating % 3;
                 //if (regenTick == 1)
-                if (staminaRegenerating > 0.05f)
+                if (staminaRegenerating > 0.03f)
                 {
                     stamina += 1;
                     staminaRegenerating = 0;
