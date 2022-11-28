@@ -21,6 +21,7 @@ namespace KnightsTrial
         protected float animationSpeed = 8f;
         protected float scale;
         protected float speed;
+        protected Color color;
         protected int layerDepth;
         protected bool toBeRemoved;
         //Properties
