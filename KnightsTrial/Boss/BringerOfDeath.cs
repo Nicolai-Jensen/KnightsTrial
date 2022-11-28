@@ -19,6 +19,13 @@ namespace KnightsTrial
         private Random rndBehaviour = new Random();
         private int randomTimeCount;
         private bool animationReset;
+        private bool canRollAttack;
+        private bool attackAnimationActive;
+        public static bool isFacingLeft;
+
+        private Vector2 playerPosTemp;
+
+        private int randomAttack;
 
         //Properties
         public int Health
@@ -51,6 +58,8 @@ namespace KnightsTrial
             animationReset = true;
             scale = 3f;
             color = Color.White;
+            canRollAttack = true;
+            attackAnimationActive = false;
 
             swingAnimation = new Texture2D[10];
             walkAnimation = new Texture2D[8];
@@ -70,7 +79,7 @@ namespace KnightsTrial
             }
             for (int i = 0; i < magicAnimation.Length; i++)
             {
-                magicAnimation[i] = content.Load<Texture2D>($"BringerOfDeath/Bringer-of-Death_Cast_{i+1}");
+                magicAnimation[i] = content.Load<Texture2D>($"BringerOfDeath/Bringer-of-Death_Cast_{i + 1}");
             }
 
             objectSprites = walkAnimation;
@@ -86,8 +95,6 @@ namespace KnightsTrial
             SetOrigin();
             CheckForDeath();
 
-
-
             DamagedFeedBack(gameTime);
             HeavyDamaged(gameTime);
 
@@ -95,14 +102,33 @@ namespace KnightsTrial
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (playerPosition.X < position.X)
+            if (!attackAnimationActive)
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0f, origin, scale, SpriteEffects.None, 0.5f);
+                if (playerPosition.X < position.X)
+                {
+                    spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0f, origin, scale, SpriteEffects.None, 0.5f);
+                    isFacingLeft = true;
+                }
+                else
+                {
+                    spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0f, origin, scale, SpriteEffects.FlipHorizontally, 0.5f);
+                    isFacingLeft = false;
+                }
             }
             else
             {
-                spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0f, origin, scale, SpriteEffects.FlipHorizontally, 0.5f);
+                if (playerPosTemp.X < position.X)
+                {
+                    spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0f, origin, scale, SpriteEffects.None, 0.5f);
+                    isFacingLeft = true;
+                }
+                else
+                {
+                    spriteBatch.Draw(objectSprites[(int)animationTime], position, null, color, 0f, origin, scale, SpriteEffects.FlipHorizontally, 0.5f);
+                    isFacingLeft = false;
+                }
             }
+
         }
 
         /// <summary>
@@ -135,22 +161,50 @@ namespace KnightsTrial
             }
             else if (behaviourTimer > randomTimeCount && behaviourTimer < randomTimeCount + 1)
             {
+                attackAnimationActive = true;
+
+                if (canRollAttack)
+                {
+                    if (Vector2.Distance(position, playerPosition) <= 300)
+                    {
+                        randomAttack = rndBehaviour.Next(1, 10);
+                    }
+                    else
+                    {
+                        randomAttack = rndBehaviour.Next(1, 5);
+                    }
+                    canRollAttack = false;
+                    playerPosTemp = playerPosition;
+                }
+
                 if (animationReset)
                 {
                     animationTime = 0;
                     animationReset = false;
                 }
 
-                objectSprites = magicAnimation;
+                if (randomAttack >= 5)
+                {
+                    objectSprites = swingAnimation;
+                }
+                else
+                {
+                    objectSprites = magicAnimation;
+                }
+
+                MeleeAttack();
+
                 velocity = new(0, 0);
             }
             else if (behaviourTimer > randomTimeCount + 1)
             {
                 AttackBehaviour();
 
-                randomTimeCount = rndBehaviour.Next(1, 6);
+                randomTimeCount = rndBehaviour.Next(1, 4);
                 behaviourTimer = 0;
                 animationReset = true;
+                canRollAttack = true;
+                attackAnimationActive = false;
             }
         }
 
@@ -190,7 +244,6 @@ namespace KnightsTrial
 
         private void AttackBehaviour()
         {
-            int randomAttack = rndBehaviour.Next(1, 6);
 
             switch (randomAttack)
             {
@@ -210,19 +263,11 @@ namespace KnightsTrial
                     ArcaneMissile();
                     break;
 
-                case 5:
-                    SwingAttack();
-                    break;
-
                 default:
                     break;
             }
         }
 
-        public void SwingAttack()
-        {
-            SwingProjectile melee = new SwingProjectile(position);
-        }
         public void RainOfFire()
         {
             Fireball rangedProjektile = new Fireball(playerPosition, new Vector2(playerPosition.X, playerPosition.Y - 1080), new Vector2(0, 1));
@@ -318,6 +363,14 @@ namespace KnightsTrial
         {
             RangedAttack attack = new RangedAttack(new Vector2(position.X, position.Y - 100));
             GameState.InstantiateGameObject(attack);
+        }
+
+        private void MeleeAttack()
+        {
+            if (objectSprites == swingAnimation && (int)animationTime == 4)
+            {
+                SwingProjectile melee = new SwingProjectile(position);
+            }
         }
     }
 }

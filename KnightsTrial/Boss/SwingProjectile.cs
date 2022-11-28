@@ -24,13 +24,13 @@ namespace KnightsTrial.Boss
         {
             get
             {
-                if (GetPlayer().Position.X > position.X)
+                if (!BringerOfDeath.isFacingLeft)
                 {
-                    return new Rectangle((int)(position.X), (int)(position.Y - 20), 200, 60);
+                    return new Rectangle((int)(position.X), (int)(position.Y - 50), 300, 100);
                 }
                 else
                 {
-                    return new Rectangle((int)(position.X - 200), (int)(position.Y - 20), 200, 60);
+                    return new Rectangle((int)(position.X - 300), (int)(position.Y - 50), 300, 100);
                 }
                     
             }
@@ -56,7 +56,7 @@ namespace KnightsTrial.Boss
         {
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (timer > 0.5f)
+            if (timer > 0.3f)
                 toBeRemoved = true;
         }
 
