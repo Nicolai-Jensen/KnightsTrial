@@ -7,7 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace KnightsTrial
-{
+{/// <summary>
+/// A Superclass only for inheritage, to make Component lists.
+/// </summary>
     public abstract class Component
     {
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);

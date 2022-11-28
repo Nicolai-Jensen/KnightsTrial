@@ -71,12 +71,6 @@ namespace KnightsTrial
 
             _currentState.LoadContent(Content);
 
-            //foreach (GameObject go in GameState.gameObject)
-            //{
-            //    go.LoadContent(Content);
-            //}
-
-
             pixel = Content.Load<Texture2D>("pixel");
         }
 

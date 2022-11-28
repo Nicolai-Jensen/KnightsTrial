@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace KnightsTrial.MainMenu
 {
+    /// <summary>
+    /// Updates and Draws out the PauseScreen when you pause the game.
+    /// </summary>
     internal class PauseState : State
     {
         //Fields
@@ -21,6 +24,12 @@ namespace KnightsTrial.MainMenu
         //Properties
 
         //Constructors
+        /// <summary>
+        /// When PauseState is instantiated, Draws out the Different Buttons.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="graphicsDevice"></param>
+        /// <param name="content"></param>
         public PauseState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             #region Instatiated Objects and Components
@@ -78,6 +87,7 @@ namespace KnightsTrial.MainMenu
             foreach (Component co in components)
                 co.Update(gameTime);
         }
+
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             foreach (Component co in components)
@@ -85,6 +95,7 @@ namespace KnightsTrial.MainMenu
 
             spriteBatch.Draw(knightsLogo[0], new Vector2(400, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
 
+            //Draws out the GameState, but does not Update it, to "pause" the game.
             GameWorld.gameState.Draw(gameTime, spriteBatch);
         }
 
@@ -99,6 +110,7 @@ namespace KnightsTrial.MainMenu
             //Starts the game or chooses boss?.
             _game.ChangeState(GameWorld.gameState);
         }
+
         /// <summary>
         /// Removes gameObjects, instantiates a new Gamestate and switches to it.
         /// </summary>
@@ -115,6 +127,7 @@ namespace KnightsTrial.MainMenu
             GameWorld.gameState = newGame;
             _game.ChangeState(GameWorld.gameState);
         }
+
         /// <summary>
         /// Quits the game.
         /// </summary>

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// A Abstract superclass, made so other states can inherit from it.
+    /// </summary>
     public abstract class State
     {
         //Fields
