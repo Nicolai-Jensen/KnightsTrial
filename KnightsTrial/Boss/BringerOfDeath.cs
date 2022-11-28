@@ -146,7 +146,7 @@ namespace KnightsTrial
             }
             else if (behaviourTimer > randomTimeCount + 1)
             {
-                AttackBehaviour(gameTime);
+                AttackBehaviour();
 
                 randomTimeCount = rndBehaviour.Next(1, 6);
                 behaviourTimer = 0;
@@ -188,26 +188,30 @@ namespace KnightsTrial
 
         //-----------------------ATTACKS & SPELLS-----------------------------
 
-        private void AttackBehaviour(GameTime gameTime)
+        private void AttackBehaviour()
         {
-            int randomAttack = rndBehaviour.Next(1, 5);
+            int randomAttack = rndBehaviour.Next(1, 6);
 
             switch (randomAttack)
             {
                 case 1:
-                    RainOfFire(gameTime);
+                    RainOfFire();
                     break;
 
                 case 2:
-                    IcicleWall(gameTime);
+                    IcicleWall();
                     break;
 
                 case 3:
-                    PillarOfRock(gameTime);
+                    PillarOfRock();
                     break;
 
                 case 4:
-                    SwingAttack(gameTime);
+                    ArcaneMissile();
+                    break;
+
+                case 5:
+                    SwingAttack();
                     break;
 
                 default:
@@ -215,15 +219,15 @@ namespace KnightsTrial
             }
         }
 
-        public void SwingAttack(GameTime gameTime)
+        public void SwingAttack()
         {
             SwingProjectile melee = new SwingProjectile(position);
         }
-        public void RainOfFire(GameTime gameTime)
+        public void RainOfFire()
         {
             Fireball rangedProjektile = new Fireball(playerPosition, new Vector2(playerPosition.X, playerPosition.Y - 1080), new Vector2(0, 1));
         }
-        public void IcicleWall(GameTime gameTime)
+        public void IcicleWall()
         {
 
             int icicleDirection = rndBehaviour.Next(1, 5);
@@ -302,23 +306,18 @@ namespace KnightsTrial
                     break;
             }
         }
-
-        public void PillarOfRock(GameTime gameTime)
+        public void PillarOfRock()
         {
             Beware rockBeware = new Beware(playerPosition, true);
         }
-
-        public void PhaseShiftAttack(GameTime gameTime)
+        public void PhaseShiftAttack()
         {
             // Attack to run when boss enters a new phase.
-
-            RangedAttack attack = new RangedAttack(new Vector2(position.X, position.Y - 100));
-            GameState.InstantiateGameObject(attack);
         }
-
         public void ArcaneMissile()
         {
-
+            RangedAttack attack = new RangedAttack(new Vector2(position.X, position.Y - 100));
+            GameState.InstantiateGameObject(attack);
         }
     }
 }
