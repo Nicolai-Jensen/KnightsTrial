@@ -41,10 +41,10 @@ namespace KnightsTrial
 
         public override void LoadContent(ContentManager content)
         {
-            objectSprites[0] = content.Load<Texture2D>("Potion1");
-            objectSprites[1] = content.Load<Texture2D>("Potion2");
-            objectSprites[2] = content.Load<Texture2D>("Potion3");
-            objectSprites[3] = content.Load<Texture2D>("Potion4");
+            objectSprites[0] = content.Load<Texture2D>("Potion/HealthPotion1");
+            objectSprites[1] = content.Load<Texture2D>("Potion/HealthPotion2");
+            objectSprites[2] = content.Load<Texture2D>("Potion/HealthPotion3");
+            objectSprites[3] = content.Load<Texture2D>("Potion/HealthPotion4");
 
             cooldownFont = content.Load<SpriteFont>("CooldownFont");
         }
@@ -56,11 +56,11 @@ namespace KnightsTrial
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(objectSprites[potionStatus], new(100, 200), null, Color.White, 0f, new(objectSprites[0].Width / 2, objectSprites[0].Height / 2), 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(objectSprites[potionStatus], new(108, 225), null, Color.White, 0f, new(objectSprites[0].Width / 2, objectSprites[0].Height / 2), 1f, SpriteEffects.None, 0.8f);
 
             if (cooldownCounter > 0)
             {
-                spriteBatch.DrawString(cooldownFont, $"{cooldownCounter}", new(500, 500), Color.White, 0f, new(0, 0), 0f, SpriteEffects.None, 2f);
+                spriteBatch.DrawString(cooldownFont, $": {cooldownCounter}", new(135, 205), Color.Red, 0f, new(0, 0), 1f, SpriteEffects.None, 0.8f);
             }
         }
 
@@ -72,7 +72,7 @@ namespace KnightsTrial
         private void UsePotion(GameTime gameTime)
         {
             //Gets the keyboardState and saves it in the keyState variable.
-            KeyboardState keyState = Microsoft.Xna.Framework.Input.Keyboard.GetState();
+            KeyboardState keyState = Keyboard.GetState();
 
             //begins the timer.
             potionTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -88,7 +88,7 @@ namespace KnightsTrial
             //it will reset the cooldownCounter, add 1 to the potionStatus and increase player health with the specified amount.
             if (cooldownCounter == 0 && keyState.IsKeyDown(Keys.Q) && potionStatus <= 2)
             {
-                cooldownCounter = 11;
+                cooldownCounter = 10;
                 potionStatus++;
                 GetPlayer().Health += healAmount;
 
