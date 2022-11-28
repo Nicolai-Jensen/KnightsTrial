@@ -312,5 +312,10 @@ namespace KnightsTrial
         {
             // Attack to run when boss enters a new phase.
         }
+
+        public void ArcaneMissile()
+        {
+
+        }
     }
 }
