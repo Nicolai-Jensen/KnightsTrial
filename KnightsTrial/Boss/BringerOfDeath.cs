@@ -218,6 +218,17 @@ namespace KnightsTrial
             {
                 origin = new Vector2(magicAnimation[0].Width / 2, magicAnimation[0].Height);
             }
+            else if (objectSprites == swingAnimation)
+            {
+                if (playerPosTemp.X > position.X)
+                {
+                    origin = new Vector2(swingAnimation[0].Width / 3, swingAnimation[0].Height);
+                }
+                else
+                {
+                    origin = new Vector2(swingAnimation[0].Width - swingAnimation[0].Width / 3, swingAnimation[0].Height);
+                }
+            }
             else
             {
                 origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height);
