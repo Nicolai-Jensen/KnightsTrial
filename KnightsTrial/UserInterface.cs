@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace KnightsTrial
-{
+{/// <summary>
+/// a Sub-class from Component, Used to draw out, UI in the game.
+/// </summary>
     internal class UserInterface : Component
     {
         //Fields

@@ -8,22 +8,28 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace KnightsTrial
-{
+{/// <summary>
+/// Draws out and Updates the MenuScreen.
+/// </summary>
     public class MenuState : State
     {
-
         //Fields
         public static List<Component> components;
+
         private Texture2D[] quitButtonAnimation;
         private Texture2D[] playButtonAnimation;
         private Texture2D[] backgroundSprite;
         private Texture2D[] knightsLogo;
-        private Texture2D[] trialLogo;
-        private Texture2D[] swordLogo;
 
         //Properties
 
         //Constructors
+        /// <summary>
+        /// When MenuState is instantiated, It Creates the Logo, Buttons, and background.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="graphicsDevice"></param>
+        /// <param name="content"></param>
         public MenuState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             #region Instatiated Objects and Components
@@ -86,8 +92,6 @@ namespace KnightsTrial
                 co.Draw(gameTime, spriteBatch);
 
             spriteBatch.Draw(knightsLogo[0], new Vector2(400, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
-            //spriteBatch.Draw(trialLogo[0], new Vector2(950, 375), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            //spriteBatch.Draw(swordLogo[0], new Vector2(1310, 0), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
         }
 
 

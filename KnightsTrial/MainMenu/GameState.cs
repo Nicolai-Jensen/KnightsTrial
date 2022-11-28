@@ -1,26 +1,27 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework.Content;
 
 namespace KnightsTrial
-{
+{/// <summary>
+/// A sub-class from State, Is being used when you start the game to Load, Update and Draw everything that has something to do with the GameState.
+/// </summary>
     internal class GameState : State
     {
 
         //Fields
 
+        //A list used for UI and buttons.
         private List<Component> gameComponents;
 
+        //Lists for gameObjects such as the Player, and boss.
         public static List<GameObject> gameObject = new List<GameObject>();
         private static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         private static List<GameObject> gameObjectsToRemove = new List<GameObject>();
 
+        //Different Texture arrays.
         private Texture2D[] menuButtonAnimation;
         private Texture2D[] gameBackground;
         private Texture2D[] playerHealth;
@@ -29,7 +30,8 @@ namespace KnightsTrial
         private Texture2D[] playerStaminaUI;
         private Texture2D[] bossHealthUI;
         private Texture2D[] bossHealth;
-
+        
+        //Rectangles for the players Health and Stamina, and the boss health.
         private Rectangle hpRectangle;
         private Rectangle staminaRectangle;
         private Rectangle bossHPRectangle;
@@ -37,6 +39,12 @@ namespace KnightsTrial
         //Properties
 
         //Constructors
+        /// <summary>
+        /// When GameState is instantiated, It Creates the GameObjects, Buttons, and background.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="graphicsDevice"></param>
+        /// <param name="content"></param>
         public GameState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             #region Instantiate Objects and Components
@@ -155,6 +163,9 @@ namespace KnightsTrial
             }
 
         }
+        /// <summary>
+        /// Checks if something is out of bounds, or if the gameObject should be removed. and removes if true.
+        /// </summary>
         public static void RemoveGameObjects()
         {
             foreach (GameObject go in gameObject)
@@ -191,7 +202,10 @@ namespace KnightsTrial
         {
             _game.ChangeState(GameWorld.pauseState);
         }
-
+        /// <summary>
+        /// Checks the GameObject list for the Player, and returns the player.
+        /// </summary>
+        /// <returns></returns>
         private Player GetPlayer()
         {
             //loops through the gameObject list untill it finds the player, then returns it. 
@@ -205,10 +219,13 @@ namespace KnightsTrial
             //if no player object is found, returns null.
             return null;
         }
-
+        /// <summary>
+        /// Checks the gameobject list for the BringerOfDeath, and returns it, if its on the lists.
+        /// </summary>
+        /// <returns></returns>
         private BringerOfDeath GetBoss()
         {
-            //loops through the gameObject list untill it finds the player, then returns it. 
+            //loops through the gameObject list untill it finds the BringerOfDeath, then returns it. 
             foreach (GameObject go in gameObject)
             {
                 if (go is BringerOfDeath)
@@ -216,7 +233,7 @@ namespace KnightsTrial
                     return (BringerOfDeath)go;
                 }
             }
-            //if no player object is found, returns null.
+            //if no BringerOfDeath object is found, returns null.
             return null;
         }
 

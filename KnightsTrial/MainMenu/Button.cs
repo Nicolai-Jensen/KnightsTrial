@@ -9,15 +9,16 @@ using System.Threading.Tasks;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// the blueprint of a button, when instantiated it just needs a texture, and position.
+    /// </summary>
     internal class Button : Component
     {
         //Fields
+
+        //MouseStates to make sure it only presses 1 time.
         private MouseState currentMouse;
         private MouseState previousMouse;
-
-        private SpriteFont buttonFont;
-
-        private bool isHovering;
 
         private Texture2D[] _texture;
         private Vector2 position;
@@ -26,12 +27,15 @@ namespace KnightsTrial
         protected float animationSpeed;
 
         //Properties
+
+        /// <summary>
+        /// A event when you click the buttons.
+        /// </summary>
         public event EventHandler Click;
 
-        public bool Clicked { get; set; }
-
-        public Color PenColour { get; set; }
-
+        /// <summary>
+        /// A Rectangle for the buttons, to determine if the mouse is intersecting the button.
+        /// </summary>
         public Rectangle Rectangle
         {
             get
@@ -39,14 +43,11 @@ namespace KnightsTrial
                 return new Rectangle((int)position.X, (int)position.Y, _texture[0].Width, _texture[0].Height);
             }
         }
-        public string Text { get; set; }
 
         //Constructors
         public Button(Texture2D[] texture, Vector2 posValue)
         {
             _texture = texture;
-
-            PenColour = Color.Black;
 
             animationSpeed = 50;
 
@@ -72,13 +73,11 @@ namespace KnightsTrial
             previousMouse = currentMouse;
             currentMouse = Mouse.GetState();
 
+            //mouse Rectangle used to see if the mouse is intersecting with the button.
             Rectangle mouseRectangle = new Rectangle(currentMouse.X, currentMouse.Y, 1, 1);
-
-            isHovering = false;
 
             if (mouseRectangle.Intersects(Rectangle))
             {
-                isHovering = true;
                 Animate(gameTime);
 
                 if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed)
