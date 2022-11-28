@@ -47,6 +47,7 @@ namespace KnightsTrial
         private bool attackCooldown = false;
         private float attackCooldownTimer;
         private float staminaRegenerating;
+        private Potion potions;
 
         private Vector2 dodgeVelocity;
         private MouseState currentMouse;
@@ -140,6 +141,8 @@ namespace KnightsTrial
             stamina = 100;
             speed = 200f;
             color = Color.White;
+            potions = new Potion();
+            GameState.InstantiateGameObject(potions);
         }
 
         //Methods
@@ -226,6 +229,7 @@ namespace KnightsTrial
             Block(gameTime);
             Attack(gameTime);
             StaminaRegen(gameTime);
+            HealthCheck();
             Setorigin();
             Damaged(gameTime);
 
@@ -517,6 +521,15 @@ namespace KnightsTrial
             }
         }
 
+        public void HealthCheck()
+        {
+            if (health > 100)
+            {
+                health = 100;
+            }
+        }
+
+
         public void StaminaRegen(GameTime gameTime)
         {
             //int regenTick;
@@ -619,7 +632,7 @@ namespace KnightsTrial
 
         public void UsePotion(GameTime gameTime)
         {
-
+      
         }
 
         public void FacingAttack()

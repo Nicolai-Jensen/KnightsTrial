@@ -56,7 +56,7 @@ namespace KnightsTrial
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(objectSprites[potionStatus], new(500, 500), null, Color.White, 0f, new(objectSprites[0].Width / 2, objectSprites[0].Height / 2), 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(objectSprites[potionStatus], new(100, 200), null, Color.White, 0f, new(objectSprites[0].Width / 2, objectSprites[0].Height / 2), 1f, SpriteEffects.None, 1f);
 
             if (cooldownCounter > 0)
             {
