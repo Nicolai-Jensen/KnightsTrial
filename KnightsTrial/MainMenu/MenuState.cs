@@ -3,9 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace KnightsTrial
 {/// <summary>
@@ -102,7 +100,13 @@ namespace KnightsTrial
         /// <param name="e"></param>
         private void StartButton_Click(object sender, EventArgs e)
         {
-            //Starts the game or chooses boss?.
+            foreach (GameObject go in GameState.gameObject)
+            {
+                go.ToBeRemoved = true;
+            }
+            GameState.RemoveGameObjects();
+            GameState newGame = new GameState(_game, _graphicsDevice, _content);
+            GameWorld.gameState = newGame;
             _game.ChangeState(GameWorld.gameState);
         }
         /// <summary>

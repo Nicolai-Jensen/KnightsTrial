@@ -56,9 +56,6 @@ namespace KnightsTrial
 
         protected override void LoadContent()
         {
-            GameState game = new GameState(this, _graphics.GraphicsDevice, Content);
-            gameState = game;
-
             MenuState menu = new MenuState(this, _graphics.GraphicsDevice, Content);
             menuState = menu;
 

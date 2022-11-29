@@ -1,5 +1,4 @@
-﻿using KnightsTrial.MainMenu;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -31,12 +30,6 @@ namespace KnightsTrial
         private Texture2D[] playerStaminaUI;
         private Texture2D[] bossHealthUI;
         private Texture2D[] bossHealth;
-
-        private Texture2D[] newGameButtonAnimation;
-        private Texture2D[] quitButtonAnimation;
-
-
-        private Texture2D gameOver;
 
         public static bool isBossAlive = true;
         
@@ -118,13 +111,12 @@ namespace KnightsTrial
             {
                 go.LoadContent(content);
             }
-            gameOver = content.Load<Texture2D>("UI/pause");
         }
 
 
         public override void Update(GameTime gameTime)
         {
-            if (GetPlayer().Health > 0)
+            if (GetPlayer().Health >= 0)
             {
                 RemoveGameObjects();
 
@@ -167,6 +159,7 @@ namespace KnightsTrial
             }
             else
             {
+                hpRectangle.Width = 0;
                 _game.ChangeState(GameWorld.pauseState);
             }
         }
