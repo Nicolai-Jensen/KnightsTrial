@@ -143,6 +143,9 @@ namespace KnightsTrial
             color = Color.White;
             potions = new Potion();
             GameState.InstantiateGameObject(potions);
+            chargeAtkAnim = false;
+            attacking = false;
+            blocking = false;
         }
 
         //Methods

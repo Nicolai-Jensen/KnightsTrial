@@ -49,8 +49,6 @@ namespace KnightsTrial
         {
             _texture = texture;
 
-            animationSpeed = 50;
-
             position = posValue;
 
         }
@@ -76,7 +74,7 @@ namespace KnightsTrial
             else
             {
                 animationTime = 0;
-                animationSpeed = 50;
+                animationSpeed = 100;
             }
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

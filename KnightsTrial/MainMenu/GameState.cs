@@ -38,8 +38,6 @@ namespace KnightsTrial
         private Rectangle staminaRectangle;
         private Rectangle bossHPRectangle;
 
-        //Properties
-
         //Constructors
         /// <summary>
         /// When GameState is instantiated, It Creates the GameObjects, Buttons, and background.
@@ -146,9 +144,11 @@ namespace KnightsTrial
                     bossHPRectangle.Width = 0;
                 }
 
+                //Loops throu the gameComponents list to find Components and Update those Components.
                 foreach (Component co in gameComponents)
                     co.Update(gameTime);
 
+                //Loops throu the gameObjectsToAdd list to find gameObjects and add those to the gameObject list.
                 foreach (GameObject gameObjectsToSpawn in gameObjectsToAdd)
                 {
                     gameObjectsToSpawn.LoadContent(_content);
