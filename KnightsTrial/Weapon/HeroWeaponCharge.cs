@@ -101,7 +101,7 @@ namespace KnightsTrial
 
         public void Release(GameTime gameTime)
         {
-            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer < 0.7f && GetPlayer().Stamina > 20)
+            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer < 0.7f && GetPlayer().Stamina > 0)
             {
 
                 HeroWeapon slashSprite = new HeroWeapon(new Vector2(position.X, position.Y));
@@ -115,7 +115,7 @@ namespace KnightsTrial
                 SetPlayerSpeed(150f);      
             }
 
-            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer > 0.7f && GetPlayer().Stamina > 40)
+            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer > 0.7f && GetPlayer().Stamina > 0)
             {
                 HeroWeaponHeavy thrust = new HeroWeaponHeavy(new Vector2(position.X, position.Y));
                 GameState.InstantiateGameObject(thrust);
@@ -136,20 +136,10 @@ namespace KnightsTrial
                 SetPlayerSpeed(0f);
             }
 
-            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer < 0.7f && GetPlayer().Stamina < 20)
+            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && GetPlayer().Stamina <= 0)
             {
                 Player.Atacking = false;
                 Player.ChargeAtkAnim = false;                
-                Player.RegenStamina = true;
-                chargeTimer = 0;
-                ToBeRemoved = true;
-                SetPlayerSpeed(200f);
-            }
-
-            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && chargeTimer > 0.7f && GetPlayer().Stamina < 40)
-            {
-                Player.Atacking = false;
-                Player.ChargeAtkAnim = false;
                 Player.RegenStamina = true;
                 chargeTimer = 0;
                 ToBeRemoved = true;
