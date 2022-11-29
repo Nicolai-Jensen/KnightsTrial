@@ -1,10 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using KnightsTrial.MainMenu;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using SharpDX.DirectWrite;
 using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 
 namespace KnightsTrial
 {/// <summary>
@@ -32,6 +31,12 @@ namespace KnightsTrial
         private Texture2D[] playerStaminaUI;
         private Texture2D[] bossHealthUI;
         private Texture2D[] bossHealth;
+
+        private Texture2D[] newGameButtonAnimation;
+        private Texture2D[] quitButtonAnimation;
+
+
+        private Texture2D gameOver;
 
         public static bool isBossAlive = true;
         
@@ -113,49 +118,57 @@ namespace KnightsTrial
             {
                 go.LoadContent(content);
             }
+            gameOver = content.Load<Texture2D>("UI/pause");
         }
 
 
         public override void Update(GameTime gameTime)
         {
-            RemoveGameObjects();
-
-            foreach (GameObject go in gameObject)
+            if (GetPlayer().Health > 0)
             {
-                go.Update(gameTime);
+                RemoveGameObjects();
 
-                foreach (GameObject other in gameObject)
+                foreach (GameObject go in gameObject)
                 {
-                    if (go.IsColliding(other))
+                    go.Update(gameTime);
+
+                    foreach (GameObject other in gameObject)
                     {
-                        go.OnCollision(other);
-                        other.OnCollision(go);
+                        if (go.IsColliding(other))
+                        {
+                            go.OnCollision(other);
+                            other.OnCollision(go);
+                        }
                     }
                 }
-            }
 
-            hpRectangle.Width = GetPlayer().Health * 2 + 30;
-            staminaRectangle.Width = GetPlayer().Stamina * 2 + 30;
-            
-            if (isBossAlive == true)
-            {
-                bossHPRectangle.Width = GetBoss().Health / 5 + 60;
+                hpRectangle.Width = GetPlayer().Health * 2 + 30;
+                staminaRectangle.Width = GetPlayer().Stamina * 2 + 30;
+
+                if (isBossAlive == true)
+                {
+                    bossHPRectangle.Width = GetBoss().Health / 5 + 60;
+                }
+                else
+                {
+                    bossHPRectangle.Width = 0;
+                }
+
+                foreach (Component co in gameComponents)
+                    co.Update(gameTime);
+
+                foreach (GameObject gameObjectsToSpawn in gameObjectsToAdd)
+                {
+                    gameObjectsToSpawn.LoadContent(_content);
+                    gameObject.Add(gameObjectsToSpawn);
+                }
+
+                gameObjectsToAdd.Clear();
             }
             else
             {
-                bossHPRectangle.Width = 0;
+                _game.ChangeState(GameWorld.pauseState);
             }
-
-            foreach (Component co in gameComponents)
-                co.Update(gameTime);
-
-            foreach (GameObject gameObjectsToSpawn in gameObjectsToAdd)
-            {
-                gameObjectsToSpawn.LoadContent(_content);
-                gameObject.Add(gameObjectsToSpawn);
-            }
-
-            gameObjectsToAdd.Clear();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -174,7 +187,6 @@ namespace KnightsTrial
             {
                 co.Draw(gameTime, spriteBatch);
             }
-
         }
         /// <summary>
         /// Checks if something is out of bounds, or if the gameObject should be removed. and removes if true.
