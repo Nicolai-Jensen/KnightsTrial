@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,11 @@ namespace KnightsTrial
         private bool canRollAttack;
         private bool attackAnimationActive;
         public static bool isFacingLeft;
+        private bool enterPhase;
+        private float phaseAttackTimer;
+        private bool canEnterPhase1;
+        private bool canEnterPhase2;
+        private bool canEnterPhase3;
 
         private Vector2 playerPosTemp;
 
@@ -49,7 +55,6 @@ namespace KnightsTrial
         //Constructors
         public BringerOfDeath()
         {
-            //GameState.InstantiateGameObject(this);
             health = 2500;
             speed = 100f;
             velocity = new Vector2(1, 0);
@@ -60,6 +65,11 @@ namespace KnightsTrial
             color = Color.White;
             canRollAttack = true;
             attackAnimationActive = false;
+            enterPhase = false;
+            GameState.isBossAlive = true;
+            canEnterPhase1 = true;
+            canEnterPhase2 = true;
+            canEnterPhase3 = true;
 
             swingAnimation = new Texture2D[10];
             walkAnimation = new Texture2D[8];
@@ -89,7 +99,7 @@ namespace KnightsTrial
         {
             playerPosition = GetPlayer().Position;
 
-            MovementBehaviour(gameTime);
+            Behaviour(gameTime);
             Move(gameTime);
             Animate(gameTime);
             SetOrigin();
@@ -148,6 +158,42 @@ namespace KnightsTrial
             }
             //if no player object is found, returns null.
             return null;
+        }
+
+        private void Behaviour(GameTime gameTime)
+        {
+            CheckForPhaseEnter();
+
+            if (enterPhase)
+            {
+                PhaseBehaviour(gameTime);
+            }
+            else
+            {
+                MovementBehaviour(gameTime);
+            }
+        }
+        private void PhaseBehaviour(GameTime gameTime)
+        {
+            phaseAttackTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (phaseAttackTimer < 5)
+            MoveToMiddle();
+            if (phaseAttackTimer >= 5)
+            {
+                velocity = new Vector2(0, 0);
+
+                if (phaseAttackTimer > 7 && CheckForRockPillars())
+                {
+                    IcicleWall();
+                    phaseAttackTimer = 5;
+                }
+                else if (phaseAttackTimer > 10 && !CheckForRockPillars())
+                {
+                    enterPhase = false;
+                }
+                
+            }
         }
 
         private void MovementBehaviour(GameTime gameTime)
@@ -242,12 +288,50 @@ namespace KnightsTrial
             velocity = outputVelocity;
         }
 
+        private void MoveToMiddle()
+        {
+            Vector2 outputVelocity = new Vector2(GameWorld.ScreenSize.X / 2, GameWorld.ScreenSize.Y / 2) - position;
+            outputVelocity.Normalize();
+            velocity = outputVelocity;
+        }
+
         private void CheckForDeath()
         {
             if (health <= 0)
             {
                 GameState.isBossAlive = false;
                 toBeRemoved = true;
+            }
+        }
+
+        private bool CheckForRockPillars()
+        {
+            foreach (GameObject go in GameState.gameObject)
+            {
+                if (go is RockPillar)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void CheckForPhaseEnter()
+        {
+            if (health <= 2500*0.25 && canEnterPhase3)
+            {
+                enterPhase = true;
+                canEnterPhase3 = false;
+            }
+            else if (health <= 2500*0.5 && canEnterPhase2)
+            {
+                enterPhase = true;
+                canEnterPhase2 = false;
+            }
+            else if (health <= 2500*0.75 && canEnterPhase1)
+            {
+                enterPhase = true;
+                canEnterPhase1 = false;
             }
         }
 

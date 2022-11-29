@@ -84,7 +84,7 @@ namespace KnightsTrial.Boss
             {
                 hasDamaged = true;
 
-                if (Player.Blocking == true && Player.Dodging != true)
+                if (Player.Blocking == true && Player.Dodging != true && GetPlayer().HealthModified == false)
                 {
                     if (GetPlayer().Stamina < damageValue)
                     {
@@ -94,7 +94,7 @@ namespace KnightsTrial.Boss
                     GetPlayer().Stamina -= damageValue * 2;
                 }
 
-                if (Player.Blocking == false && Player.Dodging == false)
+                if (Player.Blocking == false && Player.Dodging == false && GetPlayer().HealthModified == false)
                 {
                     GetPlayer().Health -= damageValue;
                     GetPlayer().HealthModified = true;
