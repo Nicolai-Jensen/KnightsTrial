@@ -322,16 +322,19 @@ namespace KnightsTrial
             {
                 enterPhase = true;
                 canEnterPhase3 = false;
+                phaseAttackTimer = 0f;
             }
             else if (health <= 2500*0.5 && canEnterPhase2)
             {
                 enterPhase = true;
                 canEnterPhase2 = false;
+                phaseAttackTimer = 0f;
             }
             else if (health <= 2500*0.75 && canEnterPhase1)
             {
                 enterPhase = true;
                 canEnterPhase1 = false;
+                phaseAttackTimer = 0f;
             }
         }
 
@@ -450,16 +453,11 @@ namespace KnightsTrial
         {
             Beware rockBeware = new Beware(playerPosition, true);
         }
-        public void PhaseShiftAttack()
-        {
-            // Attack to run when boss enters a new phase.
-        }
         public void ArcaneMissile()
         {
             RangedAttack attack = new RangedAttack(new Vector2(position.X, position.Y - 100));
             GameState.InstantiateGameObject(attack);
         }
-
         private void MeleeAttack()
         {
             if (objectSprites == swingAnimation && (int)animationTime == 4)
