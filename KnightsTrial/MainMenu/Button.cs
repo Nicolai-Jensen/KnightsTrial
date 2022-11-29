@@ -2,10 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using KnightsTrial.MainMenu;
 
 namespace KnightsTrial
 {
@@ -79,6 +76,9 @@ namespace KnightsTrial
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            if(_texture == PauseState.resumeButtonAnimation && GetPlayer().Health <= 0)
+            { }
+            else
             spriteBatch.Draw(_texture[(int)animationTime], position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
             //if (!string.IsNullOrEmpty(Text))
@@ -98,6 +98,19 @@ namespace KnightsTrial
                 animationTime = 20;
                 animationSpeed = 0;
             }
+        }
+        private Player GetPlayer()
+        {
+            //loops through the gameObject list untill it finds the player, then returns it. 
+            foreach (GameObject go in GameState.gameObject)
+            {
+                if (go is Player)
+                {
+                    return (Player)go;
+                }
+            }
+            //if no player object is found, returns null.
+            return null;
         }
     }
 }
