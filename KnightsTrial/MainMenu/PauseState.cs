@@ -15,7 +15,7 @@ namespace KnightsTrial.MainMenu
         //Fields
         public static List<Component> components;
         private Texture2D[] quitButtonAnimation;
-        private Texture2D[] resumeButtonAnimation;
+        public static Texture2D[] resumeButtonAnimation;
         private Texture2D[] newGameButtonAnimation;
         private Texture2D knightsLogo;
         private Texture2D gameOver;
