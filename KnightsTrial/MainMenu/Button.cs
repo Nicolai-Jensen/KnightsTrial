@@ -55,18 +55,6 @@ namespace KnightsTrial
 
         }
         //Methods
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(_texture[(int)animationTime], position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-
-            //if (!string.IsNullOrEmpty(Text))
-            //{
-            //    float x = (Rectangle.X + (Rectangle.Width / 2)) - (buttonFont.MeasureString(Text).X / 2);
-            //    float y = (Rectangle.Y + (Rectangle.Height / 2)) - (buttonFont.MeasureString(Text).Y / 2);
-
-            //    spriteBatch.DrawString(buttonFont, Text, new Vector2(x, y), PenColour);
-            //}
-        }
 
         public override void Update(GameTime gameTime)
         {
@@ -90,6 +78,18 @@ namespace KnightsTrial
                 animationTime = 0;
                 animationSpeed = 50;
             }
+        }
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(_texture[(int)animationTime], position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+
+            //if (!string.IsNullOrEmpty(Text))
+            //{
+            //    float x = (Rectangle.X + (Rectangle.Width / 2)) - (buttonFont.MeasureString(Text).X / 2);
+            //    float y = (Rectangle.Y + (Rectangle.Height / 2)) - (buttonFont.MeasureString(Text).Y / 2);
+
+            //    spriteBatch.DrawString(buttonFont, Text, new Vector2(x, y), PenColour);
+            //}
         }
         protected void Animate(GameTime gameTime)
         {

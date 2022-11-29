@@ -19,7 +19,8 @@ namespace KnightsTrial.MainMenu
         private Texture2D[] quitButtonAnimation;
         private Texture2D[] resumeButtonAnimation;
         private Texture2D[] newGameButtonAnimation;
-        private Texture2D[] knightsLogo;
+        private Texture2D knightsLogo;
+        private Texture2D gameOver;
 
         //Properties
 
@@ -33,8 +34,7 @@ namespace KnightsTrial.MainMenu
         public PauseState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             #region Instatiated Objects and Components
-            knightsLogo = new Texture2D[1];
-            knightsLogo[0] = _content.Load<Texture2D>("UI/pause");
+            knightsLogo = _content.Load<Texture2D>("UI/pause");
 
             resumeButtonAnimation = new Texture2D[21];
             for (int i = 0; i < resumeButtonAnimation.Length; i++)
@@ -79,7 +79,7 @@ namespace KnightsTrial.MainMenu
         //Methods
         public override void LoadContent(ContentManager content)
         {
-
+            gameOver = content.Load<Texture2D>("UI/Sword_logo");
         }
 
         public override void Update(GameTime gameTime)
@@ -93,7 +93,11 @@ namespace KnightsTrial.MainMenu
             foreach (Component co in components)
                 co.Draw(gameTime, spriteBatch);
 
-            spriteBatch.Draw(knightsLogo[0], new Vector2(400, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
+            if(GetPlayer().Health > 0)
+                spriteBatch.Draw(knightsLogo, new Vector2(400, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
+
+            else
+                spriteBatch.Draw(gameOver, new Vector2(400, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
 
             //Draws out the GameState, but does not Update it, to "pause" the game.
             GameWorld.gameState.Draw(gameTime, spriteBatch);
@@ -108,6 +112,7 @@ namespace KnightsTrial.MainMenu
         private void ResumeButton_Click(object sender, EventArgs e)
         {
             //Starts the game or chooses boss?.
+            if(GetPlayer().Health > 0)
             _game.ChangeState(GameWorld.gameState);
         }
 
@@ -116,7 +121,7 @@ namespace KnightsTrial.MainMenu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void NewGameButton_Click(object sender, EventArgs e)
+        public void NewGameButton_Click(object sender, EventArgs e)
         {
             foreach (GameObject go in GameState.gameObject)
             {
@@ -133,9 +138,23 @@ namespace KnightsTrial.MainMenu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void QuitButton_Click(object sender, EventArgs e)
+        public void QuitButton_Click(object sender, EventArgs e)
         {
             _game.ChangeState(GameWorld.menuState);
+        }
+
+        private Player GetPlayer()
+        {
+            //loops through the gameObject list untill it finds the player, then returns it. 
+            foreach (GameObject go in GameState.gameObject)
+            {
+                if (go is Player)
+                {
+                    return (Player)go;
+                }
+            }
+            //if no player object is found, returns null.
+            return null;
         }
     }
 }
