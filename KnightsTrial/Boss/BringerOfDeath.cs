@@ -178,17 +178,18 @@ namespace KnightsTrial
         }
         private void PhaseBehaviour(GameTime gameTime)
         {
-            phaseAttackTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (phaseAttackTimer < 5)
+            if (Vector2.Distance(position, new Vector2(GameWorld.ScreenSize.X / 2, GameWorld.ScreenSize.Y / 2)) > 10)
             {
                 objectSprites = walkAnimation;
                 color = Color.Blue;
                 MoveToMiddle();
             }
-            if (phaseAttackTimer >= 5)
+            if (Vector2.Distance(position, new Vector2(GameWorld.ScreenSize.X / 2, GameWorld.ScreenSize.Y / 2)) <= 10)
             {
+                phaseAttackTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 velocity = new Vector2(0, 0);
+
 
                 if (canRockPhase)
                 {
@@ -197,15 +198,16 @@ namespace KnightsTrial
                         Beware rockBeware = new Beware(new Vector2(rndBehaviour.Next(0, (int)GameWorld.ScreenSize.X), rndBehaviour.Next(0, (int)GameWorld.ScreenSize.Y)), true);
                     }
                     canRockPhase = false;
+                    animationTime = 0;
+                    objectSprites = magicAnimation;
                 }
 
-                if (phaseAttackTimer > 7 && CheckForRockPillars())
+                if (phaseAttackTimer > 2 && CheckForRockPillars())
                 {
-                    objectSprites = magicAnimation;
                     IcicleWall();
-                    phaseAttackTimer = 5;
+                    phaseAttackTimer = 0;
                 }
-                else if (phaseAttackTimer > 10 && !CheckForRockPillars())
+                else if (phaseAttackTimer > 5 && !CheckForRockPillars())
                 {
                     enterPhase = false;
                     objectSprites = walkAnimation;
