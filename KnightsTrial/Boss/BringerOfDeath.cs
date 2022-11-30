@@ -34,6 +34,7 @@ namespace KnightsTrial
         private int randomAttack;
 
         //Properties
+        public Color Color { get; }
         public int Health
         {
             get { return health; }
@@ -178,19 +179,26 @@ namespace KnightsTrial
             phaseAttackTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (phaseAttackTimer < 5)
-            MoveToMiddle();
+            {
+                objectSprites = walkAnimation;
+                color = Color.Blue;
+                MoveToMiddle();
+            }
             if (phaseAttackTimer >= 5)
             {
                 velocity = new Vector2(0, 0);
 
                 if (phaseAttackTimer > 7 && CheckForRockPillars())
                 {
+                    objectSprites = magicAnimation;
                     IcicleWall();
                     phaseAttackTimer = 5;
                 }
                 else if (phaseAttackTimer > 10 && !CheckForRockPillars())
                 {
                     enterPhase = false;
+                    objectSprites = walkAnimation;
+                    color = Color.White;
                 }
                 
             }

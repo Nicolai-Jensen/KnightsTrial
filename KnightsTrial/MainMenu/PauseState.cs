@@ -51,11 +51,11 @@ namespace KnightsTrial.MainMenu
                 newGameButtonAnimation[i] = _content.Load<Texture2D>($"NewGameButton/NewGameButton{i + 1}");
             }
 
-            Button resumeButton = new Button(resumeButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 500));
+            Button resumeButton = new Button(resumeButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 500));
 
-            Button newGameButton = new Button(newGameButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 625));
+            Button newGameButton = new Button(newGameButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 625));
 
-            Button quitButton = new Button(quitButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 750));
+            Button quitButton = new Button(quitButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 750));
 
 
             resumeButton.Click += ResumeButton_Click;
@@ -92,10 +92,9 @@ namespace KnightsTrial.MainMenu
                 co.Draw(gameTime, spriteBatch);
 
             if(GetPlayer().Health > 0)
-                spriteBatch.Draw(knightsLogo, new Vector2(400, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
-
+                spriteBatch.Draw(knightsLogo, new Vector2(450, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
             else
-                spriteBatch.Draw(gameOver, new Vector2(400, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(gameOver, new Vector2(450, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
 
             //Draws out the GameState, but does not Update it, to "pause" the game.
             GameWorld.gameState.Draw(gameTime, spriteBatch);

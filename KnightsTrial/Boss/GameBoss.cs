@@ -60,7 +60,7 @@ namespace KnightsTrial
 
             //}
 
-            if (other is HeroWeapon)
+            if (other is HeroWeapon && this is BringerOfDeath && this.color == Color.White)
             {
                 currentHit = (HeroWeapon)other;
 
@@ -79,7 +79,7 @@ namespace KnightsTrial
 
             }
 
-            if (other is HiddenHitBox && heavyHit == false)
+            if (other is HiddenHitBox && heavyHit == false && this is BringerOfDeath && this.color == Color.White)
             {
                 health -= HiddenHitBox.DamageValue;
                 gotHit = true;

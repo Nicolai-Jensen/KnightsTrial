@@ -57,9 +57,9 @@ namespace KnightsTrial
 
             UserInterface background = new UserInterface(backgroundSprite, new Vector2(0, 0), 1f, 0f);
 
-            Button startButton = new Button(playButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 700));
+            Button startButton = new Button(playButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 700));
 
-            Button quitButton = new Button(quitButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 175, 825));
+            Button quitButton = new Button(quitButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 825));
 
             startButton.Click += StartButton_Click;
             quitButton.Click += QuitButton_Click;
@@ -89,7 +89,7 @@ namespace KnightsTrial
             foreach (Component co in components)
                 co.Draw(gameTime, spriteBatch);
 
-            spriteBatch.Draw(knightsLogo[0], new Vector2(400, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(knightsLogo[0], new Vector2(450, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
         }
 
 
