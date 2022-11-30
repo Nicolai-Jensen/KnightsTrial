@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace KnightsTrial.MainMenu
+namespace KnightsTrial
 {
     /// <summary>
     /// Updates and Draws out the PauseScreen when you pause the game.
@@ -77,7 +77,7 @@ namespace KnightsTrial.MainMenu
         //Methods
         public override void LoadContent(ContentManager content)
         {
-            gameOver = content.Load<Texture2D>("UI/Sword_logo");
+            gameOver = content.Load<Texture2D>("UI/GameOver");
         }
 
         public override void Update(GameTime gameTime)
@@ -94,7 +94,7 @@ namespace KnightsTrial.MainMenu
             if(GetPlayer().Health > 0)
                 spriteBatch.Draw(knightsLogo, new Vector2(450, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
             else
-                spriteBatch.Draw(gameOver, new Vector2(450, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(gameOver, new Vector2(450, 25), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
 
             //Draws out the GameState, but does not Update it, to "pause" the game.
             GameWorld.gameState.Draw(gameTime, spriteBatch);

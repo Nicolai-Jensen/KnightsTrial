@@ -3459,6 +3459,18 @@
 /processorParam:TextureFormat=Color
 /build:ResumeButton/ResumeButton9.png
 
+#begin UI/GameOver.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/GameOver.png
+
 #begin UI/Knight_Trial_HPBar.png
 /importer:TextureImporter
 /processor:TextureProcessor
