@@ -469,7 +469,11 @@ namespace KnightsTrial
         /// <param name="other"></param>
         public override void OnCollision(GameObject other)
         {
-
+            if (other is BringerOfDeath || other is RockPillar)
+            {
+                Vector2 d = position - other.Position;
+                position += 150 * d / (d.LengthSquared() + 1);
+            }
         }
 
         /// <summary>
