@@ -132,12 +132,12 @@ namespace KnightsTrial
                     }
                 }
 
-                hpRectangle.Width = GetPlayer().Health * 2 + 30;
-                staminaRectangle.Width = GetPlayer().Stamina * 2 + 30;
+                hpRectangle.Width = (int)(GetPlayer().Health / 0.434f);
+                staminaRectangle.Width = (int)(GetPlayer().Stamina / 0.434f);
 
                 if (isBossAlive == true)
                 {
-                    bossHPRectangle.Width = GetBoss().Health / 5 + 60;
+                    bossHPRectangle.Width = (int)(GetBoss().Health / 4.46f);
                 }
                 else
                 {

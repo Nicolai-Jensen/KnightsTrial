@@ -28,6 +28,7 @@ namespace KnightsTrial
         private bool canEnterPhase1;
         private bool canEnterPhase2;
         private bool canEnterPhase3;
+        private bool canRockPhase;
 
         private Vector2 playerPosTemp;
 
@@ -71,6 +72,7 @@ namespace KnightsTrial
             canEnterPhase1 = true;
             canEnterPhase2 = true;
             canEnterPhase3 = true;
+            canRockPhase = true;
 
             swingAnimation = new Texture2D[10];
             walkAnimation = new Texture2D[8];
@@ -188,6 +190,15 @@ namespace KnightsTrial
             {
                 velocity = new Vector2(0, 0);
 
+                if (canRockPhase)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Beware rockBeware = new Beware(new Vector2(rndBehaviour.Next(0, (int)GameWorld.ScreenSize.X), rndBehaviour.Next(0, (int)GameWorld.ScreenSize.Y)), true);
+                    }
+                    canRockPhase = false;
+                }
+
                 if (phaseAttackTimer > 7 && CheckForRockPillars())
                 {
                     objectSprites = magicAnimation;
@@ -199,6 +210,7 @@ namespace KnightsTrial
                     enterPhase = false;
                     objectSprites = walkAnimation;
                     color = Color.White;
+                    canRockPhase = true;
                 }
                 
             }
