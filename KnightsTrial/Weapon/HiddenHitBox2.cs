@@ -12,23 +12,36 @@ namespace KnightsTrial
     class HiddenHitBox2 : Weapon
     {
         //Fields
+        //The Texture for the sprite
         private Texture2D[] sprite;
-
 
         //Properties
 
-
         //Constructors
-
+        /// <summary>
+        /// Constructor for the hidden box 2 that will act as a hitbox for the heavy attack
+        /// </summary>
+        /// <param name="position">A Vector2 for the object to use</param>
         public HiddenHitBox2(Vector2 position)
         {
+            //Various variables needed to draw the sprite
             rotation = 0f;
             speed = 0f;
             scale = 0.3f;
+
+            //Aims in the direction of the mouse
             velocity = Direction(ReturnPlayerPostition());
+
+            //Puts the hitbox out to the middle of the heavy thrust by adding the velocity timed by half the length of the heavy attack
             this.position = position + velocity * 125;
+
+            //Slightly adjusts the X position so that it lines up more with the attack
             this.position.X -= 30;
+
+            //has a DamageValue of that meant for the heavy attack as this object is the heavy attacks collision indicator
             damageValue = 100;
+
+            //Syncs the speed with the heavy attack
             animationSpeed = 12f;
         }
 
