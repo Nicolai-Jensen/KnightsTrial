@@ -46,9 +46,9 @@ namespace KnightsTrial
             {
                 return new Rectangle(
 
-                    (int)(position.X - SpriteSize.X / 2),
+                    (int)(position.X - SpriteSize.X / 3),
                     (int)(position.Y - SpriteSize.Y),
-                    (int)SpriteSize.X, (int)SpriteSize.Y);
+                    (int)SpriteSize.X / 2, (int)SpriteSize.Y);
             }
         }
 
