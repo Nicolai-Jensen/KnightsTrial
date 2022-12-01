@@ -54,34 +54,32 @@ namespace KnightsTrial
             gameObject.Add(BoD);
 
             gameBackground = new Texture2D[1];
+            playerHealth = new Texture2D[1];
+            playerStamina = new Texture2D[1];
+            bossHealth = new Texture2D[1];
+            playerHealthUI = new Texture2D[1];
+            playerStaminaUI = new Texture2D[1];
+            bossHealthUI = new Texture2D[1];
+            menuButtonAnimation = new Texture2D[21];
+            
+            
             gameBackground[0] = _content.Load<Texture2D>("UI/NewKnightsTrialBackground");
-            UserInterface Background = new UserInterface(gameBackground, new Vector2(0, 0), 1f, 0f);
+            playerHealth[0] = _content.Load<Texture2D>("UI/RedHealth");
+            bossHealth[0] = _content.Load<Texture2D>("UI/RedHealth");
+            playerStamina[0] = _content.Load<Texture2D>("UI/YellowStamina"); 
+            playerHealthUI[0] = _content.Load<Texture2D>("UI/Knight_Trial_HPBar");
+            playerStaminaUI[0] = _content.Load<Texture2D>("UI/Knight_Trial_StaminaBar");
+            bossHealthUI[0] = _content.Load<Texture2D>("UI/Knights_Trial_BossHPBar");
 
             hpRectangle = new Rectangle(95, 40, GetPlayer().Health * 2 + 30, 26);
-            playerHealth = new Texture2D[1];
-            playerHealth[0] = _content.Load<Texture2D>("UI/RedHealth");
-
-            staminaRectangle = new Rectangle(135, 112, GetPlayer().Stamina * 2 + 30, 26);
-            playerStamina = new Texture2D[1];
-            playerStamina[0] = _content.Load<Texture2D>("UI/YellowStamina");
-
+            staminaRectangle = new Rectangle(135, 112, GetPlayer().Stamina * 2 + 30, 26);          
             bossHPRectangle = new Rectangle(710, 946, GetBoss().Health / 5 + 60, 52);
-            bossHealth = new Texture2D[1];
-            bossHealth[0] = _content.Load<Texture2D>("UI/RedHealth");
 
-            playerHealthUI = new Texture2D[1];
-            playerHealthUI[0] = _content.Load<Texture2D>("UI/Knight_Trial_HPBar");
+            UserInterface Background = new UserInterface(gameBackground, new Vector2(0, 0), 1f, 0f);
             UserInterface hpUI = new UserInterface(playerHealthUI, new Vector2(20, 10), 1.5f, 0.8f);
-
-            playerStaminaUI = new Texture2D[1];
-            playerStaminaUI[0] = _content.Load<Texture2D>("UI/Knight_Trial_StaminaBar");
             UserInterface staminaUI = new UserInterface(playerStaminaUI, new Vector2(60, 80), 1.5f, 0.8f);
-
-            bossHealthUI = new Texture2D[1];
-            bossHealthUI[0] = _content.Load<Texture2D>("UI/Knights_Trial_BossHPBar");
             UserInterface bossHP = new UserInterface(bossHealthUI, new Vector2(550, 890), 2f, 0.8f);
 
-            menuButtonAnimation = new Texture2D[21];
             for (int i = 0; i < menuButtonAnimation.Length; i++)
             {
                 menuButtonAnimation[i] = _content.Load<Texture2D>($"MenuButton/MenuButton{i + 1}");
@@ -114,7 +112,7 @@ namespace KnightsTrial
 
         public override void Update(GameTime gameTime)
         {
-            if (GetPlayer().Health >= 0)
+            if (!Player.dead)
             {
                 RemoveGameObjects();
 
@@ -135,13 +133,13 @@ namespace KnightsTrial
                 hpRectangle.Width = (int)(GetPlayer().Health / 0.434f);
                 staminaRectangle.Width = (int)(GetPlayer().Stamina / 0.434f);
 
-                if (isBossAlive == true)
+                if (isBossAlive)
                 {
                     bossHPRectangle.Width = (int)(GetBoss().Health / 4.46f);
                 }
                 else
                 {
-                    bossHPRectangle.Width = 0;
+                    
                 }
 
                 //Loops throu the gameComponents list to find Components and Update those Components.
@@ -159,7 +157,6 @@ namespace KnightsTrial
             }
             else
             {
-                hpRectangle.Width = 0;
                 _game.ChangeState(GameWorld.pauseState);
             }
         }

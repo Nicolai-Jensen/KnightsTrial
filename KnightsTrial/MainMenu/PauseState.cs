@@ -32,31 +32,31 @@ namespace KnightsTrial
         public PauseState(GameWorld game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             #region Instatiated Objects and Components
-            knightsLogo = _content.Load<Texture2D>("UI/pause");
+
 
             resumeButtonAnimation = new Texture2D[21];
+            quitButtonAnimation = new Texture2D[21];
+            newGameButtonAnimation = new Texture2D[21];
+
+
+            knightsLogo = _content.Load<Texture2D>("UI/pause");
+
             for (int i = 0; i < resumeButtonAnimation.Length; i++)
             {
                 resumeButtonAnimation[i] = _content.Load<Texture2D>($"ResumeButton/ResumeButton{i + 1}");
             }
-
-            quitButtonAnimation = new Texture2D[21];
             for (int i = 0; i < quitButtonAnimation.Length; i++)
             {
                 quitButtonAnimation[i] = _content.Load<Texture2D>($"MenuButton/MenuButton{i + 1}");
             }
-            newGameButtonAnimation = new Texture2D[21];
             for (int i = 0; i < newGameButtonAnimation.Length; i++)
             {
                 newGameButtonAnimation[i] = _content.Load<Texture2D>($"NewGameButton/NewGameButton{i + 1}");
             }
 
             Button resumeButton = new Button(resumeButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 500));
-
             Button newGameButton = new Button(newGameButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 625));
-
             Button quitButton = new Button(quitButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 750));
-
 
             resumeButton.Click += ResumeButton_Click;
             newGameButton.Click += NewGameButton_Click;
@@ -91,7 +91,7 @@ namespace KnightsTrial
             foreach (Component co in components)
                 co.Draw(gameTime, spriteBatch);
 
-            if(GetPlayer().Health > 0)
+            if(!Player.dead)
                 spriteBatch.Draw(knightsLogo, new Vector2(450, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
             else
                 spriteBatch.Draw(gameOver, new Vector2(450, 25), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
@@ -109,7 +109,7 @@ namespace KnightsTrial
         private void ResumeButton_Click(object sender, EventArgs e)
         {
             //Starts the game or chooses boss?.
-            if(GetPlayer().Health > 0)
+            if(!Player.dead)
             _game.ChangeState(GameWorld.gameState);
         }
 
