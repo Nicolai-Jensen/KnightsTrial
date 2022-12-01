@@ -14,7 +14,7 @@ namespace KnightsTrial
         private int health;
         private int stamina;
         private bool dying = false;
-        private bool dead = false;
+        public static bool dead = false;
 
         //All of the bools that are used to activate processes in the Player class
         private bool healthModified = false;
@@ -44,7 +44,6 @@ namespace KnightsTrial
         private Texture2D[] blockAnimation;
         private Texture2D[] collisionSprite;
         private Texture2D[] deathAnimation;
-        private Texture2D[] deathLoop;
 
         //All the SoundEffects that play through the player
         private SoundEffect attackingSound;
@@ -168,6 +167,7 @@ namespace KnightsTrial
             chargeAtkAnim = false;
             attacking = false;
             blocking = false;
+            dead = false;
         }
 
         //Methods
@@ -187,7 +187,6 @@ namespace KnightsTrial
             heroWeapon2 = new Texture2D[5];
             heroWeaponPrep = new Texture2D[1];
             deathAnimation = new Texture2D[9];
-            deathLoop = new Texture2D[1];
 
             //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
             for (int i = 0; i < idleAnimation.Length; i++)
@@ -195,7 +194,6 @@ namespace KnightsTrial
                 idleAnimation[i] = content.Load<Texture2D>($"PIdle{i}");
             }
 
-            deathLoop[0] = content.Load<Texture2D>("PlayerDeathAnim/Pdeath8");
             heroWeaponPrep[0] = content.Load<Texture2D>("PlayerAttackAnimations/Pthrust1");
 
             //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
@@ -550,8 +548,6 @@ namespace KnightsTrial
                 if (animationTime > 8)
                 {
                     dead = true;
-                    animationTime = 0;
-                    objectSprites = deathLoop; 
                 }
             }
         }
@@ -642,7 +638,7 @@ namespace KnightsTrial
                 health = 100;
             }
 
-            if (health <= 0)
+            if (health <= 0 && !dying)
             {
                 initiateDeath = true;
                 dying = true;

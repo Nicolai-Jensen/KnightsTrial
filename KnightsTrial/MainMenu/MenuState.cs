@@ -34,34 +34,29 @@ namespace KnightsTrial
         {
             #region Instatiated Objects and Components
             knightsLogo = new Texture2D[1];
-            knightsLogo[0] = _content.Load<Texture2D>("UI/NewKnightsTrialLogo");
-
-            //trialLogo = new Texture2D[1];
-           // trialLogo[0] = _content.Load<Texture2D>("UI/Trial_logo");
             backgroundSprite = new Texture2D[1];
-
-            //swordLogo = new Texture2D[1];
-            //swordLogo[0] = _content.Load<Texture2D>("UI/Sword_logo");
-
-            backgroundSprite[0] = _content.Load<Texture2D>("UI/NyBaggrund3");
-
+            
             playButtonAnimation = new Texture2D[21];
+            quitButtonAnimation = new Texture2D[21];
+            
+            godModeButton = new Texture2D[2];
+            currentGodMode = new Texture2D[1];
+           
+            knightsLogo[0] = _content.Load<Texture2D>("UI/NewKnightsTrialLogo");
+            backgroundSprite[0] = _content.Load<Texture2D>("UI/NyBaggrund3");
+            godModeButton[0] = _content.Load<Texture2D>("GodModeButton/GodmodeTickBox1");
+            godModeButton[1] = _content.Load<Texture2D>("GodModeButton/GodmodeTickBox2");
+
             for (int i = 0; i < playButtonAnimation.Length; i++)
             {
                 playButtonAnimation[i] = _content.Load<Texture2D>($"PlayButton/MenuPLAYButtonANI-export{i + 1}");
             }
 
-            quitButtonAnimation = new Texture2D[21];
             for (int i = 0; i < quitButtonAnimation.Length; i++)
             {
                 quitButtonAnimation[i] = _content.Load<Texture2D>($"QuitButton/MenuQuitButtonANI{i + 1}");
             }
 
-            godModeButton = new Texture2D[2];
-            godModeButton[0] = _content.Load<Texture2D>("QuitButton/MenuQuitButtonANI1");
-            godModeButton[1] = _content.Load<Texture2D>("QuitButton/MenuQuitButtonANI21");
-
-            currentGodMode = new Texture2D[1];
             currentGodMode[0] = godModeButton[0];
 
 
@@ -72,7 +67,7 @@ namespace KnightsTrial
 
             Button quitButton = new Button(quitButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 825));
 
-            Button godButton = new Button(currentGodMode, new Vector2(1600, 975));
+            Button godButton = new Button(currentGodMode, new Vector2(1800, 975));
 
             startButton.Click += StartButton_Click;
             quitButton.Click += QuitButton_Click;
