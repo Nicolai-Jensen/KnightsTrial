@@ -13,6 +13,7 @@ namespace KnightsTrial
         //Player stats
         private int health;
         private int stamina;
+        private bool dying = false;
         private bool dead = false;
 
         //All of the bools that are used to activate processes in the Player class
@@ -307,7 +308,7 @@ namespace KnightsTrial
         private void HandleInput(GameTime gameTime)
         {
             //Checks that the player is not currently executing a dodge, as they use the same variable for their funktions
-            if (dodging == false)
+            if (dodging == false && dying == false)
             {
                 //velocity determines the direction the object is moving, this code sets the vector values to 0
                 velocity = Vector2.Zero;
@@ -439,7 +440,7 @@ namespace KnightsTrial
             }
 
             //If none of the above animations are in play it resets the origin Point to the base one
-            if (chargeAtkAnim == false && heavyAtkAnim == false && lightAtkAnim == false && dead == false)
+            if (chargeAtkAnim == false && heavyAtkAnim == false && lightAtkAnim == false && dying == false)
             {
                 origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
             }
@@ -542,15 +543,15 @@ namespace KnightsTrial
                 objectSprites = deathAnimation;
                 speed = 0f;
                 initiateDeath = false;
-                dead = true;
             }
 
-            if (dead == true)
+            if (dying == true)
             {
                 if (animationTime > 8)
                 {
+                    dead = true;
                     animationTime = 0;
-                    objectSprites = deathLoop;
+                    objectSprites = deathLoop; 
                 }
             }
         }
@@ -562,7 +563,7 @@ namespace KnightsTrial
         public void Attack(GameTime gameTime)
         {
             //Checks that the player is not already doing an action
-            if (dodging == false && blocking == false && attacking == false && dodgingAnim == false && attackCooldown == false)
+            if (dodging == false && blocking == false && attacking == false && dodgingAnim == false && attackCooldown == false && dying == false)
             {
                 //Instantiates the WeaponCharge Object(which spawns the other attacks) and sets a new animation while enabling the attacking action. Also Disables stamina Regen while charging
                 if (currentMouse.LeftButton == ButtonState.Pressed && previousMouse.LeftButton == ButtonState.Released)
@@ -644,6 +645,7 @@ namespace KnightsTrial
             if (health <= 0)
             {
                 initiateDeath = true;
+                dying = true;
             }
         }
 
@@ -678,7 +680,7 @@ namespace KnightsTrial
         {
 
             //Checks that another action isn't currently playing
-            if (dodging == false && attacking == false && dodgingAnim == false)
+            if (dodging == false && attacking == false && dodgingAnim == false && dying == false)
             {
                 //Instantiates a block object and sets stamina to not regen
                 if (currentMouse.RightButton == ButtonState.Pressed && previousMouse.RightButton == ButtonState.Released)
@@ -707,7 +709,7 @@ namespace KnightsTrial
         public void Dodge(GameTime gameTime)
         {
             //checks that other actions are not currently in effect and then activates the dodge funktion
-            if (blocking != true && attacking != true && currentKey.IsKeyDown(Keys.Space) && previousKey.IsKeyUp(Keys.Space) && dodging == false && dodgeCooldown == false && stamina > 0)
+            if (blocking != true && attacking != true && currentKey.IsKeyDown(Keys.Space) && previousKey.IsKeyUp(Keys.Space) && dodging == false && dodgeCooldown == false && stamina > 0 && dying == false)
             {
                 dodging = true;
                 dodgingAnim = true;
