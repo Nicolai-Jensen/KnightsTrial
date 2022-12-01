@@ -71,6 +71,7 @@ namespace KnightsTrial
             swingAnimation = new Texture2D[10];
             walkAnimation = new Texture2D[8];
             magicAnimation = new Texture2D[9];
+            deathAnimation = new Texture2D[10];
         }
 
         //Methods
@@ -88,6 +89,10 @@ namespace KnightsTrial
             {
                 magicAnimation[i] = content.Load<Texture2D>($"BringerOfDeath/Bringer-of-Death_Cast_{i + 1}");
             }
+            for (int i = 0; i < deathAnimation.Length; i++)
+            {
+                deathAnimation[i] = content.Load<Texture2D>($"BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_{i + 1}");
+            }
 
             objectSprites = walkAnimation;
         }
@@ -100,10 +105,10 @@ namespace KnightsTrial
             Move(gameTime);
             Animate(gameTime);
             SetOrigin();
-            CheckForDeath();
-
             DamagedFeedBack(gameTime);
             HeavyDamaged(gameTime);
+
+            CheckForDeath();
 
         }
 
@@ -315,9 +320,19 @@ namespace KnightsTrial
         {
             if (health <= 0)
             {
+                objectSprites = deathAnimation;
+                BossDeath();
+            }
+        }
+
+        private void BossDeath()
+        {
+            if (objectSprites[(int)animationTime] == deathAnimation[8])
+            {
                 GameState.isBossAlive = false;
                 toBeRemoved = true;
             }
+
         }
 
         private bool CheckForRockPillars()
