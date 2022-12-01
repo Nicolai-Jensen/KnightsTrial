@@ -28,6 +28,7 @@ namespace KnightsTrial
         private static bool lightAtkAnim = false;
         private static bool chargeAtkAnim = false;
         private static bool isFacingRight = false;
+        public static bool godMode = false;
         
         //All of the different sprites that are cycled through to play different animations
         private Texture2D[] block;
@@ -480,33 +481,33 @@ namespace KnightsTrial
         public void Damaged(GameTime gameTime)
         {
             //When Damaged by an enemy they set this value to true on their collision method
-            if (healthModified == true)
-            {
-                //when hit cooldown is true it turns the player red and prevents enemies from doing damage to the player. It also starts the a timer
-                hitCooldown = true;
-                if (hitCooldown == true)
+                if (healthModified == true)
                 {
-                    color = Color.Red;
-                }
-                hitCooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                //this timer if statement is hit almost immediately, making the code inside only able to play effectly once
-                //if (hitCooldownTimer <= 0.05f)
-                //{
-                //    //plays a Sound effect that indicates the player has been hit
-                //    //SoundEffectInstance hurtSoundIntance = hurtSound.CreateInstance();
-                //    //hurtSoundIntance.Volume = 0.3f;
-                //    //hurtSoundIntance.Play();
-                //}
+                    //when hit cooldown is true it turns the player red and prevents enemies from doing damage to the player. It also starts the a timer
+                    hitCooldown = true;
+                    if (hitCooldown == true)
+                    {
+                        color = Color.Red;
+                    }
+                    hitCooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    //this timer if statement is hit almost immediately, making the code inside only able to play effectly once
+                    //if (hitCooldownTimer <= 0.05f)
+                    //{
+                    //    //plays a Sound effect that indicates the player has been hit
+                    //    //SoundEffectInstance hurtSoundIntance = hurtSound.CreateInstance();
+                    //    //hurtSoundIntance.Volume = 0.3f;
+                    //    //hurtSoundIntance.Play();
+                    //}
 
-                //When the timer hits over this value it makes the player normal colored and enables them to be hit again
-                if (hitCooldownTimer >= 0.5f)
-                {
-                    hitCooldown = false;
-                    color = Color.White;
-                    hitCooldownTimer = 0;
-                    healthModified = false;
+                    //When the timer hits over this value it makes the player normal colored and enables them to be hit again
+                    if (hitCooldownTimer >= 0.5f)
+                    {
+                        hitCooldown = false;
+                        color = Color.White;
+                        hitCooldownTimer = 0;
+                        healthModified = false;
+                    }
                 }
-            }
         }
 
         /// <summary>

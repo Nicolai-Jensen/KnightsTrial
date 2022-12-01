@@ -34,7 +34,10 @@ namespace KnightsTrial
             this.position.X -= 30;
 
             //has a DamageValue of that meant for the heavy attack as this object is the heavy attacks collision indicator
-            damageValue = 100;
+            if (!Player.godMode)
+                damageValue = 100;
+            else
+                damageValue = 250;
 
             //Syncs the speed with the heavy attack
             animationSpeed = 12f;

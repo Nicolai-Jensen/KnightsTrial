@@ -77,8 +77,10 @@ namespace KnightsTrial
         {
             if(_texture == PauseState.resumeButtonAnimation && GetPlayer().Health <= 0)
             { }
+            if(_texture == MenuState.godModeButton)
+                spriteBatch.Draw(_texture[0], position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             else
-            spriteBatch.Draw(_texture[(int)animationTime], position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(_texture[(int)animationTime], position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
             //if (!string.IsNullOrEmpty(Text))
             //{

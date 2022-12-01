@@ -70,7 +70,7 @@ namespace KnightsTrial
 
         public override void OnCollision(GameObject other)
         {
-            if (other is Player)
+            if (other is Player && !Player.godMode)
             {
                 
                 if (Player.Blocking == true && Player.Dodging != true)
