@@ -13,6 +13,7 @@ namespace KnightsTrial
         //Player stats
         private int health;
         private int stamina;
+        private bool dead = false;
 
         //All of the bools that are used to activate processes in the Player class
         private bool healthModified = false;
@@ -20,6 +21,7 @@ namespace KnightsTrial
         private bool dodgeCooldown = false;
         private bool attackCooldown = false;
         private bool dodgingAnim = false;
+        private bool initiateDeath = false;
         private static bool regenStamina = true;
         private static bool blocking = false;
         private static bool dodging = false;
@@ -40,6 +42,8 @@ namespace KnightsTrial
         private Texture2D[] dodgeAnimation;
         private Texture2D[] blockAnimation;
         private Texture2D[] collisionSprite;
+        private Texture2D[] deathAnimation;
+        private Texture2D[] deathLoop;
 
         //All the SoundEffects that play through the player
         private SoundEffect attackingSound;
@@ -181,6 +185,8 @@ namespace KnightsTrial
             heroWeapon = new Texture2D[5];
             heroWeapon2 = new Texture2D[5];
             heroWeaponPrep = new Texture2D[1];
+            deathAnimation = new Texture2D[9];
+            deathLoop = new Texture2D[1];
 
             //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
             for (int i = 0; i < idleAnimation.Length; i++)
@@ -188,6 +194,7 @@ namespace KnightsTrial
                 idleAnimation[i] = content.Load<Texture2D>($"PIdle{i}");
             }
 
+            deathLoop[0] = content.Load<Texture2D>("PlayerDeathAnim/Pdeath8");
             heroWeaponPrep[0] = content.Load<Texture2D>("PlayerAttackAnimations/Pthrust1");
 
             //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
@@ -218,6 +225,12 @@ namespace KnightsTrial
             for (int i = 0; i < heroWeapon.Length; i++)
             {
                 heroWeapon[i] = content.Load<Texture2D>($"PlayerAttackAnimations/Pslash{i}");
+            }
+
+            //The Array is then looped with this for loop where it cycles through a list of sprites with the array numbers
+            for (int i = 0; i < deathAnimation.Length; i++)
+            {
+                deathAnimation[i] = content.Load<Texture2D>($"PlayerDeathAnim/Pdeath{i}");
             }
 
             //objectSprites is the base array Texture used in Draw and it is set during load to give the first animation, CollisionSprite sets the collisionBox's base size by basing it on a sprite
@@ -252,6 +265,7 @@ namespace KnightsTrial
             Dodge(gameTime);
             SetDodgeVelocity();
             AttackingAnimations();
+            Death();
             Move(gameTime);
             Animate(gameTime);
             ScreenWrap();
@@ -425,7 +439,13 @@ namespace KnightsTrial
             }
 
             //If none of the above animations are in play it resets the origin Point to the base one
-            if (chargeAtkAnim == false && heavyAtkAnim == false && lightAtkAnim == false)
+            if (chargeAtkAnim == false && heavyAtkAnim == false && lightAtkAnim == false && dead == false)
+            {
+                origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
+            }
+
+
+            if (dead == true)
             {
                 origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
             }
@@ -516,7 +536,23 @@ namespace KnightsTrial
         /// </summary>
         public void Death()
         {
+            if (initiateDeath == true)
+            {
+                AnimationTime = 0;
+                objectSprites = deathAnimation;
+                speed = 0f;
+                initiateDeath = false;
+                dead = true;
+            }
 
+            if (dead == true)
+            {
+                if (animationTime > 8)
+                {
+                    animationTime = 0;
+                    objectSprites = deathLoop;
+                }
+            }
         }
 
         /// <summary>
@@ -603,6 +639,11 @@ namespace KnightsTrial
             if (health > 100)
             {
                 health = 100;
+            }
+
+            if (health <= 0)
+            {
+                initiateDeath = true;
             }
         }
 
