@@ -73,6 +73,126 @@
 /processorParam:TextureFormat=Color
 /build:Block.png
 
+#begin BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_1.png
+
+#begin BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_10.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_10.png
+
+#begin BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_2.png
+
+#begin BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_3.png
+
+#begin BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_4.png
+
+#begin BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_5.png
+
+#begin BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_6.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_6.png
+
+#begin BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_7.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_7.png
+
+#begin BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_8.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_8.png
+
+#begin BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_9.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BringerOfDeath/BoDDeathAnimation/Bringer-of-Death_Death_9.png
+
 #begin BringerOfDeath/Bosswalk_0.png
 /importer:TextureImporter
 /processor:TextureProcessor
