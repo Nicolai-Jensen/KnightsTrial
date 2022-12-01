@@ -18,6 +18,7 @@ namespace KnightsTrial
         private Texture2D[] playButtonAnimation;
         private Texture2D[] backgroundSprite;
         private Texture2D[] knightsLogo;
+        public static Texture2D[] godModeButton;
 
         //Properties
 
@@ -55,24 +56,34 @@ namespace KnightsTrial
                 quitButtonAnimation[i] = _content.Load<Texture2D>($"QuitButton/MenuQuitButtonANI{i + 1}");
             }
 
+            godModeButton = new Texture2D[2];
+
+            godModeButton[0] = _content.Load<Texture2D>("QuitButton/MenuQuitButtonANI1");
+            godModeButton[1] = _content.Load<Texture2D>("QuitButton/MenuQuitButtonANI21");
+
             UserInterface background = new UserInterface(backgroundSprite, new Vector2(0, 0), 1f, 0f);
 
             Button startButton = new Button(playButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 700));
 
             Button quitButton = new Button(quitButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 825));
 
+            Button godButton = new Button(godModeButton, new Vector2(1600, 975));
+
             startButton.Click += StartButton_Click;
             quitButton.Click += QuitButton_Click;
+            godButton.Click += GodButton_Click;
 
             components = new List<Component>()
             {
                         background,
                         startButton,
                         quitButton,
+                        godButton,
 
             };
             #endregion
         }
+
         //Methods
         public override void LoadContent(ContentManager content)
         {
@@ -117,6 +128,19 @@ namespace KnightsTrial
         private void QuitButton_Click(object sender, EventArgs e)
         {
             _game.Exit();
+        }
+        private void GodButton_Click(object sender, EventArgs e)
+        {
+            if (!Player.godMode)
+            {
+                Player.godMode = true;
+                godModeButton[0] = godModeButton[1];
+            }
+            else
+            {
+                Player.godMode = false;
+                godModeButton[0] = godModeButton[0];
+            }
         }
 
     }

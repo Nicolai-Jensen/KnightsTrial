@@ -82,7 +82,7 @@ namespace KnightsTrial
 
         public override void OnCollision(GameObject other)
         {
-            if (other is Player && objectSprites == rockPillarAnimation && GetPlayer().HealthModified == false)
+            if (other is Player && objectSprites == rockPillarAnimation && GetPlayer().HealthModified == false && !Player.godMode)
             {
                 if (Player.Blocking == true && Player.Dodging != true)
                 {

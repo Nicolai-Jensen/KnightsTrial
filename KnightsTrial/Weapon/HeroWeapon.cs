@@ -23,8 +23,10 @@ namespace KnightsTrial
         public HeroWeapon(Vector2 position)
         {
             //Sets its damage on collision to 30
-            damageValue = 30;
-
+            if (!Player.godMode)
+                damageValue = 30;
+            else
+                damageValue = 100;
             //Various mandatory variables the object needs to be drawn properly
             this.position = position;
             rotation = -1.5f;

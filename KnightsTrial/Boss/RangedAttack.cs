@@ -133,7 +133,7 @@ namespace KnightsTrial
         public override void OnCollision(GameObject other)
         {
             //Checks if the other object is the player and if its still in its damaging state
-            if (other is Player && hasDamaged == false)
+            if (other is Player && hasDamaged == false && !Player.godMode)
             {
                 //Sets its state to having already contacted and damaged so the attack can no longer hit (Stops it from hitting every frame)
                 hasDamaged = true;

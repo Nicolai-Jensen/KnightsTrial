@@ -83,7 +83,7 @@ namespace KnightsTrial
                 other.ToBeRemoved = true;
             }
 
-            if (other is Player && objectSprites == explosionSprites && hasCollided)
+            if (other is Player && objectSprites == explosionSprites && hasCollided && !Player.godMode)
             {
                 hasCollided = false;
 

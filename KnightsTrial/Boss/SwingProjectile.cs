@@ -75,7 +75,7 @@ namespace KnightsTrial
         }
         public override void OnCollision(GameObject other)
         {
-            if (other is Player && hasDamaged == false)
+            if (other is Player && hasDamaged == false && !Player.godMode)
             {
                 hasDamaged = true;
 
