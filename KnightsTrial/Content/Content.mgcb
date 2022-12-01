@@ -1635,6 +1635,18 @@
 /processorParam:TextureFormat=Color
 /build:Dodge/Roll9.png
 
+#begin GodModeButton/GodmodeBox.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GodModeButton/GodmodeBox.png
+
 #begin GodModeButton/GodmodeTickBox1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -3770,6 +3782,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:UI/Knights_Trial_BossHPBar.png
+
+#begin UI/Knights_Trial_MenuScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/Knights_Trial_MenuScreen.png
 
 #begin UI/KnightsTrialBackground.png
 /importer:TextureImporter

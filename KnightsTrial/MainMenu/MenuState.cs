@@ -20,6 +20,7 @@ namespace KnightsTrial
         private Texture2D[] knightsLogo;
         public static Texture2D[] godModeButton;
         public static Texture2D[] currentGodMode;
+        private Texture2D[] godModeBox;
 
         //Properties
 
@@ -41,11 +42,13 @@ namespace KnightsTrial
             
             godModeButton = new Texture2D[2];
             currentGodMode = new Texture2D[1];
+            godModeBox = new Texture2D[1];
            
             knightsLogo[0] = _content.Load<Texture2D>("UI/NewKnightsTrialLogo");
-            backgroundSprite[0] = _content.Load<Texture2D>("UI/NyBaggrund3");
+            backgroundSprite[0] = _content.Load<Texture2D>("UI/Knights_Trial_MenuScreen");
             godModeButton[0] = _content.Load<Texture2D>("GodModeButton/GodmodeTickBox1");
             godModeButton[1] = _content.Load<Texture2D>("GodModeButton/GodmodeTickBox2");
+            godModeBox[0] = _content.Load<Texture2D>("GodModeButton/GodmodeBox");
 
             for (int i = 0; i < playButtonAnimation.Length; i++)
             {
@@ -63,11 +66,13 @@ namespace KnightsTrial
 
             UserInterface background = new UserInterface(backgroundSprite, new Vector2(0, 0), 1f, 0f);
 
+            UserInterface godModeUI = new UserInterface(godModeBox, new Vector2(1625, 850), 1.1f, 0.7f);
+
             Button startButton = new Button(playButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 700));
 
             Button quitButton = new Button(quitButtonAnimation, new Vector2(GameWorld.ScreenSize.X / 2 - 125, 825));
 
-            Button godButton = new Button(currentGodMode, new Vector2(1800, 975));
+            Button godButton = new Button(currentGodMode, new Vector2(1715, 903));
 
             startButton.Click += StartButton_Click;
             quitButton.Click += QuitButton_Click;
@@ -76,6 +81,7 @@ namespace KnightsTrial
             components = new List<Component>()
             {
                         background,
+                        godModeUI,
                         startButton,
                         quitButton,
                         godButton,
@@ -100,7 +106,7 @@ namespace KnightsTrial
             foreach (Component co in components)
                 co.Draw(gameTime, spriteBatch);
 
-            spriteBatch.Draw(knightsLogo[0], new Vector2(450, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(knightsLogo[0], new Vector2(475, 50), null, Color.White, 0f, Vector2.Zero, 0.8f, SpriteEffects.None, 1f);
         }
 
 
