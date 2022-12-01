@@ -101,15 +101,20 @@ namespace KnightsTrial
         {
             playerPosition = GetPlayer().Position;
 
-            Behaviour(gameTime);
-            Move(gameTime);
+            if (GameState.isBossAlive)
+            {
+                Behaviour(gameTime);
+                Move(gameTime);
+            }
+
             Animate(gameTime);
-            SetOrigin();
             DamagedFeedBack(gameTime);
             HeavyDamaged(gameTime);
 
             CheckForDeath();
+            BossDeath();
 
+            SetOrigin();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -296,6 +301,17 @@ namespace KnightsTrial
                     origin = new Vector2(swingAnimation[0].Width - swingAnimation[0].Width / 3, swingAnimation[0].Height);
                 }
             }
+            else if (objectSprites == deathAnimation)
+            {
+                if (playerPosition.X > position.X)
+                {
+                    origin = new Vector2(deathAnimation[0].Width / 4, deathAnimation[0].Height);
+                }
+                else
+                {
+                    origin = new Vector2(deathAnimation[0].Width - deathAnimation[0].Width / 4, deathAnimation[0].Height);
+                }
+            }
             else
             {
                 origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height);
@@ -318,18 +334,18 @@ namespace KnightsTrial
 
         private void CheckForDeath()
         {
-            if (health <= 0)
+            if (health <= 0 && GameState.isBossAlive == true)
             {
                 objectSprites = deathAnimation;
-                BossDeath();
+                GameState.isBossAlive = false;
+                animationTime = 0f;
             }
         }
 
         private void BossDeath()
         {
-            if (objectSprites[(int)animationTime] == deathAnimation[8])
+            if (objectSprites[(int)animationTime] == deathAnimation[9])
             {
-                GameState.isBossAlive = false;
                 toBeRemoved = true;
             }
 
