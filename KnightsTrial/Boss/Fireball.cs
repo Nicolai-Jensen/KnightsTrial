@@ -11,6 +11,7 @@ namespace KnightsTrial
         private int damageValue;
         private Vector2 playerPosition;
         private Texture2D[] explosionSprites;
+        private SoundEffect fireExplosion;
         private bool hasCollided;
         private Beware telegraph;
         //Properties
@@ -28,6 +29,7 @@ namespace KnightsTrial
             telegraph = new Beware(playerPosition);
             scale = 2f;
             damageValue = 15;
+           
         }
 
         //Methods
@@ -47,6 +49,7 @@ namespace KnightsTrial
             }
 
             blockSound = content.Load<SoundEffect>("SoundEffects/BlockSound");
+            fireExplosion = content.Load<SoundEffect>("SoundEffects/FireExplosionSound");
         }
 
         public override void Update(GameTime gameTime)
@@ -83,6 +86,9 @@ namespace KnightsTrial
                 animationTime = 0;
                 velocity = Vector2.Zero;
                 objectSprites = explosionSprites;
+                SoundEffectInstance fireExplosionInstance = fireExplosion.CreateInstance();
+                fireExplosionInstance.Volume = 0.4f;
+                fireExplosionInstance.Play();
                 other.ToBeRemoved = true;
             }
 

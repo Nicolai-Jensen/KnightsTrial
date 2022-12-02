@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -23,6 +24,7 @@ namespace KnightsTrial
         private bool canEnterPhase2;
         private bool canEnterPhase3;
         private bool canRockPhase;
+        private SoundEffect fallingFire;
 
         private Vector2 playerPosTemp;
 
@@ -95,6 +97,8 @@ namespace KnightsTrial
             }
 
             objectSprites = walkAnimation;
+
+            fallingFire = content.Load<SoundEffect>("SoundEffects/FireFallingSound");
         }
 
         public override void Update(GameTime gameTime)
@@ -416,6 +420,9 @@ namespace KnightsTrial
         public void RainOfFire()
         {
             Fireball rangedProjektile = new Fireball(playerPosition, new Vector2(playerPosition.X, playerPosition.Y - 1080), new Vector2(0, 1));
+            SoundEffectInstance fallingFireInstance = fallingFire.CreateInstance();
+            fallingFireInstance.Volume = 0.1f;
+            fallingFireInstance.Play();
         }
         public void IcicleWall()
         {
