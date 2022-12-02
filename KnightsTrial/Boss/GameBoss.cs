@@ -74,7 +74,7 @@ namespace KnightsTrial
 
             }
 
-            if (other is HiddenHitBox && heavyHit == false && this is BringerOfDeath && this.color == Color.White)
+            if ((other is HiddenHitBox || other is HiddenHitBox2) && heavyHit == false && this is BringerOfDeath && this.color == Color.White)
             {
                 health -= HiddenHitBox.DamageValue;
                 gotHit = true;

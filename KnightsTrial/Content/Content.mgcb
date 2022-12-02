@@ -3759,6 +3759,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/LightAttackSound.mp3
 
+#begin SoundEffects/PotionSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/PotionSound.mp3
+
 #begin SoundEffects/RollSound.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
