@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -10,6 +11,7 @@ namespace KnightsTrial
         private int damageValue;
         private Vector2 playerPosition;
         private Texture2D[] explosionSprites;
+        private SoundEffect fireExplosion;
         private bool hasCollided;
         private Beware telegraph;
         //Properties
@@ -27,6 +29,7 @@ namespace KnightsTrial
             telegraph = new Beware(playerPosition);
             scale = 2f;
             damageValue = 15;
+           
         }
 
         //Methods
@@ -44,6 +47,9 @@ namespace KnightsTrial
             {
                 explosionSprites[i] = content.Load<Texture2D>($"BringerOfDeath/Fireball/Explosion{i + 1}");
             }
+
+            blockSound = content.Load<SoundEffect>("SoundEffects/BlockSound");
+            fireExplosion = content.Load<SoundEffect>("SoundEffects/FireExplosionSound");
         }
 
         public override void Update(GameTime gameTime)
@@ -80,6 +86,9 @@ namespace KnightsTrial
                 animationTime = 0;
                 velocity = Vector2.Zero;
                 objectSprites = explosionSprites;
+                SoundEffectInstance fireExplosionInstance = fireExplosion.CreateInstance();
+                fireExplosionInstance.Volume = 0.4f;
+                fireExplosionInstance.Play();
                 other.ToBeRemoved = true;
             }
 
@@ -94,7 +103,12 @@ namespace KnightsTrial
                         GetPlayer().Health -= damageValue;
                         GetPlayer().HealthModified = true;
                     }
+
                     GetPlayer().Stamina -= damageValue * 2;
+                    SoundEffectInstance blockSoundInstance = blockSound.CreateInstance();
+                    blockSoundInstance.Volume = 0.5f;
+                    blockSoundInstance.Play();
+
                 }
 
                 if (Player.Blocking == false && Player.Dodging == false)

@@ -3723,6 +3723,54 @@
 /processorParam:TextureFormat=Color
 /build:ResumeButton/ResumeButton9.png
 
+#begin SoundEffects/BlockSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/BlockSound.mp3
+
+#begin SoundEffects/FireExplosionSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/FireExplosionSound.mp3
+
+#begin SoundEffects/FireFallingSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/FireFallingSound.mp3
+
+#begin SoundEffects/HeavyAttackSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/HeavyAttackSound.mp3
+
+#begin SoundEffects/HurtSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/HurtSound.mp3
+
+#begin SoundEffects/LightAttackSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/LightAttackSound.mp3
+
+#begin SoundEffects/RollSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/RollSound.mp3
+
+#begin SoundEffects/RunSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/RunSound.mp3
+
 #begin UI/GameOver.png
 /importer:TextureImporter
 /processor:TextureProcessor

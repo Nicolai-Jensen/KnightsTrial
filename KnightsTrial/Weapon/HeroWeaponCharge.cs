@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace KnightsTrial
 {
@@ -13,6 +14,10 @@ namespace KnightsTrial
         private Texture2D[] chargeAnimation;
         private Texture2D[] chargeAnimation2;
         private Texture2D[] releaseAnimation;
+
+        //The attacks Sound effects
+        private SoundEffect lightAttack;
+        private SoundEffect heavyAttack;
 
         //A Timer to determine which attack is instantiated 
         private float chargeTimer;
@@ -69,6 +74,10 @@ namespace KnightsTrial
             objectSprites = chargeAnimation;
 
             origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
+
+            //Loads the Sounds for the object
+            heavyAttack = content.Load<SoundEffect>("SoundEffects/HeavyAttackSound");
+            lightAttack = content.Load<SoundEffect>("SoundEffects/LightAttackSound");
         }
         /// <summary>
         /// This Update Method constantly loops throughout the program aslong as it is running, other methods we want to be looped are called inside this one
@@ -133,6 +142,9 @@ namespace KnightsTrial
                 //Instantiates a Light attack
                 HeroWeapon slashSprite = new HeroWeapon(new Vector2(position.X, position.Y));
                 GameState.InstantiateGameObject(slashSprite);
+                SoundEffectInstance lightAttackInstance = lightAttack.CreateInstance();
+                lightAttackInstance.Volume = 0.3f;
+                lightAttackInstance.Play();
 
                 //Resets the Timer
                 chargeTimer = 0;
@@ -156,6 +168,9 @@ namespace KnightsTrial
                 //Instantiates a Heavy Attack
                 HeroWeaponHeavy thrust = new HeroWeaponHeavy(new Vector2(position.X, position.Y));
                 GameState.InstantiateGameObject(thrust);
+                SoundEffectInstance heavyAttackInstance = heavyAttack.CreateInstance();
+                heavyAttackInstance.Volume = 0.2f;
+                heavyAttackInstance.Play();
 
                 //Deactivates the players chargestate and activates his heavy attack state, while taking 40 stamina for the cost of the attack
                 Player.ChargeAtkAnim = false;
