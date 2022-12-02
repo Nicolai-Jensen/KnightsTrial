@@ -8,17 +8,16 @@ namespace KnightsTrial
     internal class UserInterface : Component
     {
         //Fields
+        //Texture2D array for the Userinterface.
         private Texture2D[] uiComponents;
-        private SpriteFont gameFont;
+
         private Vector2 position;
         private float scale;
         private float layerDepth;
+        private Color color;
 
 
         //Properties
-        public Vector2 Position { get; set; }
-
-        public Color PenColor { get; set; }
 
         public Rectangle Rectangle
         {
@@ -27,16 +26,13 @@ namespace KnightsTrial
                 return new Rectangle((int)position.X, (int)position.Y, uiComponents[0].Width, uiComponents[0].Height);
             }
         }
-        public string Text;
-
-
 
         //Constructors
         public UserInterface(Texture2D[] texture, Vector2 posValue, float howbig, float depth)
         {
             uiComponents = texture;
 
-            PenColor = Color.White;
+            color = Color.White;
 
             position = posValue;
 
@@ -45,7 +41,6 @@ namespace KnightsTrial
             layerDepth = depth;
         }
         //Methods
-
         public override void Update(GameTime gameTime)
         {
             
@@ -53,14 +48,6 @@ namespace KnightsTrial
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(uiComponents[0], position, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
-
-            //if (!string.IsNullOrEmpty(Text))
-            //{
-            //    float x = (Rectangle.X + (Rectangle.Width / 2)) - (gameFont.MeasureString(Text).X / 2);
-            //    float y = (Rectangle.Y + (Rectangle.Height / 2)) - (gameFont.MeasureString(Text).Y / 2);
-
-            //    spriteBatch.DrawString(gameFont, Text, new Vector2(x, y), PenColor);
-            //}
         }
     }
 }

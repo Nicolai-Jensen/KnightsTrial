@@ -12,8 +12,10 @@ namespace KnightsTrial
     public class MenuState : State
     {
         //Fields
+        //A list of components which is used for the Buttons and UserInterfaces.
         public static List<Component> components;
 
+        //Texture arrays for the various Buttons and Backgrounds.
         private Texture2D[] quitButtonAnimation;
         private Texture2D[] playButtonAnimation;
         private Texture2D[] backgroundSprite;
@@ -21,8 +23,6 @@ namespace KnightsTrial
         public static Texture2D[] godModeButton;
         public static Texture2D[] currentGodMode;
         private Texture2D[] godModeBox;
-
-        //Properties
 
         //Constructors
         /// <summary>
@@ -62,8 +62,6 @@ namespace KnightsTrial
 
             currentGodMode[0] = godModeButton[0];
 
-
-
             UserInterface background = new UserInterface(backgroundSprite, new Vector2(0, 0), 1f, 0f);
 
             UserInterface godModeUI = new UserInterface(godModeBox, new Vector2(1625, 850), 1.1f, 0.7f);
@@ -101,6 +99,7 @@ namespace KnightsTrial
             foreach (Component co in components)
                 co.Update(gameTime);
         }
+
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             foreach (Component co in components)
@@ -108,7 +107,6 @@ namespace KnightsTrial
 
             spriteBatch.Draw(knightsLogo[0], new Vector2(475, 50), null, Color.White, 0f, Vector2.Zero, 0.8f, SpriteEffects.None, 1f);
         }
-
 
         /// <summary>
         /// Runs ChangeState methods and instantiates a new GameState.
@@ -126,6 +124,7 @@ namespace KnightsTrial
             GameWorld.gameState = newGame;
             _game.ChangeState(GameWorld.gameState);
         }
+
         /// <summary>
         /// Quits the game.
         /// </summary>
@@ -135,6 +134,12 @@ namespace KnightsTrial
         {
             _game.Exit();
         }
+
+        /// <summary>
+        /// When clicked godMode activate, Player cannot take damage and his damage is increased.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GodButton_Click(object sender, EventArgs e)
         {
             if (!Player.godMode)

@@ -21,7 +21,7 @@ namespace KnightsTrial
         private static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         private static List<GameObject> gameObjectsToRemove = new List<GameObject>();
 
-        //Different Texture arrays.
+        //Different Texture arrays, for the various UserInterfaces and Buttons.
         private Texture2D[] menuButtonAnimation;
         private Texture2D[] gameBackground;
         private Texture2D[] playerHealth;
@@ -112,6 +112,7 @@ namespace KnightsTrial
 
         public override void Update(GameTime gameTime)
         {
+            //If the player isnt dead, it updates the game.
             if (!Player.dead)
             {
                 RemoveGameObjects();
@@ -129,17 +130,14 @@ namespace KnightsTrial
                         }
                     }
                 }
-
+                //Updates the players Health and Stamina bar.
                 hpRectangle.Width = (int)(GetPlayer().Health / 0.434f);
                 staminaRectangle.Width = (int)(GetPlayer().Stamina / 0.434f);
 
+                //if the boss is alive, it should update the Health bar, until the boss is dead.
                 if (isBossAlive)
                 {
                     bossHPRectangle.Width = (int)(GetBoss().Health / 4.46f);
-                }
-                else
-                {
-                    
                 }
 
                 //Loops throu the gameComponents list to find Components and Update those Components.
@@ -155,6 +153,7 @@ namespace KnightsTrial
 
                 gameObjectsToAdd.Clear();
             }
+            //If the player dies, it changes the State to pauseState.
             else
             {
                 _game.ChangeState(GameWorld.pauseState);
@@ -218,6 +217,7 @@ namespace KnightsTrial
         {
             _game.ChangeState(GameWorld.pauseState);
         }
+
         /// <summary>
         /// Checks the GameObject list for the Player, and returns the player.
         /// </summary>
@@ -235,6 +235,7 @@ namespace KnightsTrial
             //if no player object is found, returns null.
             return null;
         }
+
         /// <summary>
         /// Checks the gameobject list for the BringerOfDeath, and returns it, if its on the lists.
         /// </summary>
