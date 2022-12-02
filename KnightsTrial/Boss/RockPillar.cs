@@ -10,6 +10,7 @@ namespace KnightsTrial
         //Fields
         private Texture2D[] rockPillarAnimation;
         private Texture2D[] rockPillarStatic;
+        private SoundEffect formingStone;
         private int damageValue = 25;
         private int health;
         //Properties
@@ -54,12 +55,14 @@ namespace KnightsTrial
             origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
 
             blockSound = content.Load<SoundEffect>("SoundEffects/BlockSound");
+            formingStone = content.Load<SoundEffect>("SoundEffects/StoneFormingSound");
         }
 
         public override void Update(GameTime gameTime)
         {
             AnimationSwap();
             Animate(gameTime);
+            //StoneForm();
             CheckForRemove();
         }
 
@@ -116,6 +119,16 @@ namespace KnightsTrial
                 other.ToBeRemoved = true;
             }
         }
+
+        //private void StoneForm()
+        //{
+        //    if((int)animationTime == 0 && objectSprites == rockPillarAnimation)
+        //    {
+        //        SoundEffectInstance stoneInstance = formingStone.CreateInstance();
+        //        stoneInstance.Volume = 0.5f;
+        //        stoneInstance.Play();
+        //    }
+        //}
 
         private void AnimationSwap()
         {
