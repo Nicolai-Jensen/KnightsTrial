@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -11,6 +12,7 @@ namespace KnightsTrial
         private int healAmount;
         private float potionTimer;
         private SpriteFont cooldownFont;
+        private SoundEffect potionSound;
 
         //Controlls the sprite chosen for the draw method as well as the amount of uses/charges left in the potion.
         private int potionStatus;
@@ -40,6 +42,7 @@ namespace KnightsTrial
             objectSprites[3] = content.Load<Texture2D>("Potion/HealthPotion4");
 
             cooldownFont = content.Load<SpriteFont>("CooldownFont");
+            potionSound = content.Load<SoundEffect>("SoundEffects/PotionSound");
         }
 
         public override void Update(GameTime gameTime)
@@ -85,6 +88,8 @@ namespace KnightsTrial
                 potionStatus++;
                 GetPlayer().Health += healAmount;
 
+                SoundEffectInstance potionInstance = potionSound.CreateInstance();
+                potionInstance.Play();
             }
         }
 
