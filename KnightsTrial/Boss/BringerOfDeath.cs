@@ -23,6 +23,7 @@ namespace KnightsTrial
         private bool canEnterPhase2;
         private bool canEnterPhase3;
         private bool canRockPhase;
+        private bool dead = false;
 
         private Vector2 playerPosTemp;
 
@@ -67,6 +68,7 @@ namespace KnightsTrial
             canEnterPhase2 = true;
             canEnterPhase3 = true;
             canRockPhase = true;
+            dead = false;
 
             swingAnimation = new Texture2D[10];
             walkAnimation = new Texture2D[8];
@@ -101,7 +103,7 @@ namespace KnightsTrial
         {
             playerPosition = GetPlayer().Position;
 
-            if (GameState.isBossAlive)
+            if (!dead)
             {
                 Behaviour(gameTime);
                 Move(gameTime);
@@ -334,11 +336,11 @@ namespace KnightsTrial
 
         private void CheckForDeath()
         {
-            if (health <= 0 && GameState.isBossAlive == true)
+            if (health <= 0 && dead == false)
             {
-                objectSprites = deathAnimation;
-                GameState.isBossAlive = false;
                 animationTime = 0f;
+                objectSprites = deathAnimation;
+                dead = true;
             }
         }
 
@@ -347,6 +349,7 @@ namespace KnightsTrial
             if (objectSprites[(int)animationTime] == deathAnimation[9])
             {
                 toBeRemoved = true;
+                GameState.isBossAlive = false;
             }
 
         }

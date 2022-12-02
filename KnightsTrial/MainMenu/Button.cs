@@ -82,7 +82,7 @@ namespace KnightsTrial
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             //If the player is dead, the resume button is not being drawn.
-            if (_texture == PauseState.resumeButtonAnimation && Player.dead)
+            if (_texture == PauseState.resumeButtonAnimation && Player.dead || _texture == PauseState.resumeButtonAnimation && !GameState.isBossAlive)
             { }
 
             //The Godmode Buttons is not animated, so it needs a new draw method.

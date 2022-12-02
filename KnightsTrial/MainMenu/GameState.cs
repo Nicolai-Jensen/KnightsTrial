@@ -113,7 +113,7 @@ namespace KnightsTrial
         public override void Update(GameTime gameTime)
         {
             //If the player isnt dead, it updates the game.
-            if (!Player.dead)
+            if (!Player.dead && isBossAlive)
             {
                 RemoveGameObjects();
 
@@ -155,9 +155,7 @@ namespace KnightsTrial
             }
             //If the player dies, it changes the State to pauseState.
             else
-            {
-                _game.ChangeState(GameWorld.pauseState);
-            }
+             _game.ChangeState(GameWorld.pauseState);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -165,7 +163,7 @@ namespace KnightsTrial
             foreach (GameObject go in gameObject)
             {
                 go.Draw(spriteBatch);
-                _game.DrawCollisionBox(go);
+                //_game.DrawCollisionBox(go);
             }
 
             spriteBatch.Draw(playerStamina[0], staminaRectangle, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.6f);
