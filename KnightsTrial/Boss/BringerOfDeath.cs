@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -34,6 +35,16 @@ namespace KnightsTrial
         private bool canEnterPhase1;
         private bool canEnterPhase2;
         private bool canEnterPhase3;
+
+
+        private bool canRockPhase;
+        private bool dead = false;
+
+        private SoundEffect fallingFire;
+        private SoundEffect impactStone;
+        private SoundEffect formingStone;
+
+
 
         private Vector2 playerPosTemp;
 
@@ -78,6 +89,7 @@ namespace KnightsTrial
             canEnterPhase2 = true;
             canEnterPhase3 = true;
             canRockPhase = true;
+            dead = false;
 
             //Animation arrays.
             swingAnimation = new Texture2D[10];
@@ -107,6 +119,10 @@ namespace KnightsTrial
             }
 
             objectSprites = walkAnimation;
+
+            fallingFire = content.Load<SoundEffect>("SoundEffects/FireFallingSound");
+            impactStone = content.Load<SoundEffect>("SoundEffects/StoneImpactSound");
+            formingStone = content.Load<SoundEffect>("SoundEffects/StoneFormingSound");
         }
 
         public override void Update(GameTime gameTime)
@@ -114,7 +130,7 @@ namespace KnightsTrial
             //Updates the playerPosition variable by getting the players position.
             playerPosition = GetPlayer().Position;
 
-            if (GameState.isBossAlive)
+            if (!dead)
             {
                 Behaviour(gameTime);
                 Move(gameTime);
@@ -228,6 +244,12 @@ namespace KnightsTrial
                     for (int i = 0; i < 5; i++)
                     {
                         Beware rockBeware = new Beware(new Vector2(rndBehaviour.Next(0, (int)GameWorld.ScreenSize.X), rndBehaviour.Next(0, (int)GameWorld.ScreenSize.Y)), true);
+                        SoundEffectInstance stone = impactStone.CreateInstance();
+                        stone.Volume = 0.2f;
+                        stone.Play();
+                        SoundEffectInstance stoneInstance = formingStone.CreateInstance();
+                        stoneInstance.Volume = 0.3f;
+                        stoneInstance.Play();
                     }
                     canRockPhase = false;
                     animationTime = 0;
@@ -413,11 +435,11 @@ namespace KnightsTrial
         /// </summary>
         private void CheckForDeath()
         {
-            if (health <= 0 && GameState.isBossAlive == true)
+            if (health <= 0 && dead == false)
             {
-                objectSprites = deathAnimation;
-                GameState.isBossAlive = false;
                 animationTime = 0f;
+                objectSprites = deathAnimation;
+                dead = true;
             }
         }
         /// <summary>
@@ -429,6 +451,7 @@ namespace KnightsTrial
             if (objectSprites[(int)animationTime] == deathAnimation[9])
             {
                 toBeRemoved = true;
+                GameState.isBossAlive = false;
             }
 
         }
@@ -517,6 +540,9 @@ namespace KnightsTrial
         public void RainOfFire()
         {
             Fireball rangedProjektile = new Fireball(playerPosition, new Vector2(playerPosition.X, playerPosition.Y - 1080), new Vector2(0, 1));
+            SoundEffectInstance fallingFireInstance = fallingFire.CreateInstance();
+            fallingFireInstance.Volume = 0.1f;
+            fallingFireInstance.Play();
         }
 
         /// <summary>
@@ -621,6 +647,12 @@ namespace KnightsTrial
         public void PillarOfRock()
         {
             Beware rockBeware = new Beware(playerPosition, true);
+            SoundEffectInstance stone = impactStone.CreateInstance();
+            stone.Volume = 0.2f;
+            stone.Play();
+            SoundEffectInstance stoneInstance = formingStone.CreateInstance();
+            stoneInstance.Volume = 0.3f;
+            stoneInstance.Play();
         }
 
         /// <summary>

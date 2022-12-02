@@ -3723,6 +3723,78 @@
 /processorParam:TextureFormat=Color
 /build:ResumeButton/ResumeButton9.png
 
+#begin SoundEffects/BlockSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/BlockSound.mp3
+
+#begin SoundEffects/FireExplosionSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/FireExplosionSound.mp3
+
+#begin SoundEffects/FireFallingSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/FireFallingSound.mp3
+
+#begin SoundEffects/HeavyAttackSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/HeavyAttackSound.mp3
+
+#begin SoundEffects/HurtSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/HurtSound.mp3
+
+#begin SoundEffects/LightAttackSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/LightAttackSound.mp3
+
+#begin SoundEffects/MenuMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/MenuMusic.mp3
+
+#begin SoundEffects/PotionSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/PotionSound.mp3
+
+#begin SoundEffects/RollSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/RollSound.mp3
+
+#begin SoundEffects/RunSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/RunSound.mp3
+
+#begin SoundEffects/StoneFormingSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/StoneFormingSound.mp3
+
+#begin SoundEffects/StoneImpactSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/StoneImpactSound.mp3
+
 #begin UI/GameOver.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -3902,6 +3974,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:UI/Trial_logo.png
+
+#begin UI/WinBanner.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/WinBanner.png
 
 #begin UI/YellowStamina.png
 /importer:TextureImporter

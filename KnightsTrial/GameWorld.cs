@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using SharpDX.MediaFoundation;
 
 namespace KnightsTrial
 {
@@ -78,7 +80,7 @@ namespace KnightsTrial
                 if(_currentState != pauseState && _currentState != menuState)
                     ChangeState(pauseState);
 
-                if (_currentState == pauseState)
+                if (_currentState == pauseState && !Player.dead && GameState.isBossAlive)
                     ChangeState(gameState);
             }
 

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-
+using Microsoft.Xna.Framework.Media;
 
 namespace KnightsTrial
 {
@@ -22,6 +22,7 @@ namespace KnightsTrial
         private Texture2D[] newGameButtonAnimation;
         private Texture2D pauseTexture;
         private Texture2D gameOverTexture;
+        private Texture2D victoryTexture;
 
         //Constructors
         /// <summary>
@@ -78,6 +79,9 @@ namespace KnightsTrial
         public override void LoadContent(ContentManager content)
         {
             gameOverTexture = content.Load<Texture2D>("UI/GameOver");
+            victoryTexture = content.Load<Texture2D>("UI/WinBanner");
+
+            MediaPlayer.Volume = 0.1f;
         }
 
         public override void Update(GameTime gameTime)
@@ -92,10 +96,14 @@ namespace KnightsTrial
                 co.Draw(gameTime, spriteBatch);
 
             //The the player isnt dead, the "Pause" logo is drawn
-            if(!Player.dead)
+            if(!Player.dead && GameState.isBossAlive)
                 spriteBatch.Draw(pauseTexture, new Vector2(450, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
 
-            //If the player is dead, the "Game Over" logo is drawn.
+            //If the BringerOfDeath is dead, "Victory" texture is drawn
+            else if (!GameState.isBossAlive)
+                spriteBatch.Draw(victoryTexture, new Vector2(570, 175), null, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
+
+            //if the player is dead, "Game Over" texture is drawn.
             else
                 spriteBatch.Draw(gameOverTexture, new Vector2(450, 25), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
 
@@ -111,7 +119,7 @@ namespace KnightsTrial
         private void ResumeButton_Click(object sender, EventArgs e)
         {
             //Resumes the game if the player isnt dead.
-            if(!Player.dead)
+            if(!Player.dead && GameState.isBossAlive)
             _game.ChangeState(GameWorld.gameState);
         }
 
