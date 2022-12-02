@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -45,6 +46,7 @@ namespace KnightsTrial
         public override void LoadContent(ContentManager content)
         {
 
+            blockSound = content.Load<SoundEffect>("SoundEffects/BlockSound");
         }
 
         public override void Update(GameTime gameTime)
@@ -87,6 +89,10 @@ namespace KnightsTrial
                         GetPlayer().HealthModified = true;
                     }
                     GetPlayer().Stamina -= damageValue * 2;
+                    GetPlayer().HealthModified = true;
+                    SoundEffectInstance blockSoundInstance = blockSound.CreateInstance();
+                    blockSoundInstance.Volume = 0.5f;
+                    blockSoundInstance.Play();
                 }
 
                 if (Player.Blocking == false && Player.Dodging == false && GetPlayer().HealthModified == false)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -44,6 +45,8 @@ namespace KnightsTrial
             {
                 explosionSprites[i] = content.Load<Texture2D>($"BringerOfDeath/Fireball/Explosion{i + 1}");
             }
+
+            blockSound = content.Load<SoundEffect>("SoundEffects/BlockSound");
         }
 
         public override void Update(GameTime gameTime)
@@ -94,7 +97,12 @@ namespace KnightsTrial
                         GetPlayer().Health -= damageValue;
                         GetPlayer().HealthModified = true;
                     }
+
                     GetPlayer().Stamina -= damageValue * 2;
+                    SoundEffectInstance blockSoundInstance = blockSound.CreateInstance();
+                    blockSoundInstance.Volume = 0.5f;
+                    blockSoundInstance.Play();
+
                 }
 
                 if (Player.Blocking == false && Player.Dodging == false)
