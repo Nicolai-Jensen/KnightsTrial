@@ -3729,6 +3729,18 @@
 /processorParam:Quality=Best
 /build:SoundEffects/BlockSound.mp3
 
+#begin SoundEffects/FireExplosionSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/FireExplosionSound.mp3
+
+#begin SoundEffects/FireFallingSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/FireFallingSound.mp3
+
 #begin SoundEffects/HeavyAttackSound.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
