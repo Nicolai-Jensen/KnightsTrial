@@ -13,14 +13,15 @@ namespace KnightsTrial
     internal class PauseState : State
     {
         //Fields
+        //A list used for UI and buttons.
         public static List<Component> components;
+
+        //Texture arrays for the various Buttons and Backgrounds.
         private Texture2D[] quitButtonAnimation;
         public static Texture2D[] resumeButtonAnimation;
         private Texture2D[] newGameButtonAnimation;
-        private Texture2D knightsLogo;
-        private Texture2D gameOver;
-
-        //Properties
+        private Texture2D pauseTexture;
+        private Texture2D gameOverTexture;
 
         //Constructors
         /// <summary>
@@ -39,7 +40,7 @@ namespace KnightsTrial
             newGameButtonAnimation = new Texture2D[21];
 
 
-            knightsLogo = _content.Load<Texture2D>("UI/pause");
+            pauseTexture = _content.Load<Texture2D>("UI/pause");
 
             for (int i = 0; i < resumeButtonAnimation.Length; i++)
             {
@@ -73,11 +74,10 @@ namespace KnightsTrial
             #endregion
         }
 
-
         //Methods
         public override void LoadContent(ContentManager content)
         {
-            gameOver = content.Load<Texture2D>("UI/GameOver");
+            gameOverTexture = content.Load<Texture2D>("UI/GameOver");
         }
 
         public override void Update(GameTime gameTime)
@@ -91,15 +91,17 @@ namespace KnightsTrial
             foreach (Component co in components)
                 co.Draw(gameTime, spriteBatch);
 
+            //The the player isnt dead, the "Pause" logo is drawn
             if(!Player.dead)
-                spriteBatch.Draw(knightsLogo, new Vector2(450, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(pauseTexture, new Vector2(450, 50), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
+
+            //If the player is dead, the "Game Over" logo is drawn.
             else
-                spriteBatch.Draw(gameOver, new Vector2(450, 25), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(gameOverTexture, new Vector2(450, 25), null, Color.White, 0f, Vector2.Zero, 0.90f, SpriteEffects.None, 1f);
 
             //Draws out the GameState, but does not Update it, to "pause" the game.
             GameWorld.gameState.Draw(gameTime, spriteBatch);
         }
-
 
         /// <summary>
         /// Runs ChangeState methods and switches to the GameState.
@@ -108,7 +110,7 @@ namespace KnightsTrial
         /// <param name="e"></param>
         private void ResumeButton_Click(object sender, EventArgs e)
         {
-            //Starts the game or chooses boss?.
+            //Resumes the game if the player isnt dead.
             if(!Player.dead)
             _game.ChangeState(GameWorld.gameState);
         }
@@ -131,27 +133,13 @@ namespace KnightsTrial
         }
 
         /// <summary>
-        /// Quits the game.
+        /// Goes back to MenuState when clicked.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void QuitButton_Click(object sender, EventArgs e)
         {
             _game.ChangeState(GameWorld.menuState);
-        }
-
-        private Player GetPlayer()
-        {
-            //loops through the gameObject list untill it finds the player, then returns it. 
-            foreach (GameObject go in GameState.gameObject)
-            {
-                if (go is Player)
-                {
-                    return (Player)go;
-                }
-            }
-            //if no player object is found, returns null.
-            return null;
         }
     }
 }

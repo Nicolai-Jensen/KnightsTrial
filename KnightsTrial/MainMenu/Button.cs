@@ -16,9 +16,12 @@ namespace KnightsTrial
         private MouseState currentMouse;
         private MouseState previousMouse;
 
+        //Texture array for the buttons.
         private Texture2D[] _texture;
+
         private Vector2 position;
 
+        //Used for buttons with animation.
         protected float animationTime;
         protected float animationSpeed;
 
@@ -58,15 +61,18 @@ namespace KnightsTrial
             //mouse Rectangle used to see if the mouse is intersecting with the button.
             Rectangle mouseRectangle = new Rectangle(currentMouse.X, currentMouse.Y, 1, 1);
 
+            //If the mouse hovers over the buttons, they begin to animate.
             if (mouseRectangle.Intersects(Rectangle))
             {
                 Animate(gameTime);
 
+                //If the buttons is clicked. begin the Click event.
                 if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed)
                 {
                     Click?.Invoke(this, new EventArgs());
                 }
             }
+            //If the mouse leaves the buttons rectangle, the animation resets back to sprite[0]
             else
             {
                 animationTime = 0;
@@ -75,21 +81,21 @@ namespace KnightsTrial
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            //If the player is dead, the resume button is not being drawn.
             if (_texture == PauseState.resumeButtonAnimation && Player.dead)
             { }
+
+            //The Godmode Buttons is not animated, so it needs a new draw method.
             else if(_texture == MenuState.currentGodMode)
                 spriteBatch.Draw(_texture[0], position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+
             else
                 spriteBatch.Draw(_texture[(int)animationTime], position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-
-            //if (!string.IsNullOrEmpty(Text))
-            //{
-            //    float x = (Rectangle.X + (Rectangle.Width / 2)) - (buttonFont.MeasureString(Text).X / 2);
-            //    float y = (Rectangle.Y + (Rectangle.Height / 2)) - (buttonFont.MeasureString(Text).Y / 2);
-
-            //    spriteBatch.DrawString(buttonFont, Text, new Vector2(x, y), PenColour);
-            //}
         }
+        /// <summary>
+        /// Animates the buttons but only loops throu the animation once. 
+        /// </summary>
+        /// <param name="gameTime"></param>
         protected void Animate(GameTime gameTime)
         {
             animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds * animationSpeed;
@@ -99,19 +105,6 @@ namespace KnightsTrial
                 animationTime = 20;
                 animationSpeed = 0;
             }
-        }
-        private Player GetPlayer()
-        {
-            //loops through the gameObject list untill it finds the player, then returns it. 
-            foreach (GameObject go in GameState.gameObject)
-            {
-                if (go is Player)
-                {
-                    return (Player)go;
-                }
-            }
-            //if no player object is found, returns null.
-            return null;
         }
     }
 }
