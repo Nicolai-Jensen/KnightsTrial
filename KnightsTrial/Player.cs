@@ -50,6 +50,7 @@ namespace KnightsTrial
         private SoundEffect dodgeSound;
         private SoundEffect runSound;
         private SoundEffect hurtSound;
+        SoundEffectInstance runSoundInstance;
 
         //The Timers used for gameTime methods
         private float hitCooldownTimer;
@@ -67,6 +68,8 @@ namespace KnightsTrial
         private MouseState previousMouse;
         private KeyboardState currentKey;
         private KeyboardState previousKey;
+        private Texture2D[] currentSprite;
+        private Texture2D[] previousSprite;
 
         //Properties
 
@@ -248,7 +251,8 @@ namespace KnightsTrial
             dodgeSound = content.Load<SoundEffect>("SoundEffects/RollSound");
             runSound = content.Load<SoundEffect>("SoundEffects/RunSound");
             hurtSound = content.Load<SoundEffect>("SoundEffects/HurtSound");
-       
+            runSoundInstance = runSound.CreateInstance();
+
         }
 
         /// <summary>
@@ -264,6 +268,9 @@ namespace KnightsTrial
             previousKey = currentKey;
             currentKey = Keyboard.GetState();
 
+            previousSprite = currentSprite;
+            currentSprite = objectSprites;
+
             //All of the Players methods that need to be looped constantly are called here
             HandleInput(gameTime);
             FacingAttack();
@@ -271,6 +278,7 @@ namespace KnightsTrial
             SetDodgeVelocity();
             AttackingAnimations();
             Death();
+            RunningSound();
             Move(gameTime);
             Animate(gameTime);
             ScreenWrap();
@@ -359,22 +367,25 @@ namespace KnightsTrial
                 if (velocity != Vector2.Zero)
                 {
                     velocity.Normalize();
-                }
+                }     
+            }
+        }
 
-                //if (objectSprites == runAnimation)
-                //{
-                //    SoundEffectInstance runSoundInstance = runSound.CreateInstance();
-                //    runSoundInstance.Volume = 0.3f;
-                //    runSoundInstance.Play();
+        /// <summary>
+        /// This method is used for playing and deactivating the running sound effect
+        /// </summary>
+        public void RunningSound()
+        {
+            runSoundInstance.Volume = 0.3f;
+            //currentKey.IsKeyDown(Keys.W) && previousKey.IsKeyUp(Keys.W) || currentKey.IsKeyDown(Keys.A) && previousKey.IsKeyUp(Keys.A) || currentKey.IsKeyDown(Keys.S) && previousKey.IsKeyUp(Keys.S) || currentKey.IsKeyDown(Keys.D) && previousKey.IsKeyUp(Keys.D)
+            if (currentSprite == runAnimation && previousSprite != runAnimation)
+            {
+                runSoundInstance.Play();
+            }
 
-                //    if (objectSprites != runAnimation)
-                //    {
-                //        runSoundInstance.Pause();
-                //    }
-                //}
-
-                
-
+            if (objectSprites != runAnimation)
+            {
+                runSoundInstance.Stop();
             }
         }
 
