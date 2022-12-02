@@ -27,6 +27,8 @@ namespace KnightsTrial
         private bool dead = false;
 
         private SoundEffect fallingFire;
+        private SoundEffect impactStone;
+        private SoundEffect formingStone;
 
 
         private Vector2 playerPosTemp;
@@ -103,6 +105,8 @@ namespace KnightsTrial
             objectSprites = walkAnimation;
 
             fallingFire = content.Load<SoundEffect>("SoundEffects/FireFallingSound");
+            impactStone = content.Load<SoundEffect>("SoundEffects/StoneImpactSound");
+            formingStone = content.Load<SoundEffect>("SoundEffects/StoneFormingSound");
         }
 
         public override void Update(GameTime gameTime)
@@ -208,6 +212,12 @@ namespace KnightsTrial
                     for (int i = 0; i < 5; i++)
                     {
                         Beware rockBeware = new Beware(new Vector2(rndBehaviour.Next(0, (int)GameWorld.ScreenSize.X), rndBehaviour.Next(0, (int)GameWorld.ScreenSize.Y)), true);
+                        SoundEffectInstance stone = impactStone.CreateInstance();
+                        stone.Volume = 0.2f;
+                        stone.Play();
+                        SoundEffectInstance stoneInstance = formingStone.CreateInstance();
+                        stoneInstance.Volume = 0.3f;
+                        stoneInstance.Play();
                     }
                     canRockPhase = false;
                     animationTime = 0;
@@ -511,6 +521,12 @@ namespace KnightsTrial
         public void PillarOfRock()
         {
             Beware rockBeware = new Beware(playerPosition, true);
+            SoundEffectInstance stone = impactStone.CreateInstance();
+            stone.Volume = 0.2f;
+            stone.Play();
+            SoundEffectInstance stoneInstance = formingStone.CreateInstance();
+            stoneInstance.Volume = 0.3f;
+            stoneInstance.Play();
         }
         public void ArcaneMissile()
         {
