@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 
 namespace KnightsTrial
@@ -91,7 +93,10 @@ namespace KnightsTrial
         //Methods
         public override void LoadContent(ContentManager content)
         {
-            
+            backgroundMusic = _content.Load<Song>("SoundEffects/MenuMusic");
+            MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.Volume = 0.3f;
+            MediaPlayer.IsRepeating = true;
         }
 
         public override void Update(GameTime gameTime)

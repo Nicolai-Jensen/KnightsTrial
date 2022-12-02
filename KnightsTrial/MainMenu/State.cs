@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace KnightsTrial
 {
@@ -13,6 +14,7 @@ namespace KnightsTrial
         protected ContentManager _content;
         protected GameWorld _game;
         protected GraphicsDevice _graphicsDevice;
+        protected Song backgroundMusic;
 
         //Properties
 

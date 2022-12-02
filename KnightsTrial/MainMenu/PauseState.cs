@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-
+using Microsoft.Xna.Framework.Media;
 
 namespace KnightsTrial
 {
@@ -80,6 +80,8 @@ namespace KnightsTrial
         {
             gameOverTexture = content.Load<Texture2D>("UI/GameOver");
             victoryTexture = content.Load<Texture2D>("UI/WinBanner");
+
+            MediaPlayer.Volume = 0.1f;
         }
 
         public override void Update(GameTime gameTime)
