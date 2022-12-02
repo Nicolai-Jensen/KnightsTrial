@@ -36,8 +36,6 @@ namespace KnightsTrial
         private bool canEnterPhase2;
         private bool canEnterPhase3;
 
-
-        private bool canRockPhase;
         private bool dead = false;
 
         private SoundEffect fallingFire;
