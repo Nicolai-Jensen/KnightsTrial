@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 namespace KnightsTrial
 {/// <summary>
@@ -61,8 +63,12 @@ namespace KnightsTrial
             playerStaminaUI = new Texture2D[1];
             bossHealthUI = new Texture2D[1];
             menuButtonAnimation = new Texture2D[21];
-            
-            
+
+            backgroundMusic = _content.Load<Song>("SoundEffects/MenuMusic");
+            MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.IsRepeating = true;
+
+
             gameBackground[0] = _content.Load<Texture2D>("UI/NewKnightsTrialBackground");
             playerHealth[0] = _content.Load<Texture2D>("UI/RedHealth");
             bossHealth[0] = _content.Load<Texture2D>("UI/RedHealth");
@@ -103,6 +109,8 @@ namespace KnightsTrial
         //Methods
         public override void LoadContent(ContentManager content)
         {
+            MediaPlayer.Volume = 0.3f;
+
             foreach (GameObject go in gameObject)
             {
                 go.LoadContent(content);
