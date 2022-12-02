@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -18,6 +19,7 @@ namespace KnightsTrial
         protected Color color;
         protected int layerDepth;
         protected bool toBeRemoved;
+        protected SoundEffect blockSound;
         //Properties
 
         public float Speed

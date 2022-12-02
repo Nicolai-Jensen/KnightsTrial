@@ -46,10 +46,10 @@ namespace KnightsTrial
         private Texture2D[] deathAnimation;
 
         //All the SoundEffects that play through the player
-        private SoundEffect attackingSound;
         private SoundEffect potionSound;
         private SoundEffect dodgeSound;
-        private SoundEffect blockSound;
+        private SoundEffect runSound;
+        private SoundEffect hurtSound;
 
         //The Timers used for gameTime methods
         private float hitCooldownTimer;
@@ -244,7 +244,13 @@ namespace KnightsTrial
             block = new Texture2D[1];
             block[0] = content.Load<Texture2D>("Block");
 
+            //Loads all the players sound effects
+            dodgeSound = content.Load<SoundEffect>("SoundEffects/RollSound");
+            runSound = content.Load<SoundEffect>("SoundEffects/RunSound");
+            hurtSound = content.Load<SoundEffect>("SoundEffects/HurtSound");
+       
         }
+
         /// <summary>
         /// This Update Method constantly loops throughout the program aslong as it is running, other methods we want to be looped are called inside this one
         /// </summary>
@@ -355,6 +361,20 @@ namespace KnightsTrial
                     velocity.Normalize();
                 }
 
+                //if (objectSprites == runAnimation)
+                //{
+                //    SoundEffectInstance runSoundInstance = runSound.CreateInstance();
+                //    runSoundInstance.Volume = 0.3f;
+                //    runSoundInstance.Play();
+
+                //    if (objectSprites != runAnimation)
+                //    {
+                //        runSoundInstance.Pause();
+                //    }
+                //}
+
+                
+
             }
         }
 
@@ -443,8 +463,8 @@ namespace KnightsTrial
                 origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
             }
 
-
-            if (dead == true)
+            //If the player is dying this origin is played
+            if (dying == true)
             {
                 origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
             }
@@ -510,13 +530,13 @@ namespace KnightsTrial
                     }
                     hitCooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     //this timer if statement is hit almost immediately, making the code inside only able to play effectly once
-                    //if (hitCooldownTimer <= 0.05f)
-                    //{
-                    //    //plays a Sound effect that indicates the player has been hit
-                    //    //SoundEffectInstance hurtSoundIntance = hurtSound.CreateInstance();
-                    //    //hurtSoundIntance.Volume = 0.3f;
-                    //    //hurtSoundIntance.Play();
-                    //}
+                    if (hitCooldownTimer <= 0.05f)
+                {
+                    //plays a Sound effect that indicates the player has been hit
+                    SoundEffectInstance hurtSoundInstance = hurtSound.CreateInstance();
+                    hurtSoundInstance.Volume = 0.5f;
+                    hurtSoundInstance.Play();
+                }
 
                     //When the timer hits over this value it makes the player normal colored and enables them to be hit again
                     if (hitCooldownTimer >= 0.5f)
@@ -531,7 +551,6 @@ namespace KnightsTrial
 
         /// <summary>
         /// This Method players the death animation when the players HP reaches 0
-        /// NOT IMPLEMENTED YET !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         /// </summary>
         public void Death()
         {
@@ -714,6 +733,10 @@ namespace KnightsTrial
                 stamina -= 20;
                 animationTime = 0;
                 dodgeVelocity = velocity;
+
+                SoundEffectInstance newSoundInstance = dodgeSound.CreateInstance();
+                newSoundInstance.Volume = 0.1f;
+                newSoundInstance.Play();
             }
 
             //starts a timer that determines when the dodge is finished

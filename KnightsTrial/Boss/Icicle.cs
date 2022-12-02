@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -56,6 +57,8 @@ namespace KnightsTrial
             objectSprites[0] = content.Load<Texture2D>("BringerOfDeath/Icicle");
 
             origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
+
+            blockSound = content.Load<SoundEffect>("SoundEffects/BlockSound");
         }
 
         public override void Update(GameTime gameTime)
@@ -82,6 +85,9 @@ namespace KnightsTrial
                         GetPlayer().HealthModified = true;
                     }
                     GetPlayer().Stamina -= damageValue * 2;
+                    SoundEffectInstance blockSoundInstance = blockSound.CreateInstance();
+                    blockSoundInstance.Volume = 0.5f;
+                    blockSoundInstance.Play();
                     ToBeRemoved = true;
                 }
 

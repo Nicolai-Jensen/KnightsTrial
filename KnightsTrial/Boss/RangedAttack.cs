@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
+using Microsoft.Xna.Framework.Audio;
 
 namespace KnightsTrial
 {
@@ -85,6 +86,9 @@ namespace KnightsTrial
 
             //Sets the origin of the object to a certain spot so it rotates properly and lines up with the collisionBox
             origin = new Vector2(objectSprites[0].Width / 5 * 2, objectSprites[0].Height / 2);
+
+            //Loads SoundEffects used
+            blockSound = content.Load<SoundEffect>("SoundEffects/BlockSound");
         }
         /// <summary>
         /// The Method for Drawing out a sprite to the screen, this method is an override for the vitual one in GameObject and is called in GameWorld/GameState
@@ -150,6 +154,9 @@ namespace KnightsTrial
                     }
                     //damage done to the players stamina is double of the attacks DamageValue
                     GetPlayer().Stamina -= damageValue * 2;
+                    SoundEffectInstance blockSoundInstance = blockSound.CreateInstance();
+                    blockSoundInstance.Volume = 0.5f;
+                    blockSoundInstance.Play();
                 }
 
                 //Checks if the player is neither dodging nor blocking

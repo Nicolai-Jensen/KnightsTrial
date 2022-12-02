@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 
 namespace KnightsTrial
 {
@@ -51,6 +52,8 @@ namespace KnightsTrial
             objectSprites = rockPillarAnimation;
 
             origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
+
+            blockSound = content.Load<SoundEffect>("SoundEffects/BlockSound");
         }
 
         public override void Update(GameTime gameTime)
@@ -92,6 +95,9 @@ namespace KnightsTrial
                         GetPlayer().HealthModified = true;
                     }
                     GetPlayer().Stamina -= damageValue * 2;
+                    SoundEffectInstance blockSoundInstance = blockSound.CreateInstance();
+                    blockSoundInstance.Volume = 0.5f;
+                    blockSoundInstance.Play();
                 }
 
                 if (Player.Blocking == false && Player.Dodging == false)
