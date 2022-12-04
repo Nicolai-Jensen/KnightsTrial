@@ -100,6 +100,11 @@ namespace KnightsTrial
             }
         }
 
+        /// <summary>
+        /// Loops through the gameObject list in GameState to find and return the Player object.
+        /// If no Player object is found, returns null.
+        /// </summary>
+        /// <returns></returns>
         protected Player GetPlayer()
         {
             //loops through the gameObject list untill it finds the player, then returns it. 

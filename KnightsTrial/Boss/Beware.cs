@@ -35,6 +35,11 @@ namespace KnightsTrial
             isRockPillar = false;
         }
 
+        /// <summary>
+        /// Overloaded constructor for when the Beware object should instantiate a RockPillar object.
+        /// </summary>
+        /// <param name="inputPosition"></param>
+        /// <param name="isRockPillar"></param>
         public Beware(Vector2 inputPosition, bool isRockPillar)
         {
             GameState.InstantiateGameObject(this);
@@ -74,6 +79,10 @@ namespace KnightsTrial
 
         }
 
+        /// <summary>
+        /// Starts the rockPillarTimer and instantiates a RockPillar after 0.5 seconds.
+        /// </summary>
+        /// <param name="gameTime"></param>
         private void SpawnRockPillar(GameTime gameTime)
         {
             rockPillarTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;

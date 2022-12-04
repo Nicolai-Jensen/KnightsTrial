@@ -72,6 +72,12 @@ namespace KnightsTrial
             spriteBatch.Draw(objectSprites[(int)animationTime], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0.5f);
 
         }
+
+        /// <summary>
+        /// Loops through the gameObject list in GameState to find and return the Player object.
+        /// If no Player object is found, returns null.
+        /// </summary>
+        /// <returns></returns>
         private Player GetPlayer()
         {
             //loops through the gameObject list untill it finds the player, then returns it. 
@@ -130,6 +136,10 @@ namespace KnightsTrial
         //    }
         //}
 
+        /// <summary>
+        /// Changes the animation from the RockPillar coming out of the ground to the sprite of it standing on the playing field, 
+        /// as well as resets the animationTime.
+        /// </summary>
         private void AnimationSwap()
         {
             if ((int)animationTime == 9)
@@ -139,8 +149,12 @@ namespace KnightsTrial
             }
         }
 
+        /// <summary>
+        /// Checks if the object should be removed from the gameObject list.
+        /// </summary>
         private void CheckForRemove()
         {
+            //If the objects health is less than or equal to 0, the bool "toBeRemoved" will be set to true.
             if (health <= 0)
             {
                 toBeRemoved = true;
