@@ -78,8 +78,15 @@ namespace KnightsTrial
             }
         }
 
+        /// <summary>
+        /// An override of the OnCollision method for the Fireball object.
+        /// Controls what happen when the object collides with other objects.
+        /// </summary>
+        /// <param name="other"></param>
         public override void OnCollision(GameObject other)
         {
+            // if the Fireball collides with a Beware object and the bool "hasCollided" is false. the current animation will change to the explosion, velocity will
+            //be set to 0,0 so the object won't move and the sound effect will be played. The collission will also remove the Beware object, and the "hasCollided" will be set to true.
             if (other is Beware && !hasCollided)
             {
                 hasCollided = true;
@@ -119,6 +126,11 @@ namespace KnightsTrial
             }
         }
 
+        /// <summary>
+        /// Loops through the gameObject list in GameState to find and return the Player object.
+        /// If no Player object is found, returns null.
+        /// </summary>
+        /// <returns></returns>
         private Player GetPlayer()
         {
             //loops through the gameObject list untill it finds the player, then returns it. 
@@ -133,8 +145,12 @@ namespace KnightsTrial
             return null;
         }
 
+        /// <summary>
+        /// Checks whether the object should be removed from the gameObject list.
+        /// </summary>
         private void CheckForRemove()
         {
+            //If the current sprite in the animation is equal to the 6th sprite in the explosionSprites array, the object will be removed.
             if (objectSprites[(int)animationTime] == explosionSprites[6])
             {
                 toBeRemoved = true;
