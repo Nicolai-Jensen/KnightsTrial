@@ -80,19 +80,31 @@ namespace KnightsTrial
             //if no player object is found, returns null.
             return null;
         }
+
+        /// <summary>
+        /// An override of the OnCollision method for the SwingProjectile object.
+        /// Controls what happen when the object collides with other objects.
+        /// HealthModified is a backup method in player that disables collision for a short while incase our first attempt at getting an attack to only hit once doesn't go through
+        /// </summary>
+        /// <param name="other"></param>
         public override void OnCollision(GameObject other)
         {
+            //Checks that the condidtions are met to be able to hit the player, That the attack hasn't hit before and the player is in a normal state
             if (other is Player && hasDamaged == false && !Player.godMode)
             {
                 hasDamaged = true;
 
+                //checks if the player is blocking and not dodging
                 if (Player.Blocking == true && Player.Dodging != true && GetPlayer().HealthModified == false)
                 {
+                    //Damages the health if the player doesn't have enough stamina value
                     if (GetPlayer().Stamina < damageValue)
                     {
                         GetPlayer().Health -= damageValue;
                         GetPlayer().HealthModified = true;
                     }
+
+                    //Damages the stamina instead of the health of the player and makes a block sound effect
                     GetPlayer().Stamina -= damageValue * 2;
                     GetPlayer().HealthModified = true;
                     SoundEffectInstance blockSoundInstance = blockSound.CreateInstance();
@@ -100,6 +112,7 @@ namespace KnightsTrial
                     blockSoundInstance.Play();
                 }
 
+                //Checks if the player is neither blocking or dodging and damages the player
                 if (Player.Blocking == false && Player.Dodging == false && GetPlayer().HealthModified == false)
                 {
                     GetPlayer().Health -= damageValue;
