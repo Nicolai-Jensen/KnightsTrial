@@ -619,41 +619,45 @@ namespace KnightsTrial
         /// </summary>
         public void AttackingAnimations()
         {
-            //The Charge animation when holding left click
-            if (chargeAtkAnim == true)
-            {
-                objectSprites = heroWeaponPrep;
-            }
 
-            //The heavy stab animation of the player when initiating a heavy attack
-            if (heavyAtkAnim == true)
+            if (health >= 0)
             {
-                animationSpeed = 8f;
-                objectSprites = heroWeapon2;
-
-                //When the animation is finished it marks the attack as finished and starts the cooldowntimer & stamina regen
-                if(animationTime > 4)
+                //The Charge animation when holding left click
+                if (chargeAtkAnim == true)
                 {
-                    attacking = false;
-                    heavyAtkAnim = false;
-                    attackCooldown = true;
-                    regenStamina = true;
+                    objectSprites = heroWeaponPrep;
                 }
-            }
 
-            //The Light attack swing animation of the player when initiating a light attack
-            if (lightAtkAnim == true)
-            {
-                animationSpeed = 8f;
-                objectSprites = heroWeapon;
-
-                //When the animation is finished it marks the attack as finished and starts the cooldowntimer & stamina regen
-                if (animationTime > 4)
+                //The heavy stab animation of the player when initiating a heavy attack
+                if (heavyAtkAnim == true)
                 {
-                    attacking = false;
-                    lightAtkAnim = false;
-                    attackCooldown = true;
-                    regenStamina = true;
+                    animationSpeed = 8f;
+                    objectSprites = heroWeapon2;
+
+                    //When the animation is finished it marks the attack as finished and starts the cooldowntimer & stamina regen
+                    if (animationTime > 4)
+                    {
+                        attacking = false;
+                        heavyAtkAnim = false;
+                        attackCooldown = true;
+                        regenStamina = true;
+                    }
+                }
+
+                //The Light attack swing animation of the player when initiating a light attack
+                if (lightAtkAnim == true)
+                {
+                    animationSpeed = 8f;
+                    objectSprites = heroWeapon;
+
+                    //When the animation is finished it marks the attack as finished and starts the cooldowntimer & stamina regen
+                    if (animationTime > 4)
+                    {
+                        attacking = false;
+                        lightAtkAnim = false;
+                        attackCooldown = true;
+                        regenStamina = true;
+                    }
                 }
             }
         }
@@ -672,6 +676,7 @@ namespace KnightsTrial
             {
                 initiateDeath = true;
                 dying = true;
+                velocity = new Vector2(0,0);
             }
         }
 
