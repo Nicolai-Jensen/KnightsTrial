@@ -34,6 +34,12 @@ namespace KnightsTrial
         //Constructors
 
         //Methods
+
+        /// <summary>
+        /// An override of the OnCollision method for the GameBoss object.
+        /// Controls what happen when the object collides with other objects.
+        /// </summary>
+        /// <param name="other"></param>
         public override void OnCollision(GameObject other)
         {
 
@@ -55,10 +61,12 @@ namespace KnightsTrial
 
             //}
 
+            //Checks if the boss has made contact with a light attack from the player and utilizes the currentHit/previousHit variables to make sure the light attack can only hit once per attack
             if (other is HeroWeapon && this is BringerOfDeath && this.color == Color.White)
             {
                 currentHit = (HeroWeapon)other;
 
+                //Damages the bosses health and sets gotHit to true activating the damage feedback method
                 if (currentHit != previousHit)
                 {
                     health -= HeroWeapon.DamageValue;
@@ -66,22 +74,26 @@ namespace KnightsTrial
                     gotHit = true;
                 }
 
-
+                //If the current light attack is the same light attack as the the one he just got hit by it will do nothing
                 if (currentHit == previousHit)
                 {
                     health -= 0;
                 }
-
             }
 
+            //The collision check for the players heavy attack, this collision activates HeavyDamaged which is a method that makes the boss invulnerable to more heavy attack for a limited time
             if ((other is HiddenHitBox || other is HiddenHitBox2) && heavyHit == false && this is BringerOfDeath && this.color == Color.White)
             {
                 health -= HiddenHitBox.DamageValue;
                 gotHit = true;
                 heavyHit = true;
             }
-
         }
+
+        /// <summary>
+        /// A method used to make sure the boss is only hit once by an attack and not multiple times or frames by activating/deavtivating a bool which starts a timer
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void HeavyDamaged(GameTime gameTime)
         {
             if (heavyHit == true)

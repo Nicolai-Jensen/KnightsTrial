@@ -99,10 +99,13 @@ namespace KnightsTrial
                 other.ToBeRemoved = true;
             }
 
+            //Checks that the condidtions are met to be able to hit the player, fireball has to be in its explosion state and player needs to be in the nomral state
             if (other is Player && objectSprites == explosionSprites && hasCollided && !Player.godMode)
             {
+                //Setting has collided to false when hitting a player will make sure it only hits once
                 hasCollided = false;
 
+                //Checks that the player is blocking && isn't dodging
                 if (Player.Blocking == true && Player.Dodging != true)
                 {
                     if(GetPlayer().Stamina < damageValue)

@@ -71,14 +71,22 @@ namespace KnightsTrial
             spriteBatch.Draw(objectSprites[0], position, null, Color.White, rotation, origin, scale, SpriteEffects.None, 0.5f);
         }
 
+        /// <summary>
+        /// An override of the OnCollision method for the icicle object.
+        /// Controls what happen when the object collides with other objects.
+        /// HealthModified is a backup method in player that disables collision for a short while incase our first attempt at getting an attack to only hit once doesn't go through
+        /// </summary>
+        /// <param name="other"></param>
         public override void OnCollision(GameObject other)
         {
+
+            //Checks that the condidtions are met to be able to hit the player
             if (other is Player && !Player.godMode)
             {
-                
+                //Checks that the player is blocking && isn't dodging
                 if (Player.Blocking == true && Player.Dodging != true)
                 {
-
+                    //if the player doesn't have enough stamina the attack will damage health instead here and set HealthModitied to true
                     if (GetPlayer().Stamina < damageValue)
                     {
                         GetPlayer().Health -= damageValue;
