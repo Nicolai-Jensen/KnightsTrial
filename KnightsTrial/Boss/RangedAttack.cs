@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// A class for the RangedAttack object used as a magic attack by the boss.
+    /// </summary>
     class RangedAttack : GameObject
     {
 

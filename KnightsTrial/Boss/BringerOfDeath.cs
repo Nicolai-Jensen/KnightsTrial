@@ -152,6 +152,7 @@ namespace KnightsTrial
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            //If the attackAnimation is not running, draw will use the players current position to check which side it should be drawn to.
             if (!attackAnimationActive)
             {
                 if (playerPosition.X < position.X)
@@ -165,6 +166,7 @@ namespace KnightsTrial
                     isFacingLeft = false;
                 }
             }
+            //Else if the attackAnimation is running, draw will use the players position from when the attack began(playerPosTemp) to check which side it should be drawn to.
             else
             {
                 if (playerPosTemp.X < position.X)

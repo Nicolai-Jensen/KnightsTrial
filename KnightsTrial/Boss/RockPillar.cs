@@ -5,6 +5,10 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// A class for the RockPillar object used as an attack by the boss.
+    /// Also works as an obbstacle, that blocks icicles.
+    /// </summary>
     internal class RockPillar : GameObject
     {
         //Fields
