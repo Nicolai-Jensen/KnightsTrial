@@ -14,7 +14,6 @@ namespace KnightsTrial
         //Fields
         private Texture2D[] rockPillarAnimation;
         private Texture2D[] rockPillarStatic;
-        private SoundEffect formingStone;
         private int damageValue = 25;
         private int health;
         //Properties
@@ -59,7 +58,6 @@ namespace KnightsTrial
             origin = new Vector2(objectSprites[0].Width / 2, objectSprites[0].Height / 2);
 
             blockSound = content.Load<SoundEffect>("SoundEffects/BlockSound");
-            formingStone = content.Load<SoundEffect>("SoundEffects/StoneFormingSound");
         }
 
         public override void Update(GameTime gameTime)
@@ -129,17 +127,6 @@ namespace KnightsTrial
                 other.ToBeRemoved = true;
             }
         }
-
-        //private void StoneForm()
-        //{
-        //    if((int)animationTime == 0 && objectSprites == rockPillarAnimation)
-        //    {
-        //        SoundEffectInstance stoneInstance = formingStone.CreateInstance();
-        //        stoneInstance.Volume = 0.5f;
-        //        stoneInstance.Play();
-        //    }
-        //}
-
         /// <summary>
         /// Changes the animation from the RockPillar coming out of the ground to the sprite of it standing on the playing field, 
         /// as well as resets the animationTime.

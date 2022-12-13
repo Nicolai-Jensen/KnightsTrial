@@ -251,10 +251,10 @@ namespace KnightsTrial
                     {
                         Beware rockBeware = new Beware(new Vector2(rndBehaviour.Next(0, (int)GameWorld.ScreenSize.X), rndBehaviour.Next(0, (int)GameWorld.ScreenSize.Y)), true);
                         SoundEffectInstance stone = impactStone.CreateInstance();
-                        stone.Volume = 0.2f;
+                        stone.Volume = 0.3f;
                         stone.Play();
                         SoundEffectInstance stoneInstance = formingStone.CreateInstance();
-                        stoneInstance.Volume = 0.3f;
+                        stoneInstance.Volume = 0.4f;
                         stoneInstance.Play();
                     }
                     canRockPhase = false;
@@ -548,7 +548,7 @@ namespace KnightsTrial
         {
             Fireball rangedProjektile = new Fireball(playerPosition, new Vector2(playerPosition.X, playerPosition.Y - 1080), new Vector2(0, 1));
             SoundEffectInstance fallingFireInstance = fallingFire.CreateInstance();
-            fallingFireInstance.Volume = 0.1f;
+            fallingFireInstance.Volume = 0.8f;
             fallingFireInstance.Play();
         }
 
@@ -561,7 +561,7 @@ namespace KnightsTrial
             int icicleDirection = rndBehaviour.Next(1, 5);
 
             SoundEffectInstance ice = iceSound.CreateInstance();
-            ice.Volume = 0.1f;
+            ice.Volume = 0.5f;
             ice.Play();
 
             //Takes in the icicleDirection to choose a direction.
@@ -659,10 +659,10 @@ namespace KnightsTrial
         {
             Beware rockBeware = new Beware(playerPosition, true);
             SoundEffectInstance stone = impactStone.CreateInstance();
-            stone.Volume = 0.2f;
+            stone.Volume = 0.4f;
             stone.Play();
             SoundEffectInstance stoneInstance = formingStone.CreateInstance();
-            stoneInstance.Volume = 0.3f;
+            stoneInstance.Volume = 0.8f;
             stoneInstance.Play();
         }
 
@@ -674,7 +674,7 @@ namespace KnightsTrial
             RangedAttack attack = new RangedAttack(new Vector2(position.X, position.Y - 100));
             GameState.InstantiateGameObject(attack);
             SoundEffectInstance arcane = arcaneSound.CreateInstance();
-            arcane.Volume = 0.3f;
+            arcane.Volume = 1f;
             arcane.Play();
         }
 
@@ -687,7 +687,7 @@ namespace KnightsTrial
             {
                 SwingProjectile melee = new SwingProjectile(position);
                 SoundEffectInstance swing = swingSound.CreateInstance();
-                swing.Volume = 0.3f;
+                swing.Volume = 0.5f;
                 swing.Play();
                 canMelee = false;
             }

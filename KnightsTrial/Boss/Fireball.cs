@@ -97,7 +97,7 @@ namespace KnightsTrial
                 velocity = Vector2.Zero;
                 objectSprites = explosionSprites;
                 SoundEffectInstance fireExplosionInstance = fireExplosion.CreateInstance();
-                fireExplosionInstance.Volume = 0.4f;
+                fireExplosionInstance.Volume = 1f;
                 fireExplosionInstance.Play();
                 other.ToBeRemoved = true;
             }
