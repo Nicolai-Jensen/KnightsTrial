@@ -13,6 +13,18 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin BackgroundMusic/Glory-Eternal.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:BackgroundMusic/Glory-Eternal.mp3
+
+#begin BackgroundMusic/MainMenuMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:BackgroundMusic/MainMenuMusic.mp3
+
 #begin Beware/Beware1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -3758,12 +3770,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/LightAttackSound.mp3
-
-#begin SoundEffects/MenuMusic.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/MenuMusic.mp3
 
 #begin SoundEffects/PotionSound.mp3
 /importer:Mp3Importer

@@ -93,7 +93,7 @@ namespace KnightsTrial
         //Methods
         public override void LoadContent(ContentManager content)
         {
-            backgroundMusic = _content.Load<Song>("SoundEffects/MenuMusic");
+            backgroundMusic = _content.Load<Song>("BackgroundMusic/MainMenuMusic");
             MediaPlayer.Play(backgroundMusic);
             MediaPlayer.Volume = 0.3f;
             MediaPlayer.IsRepeating = true;
