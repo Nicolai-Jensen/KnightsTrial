@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// A class for an invisible box object that is used as a hitbox
+    /// </summary>
     class HiddenHitBox : Weapon
     {
 

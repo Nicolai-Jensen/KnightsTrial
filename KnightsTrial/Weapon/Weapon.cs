@@ -5,6 +5,9 @@ using System;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// A superclass for all of the players arsenal it has the functions that are shared throughout them
+    /// </summary>
     internal class Weapon : GameObject
     {
         //Fields

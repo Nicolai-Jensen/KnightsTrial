@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// A class that determines how the controllable object "player" functions
+    /// </summary>
     internal class Player : GameObject
     {
         //Fields
@@ -750,7 +753,7 @@ namespace KnightsTrial
                 dodgeVelocity = velocity;
 
                 SoundEffectInstance newSoundInstance = dodgeSound.CreateInstance();
-                newSoundInstance.Volume = 0.1f;
+                newSoundInstance.Volume = 0.3f;
                 newSoundInstance.Play();
             }
 
