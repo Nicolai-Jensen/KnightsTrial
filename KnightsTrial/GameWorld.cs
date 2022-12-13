@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using SharpDX.MediaFoundation;
 
 namespace KnightsTrial
 {
@@ -12,18 +10,23 @@ namespace KnightsTrial
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        //A variabel to hold the screensizes x and y.
         private static Vector2 screenSize;
 
+        //States to switch from currentState to nextState.
         private State _currentState;
         private State _nextState;
 
+        //Fields for making a single button press.
         private KeyboardState currentKey;
         private KeyboardState previousKey;
 
+        //The different States the game can be in.
         public static State gameState;
         public static State menuState;
         public static State pauseState;
 
+        //Used for collisionbox.
         public Texture2D pixel;
 
         //Properties
@@ -55,14 +58,17 @@ namespace KnightsTrial
 
         protected override void LoadContent()
         {
+            //Instantiates the MenuState that is being used to switch between states.
             MenuState menu = new MenuState(this, _graphics.GraphicsDevice, Content);
             menuState = menu;
 
+            //Instantiates the PauseState that is being used to switch between states.
             PauseState paused = new PauseState(this, _graphics.GraphicsDevice, Content);
             pauseState = paused;
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //Sets the first state that is being loaded to menuState.
             _currentState = menuState;
 
             _currentState.LoadContent(Content);
@@ -75,6 +81,7 @@ namespace KnightsTrial
             previousKey = currentKey;
             currentKey = Keyboard.GetState();
 
+            //if statement so you can access the pauseState if you arent in pausestate or menustate, and if the player isnt dead or boss is dead.
             if (currentKey.IsKeyDown(Keys.Escape) && previousKey.IsKeyUp(Keys.Escape) || GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
             {
                 if(_currentState != pauseState && _currentState != menuState)
@@ -87,6 +94,7 @@ namespace KnightsTrial
                     
             _currentState.Update(gameTime);
 
+            //Changes the current state to nextState if nextState isnt null.
             if (_nextState != null)
             {
                 _currentState = _nextState;
@@ -106,6 +114,7 @@ namespace KnightsTrial
 
             _spriteBatch.Begin(SpriteSortMode.FrontToBack);
 
+            //Draws the currentState that is being active.
             _currentState.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.End();
