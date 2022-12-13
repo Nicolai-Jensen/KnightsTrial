@@ -3729,6 +3729,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/BlockSound.mp3
 
+#begin SoundEffects/BossProjectileSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/BossProjectileSound.mp3
+
 #begin SoundEffects/FireExplosionSound.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -3752,6 +3758,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/HurtSound.mp3
+
+#begin SoundEffects/IceSpawnSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/IceSpawnSound.mp3
 
 #begin SoundEffects/LightAttackSound.mp3
 /importer:Mp3Importer
@@ -3794,6 +3806,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/StoneImpactSound.mp3
+
+#begin SoundEffects/SwordSwingBossSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/SwordSwingBossSound.mp3
 
 #begin UI/GameOver.png
 /importer:TextureImporter
