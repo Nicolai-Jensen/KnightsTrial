@@ -25,10 +25,7 @@ namespace KnightsTrial
 
         Weapon previousHit;
         Weapon currentHit;
-        protected SoundEffect swingSound;
-        protected SoundEffect magicSound;
-        protected SoundEffect aoeSound;
-        protected SoundEffect damagedSound;
+
         //Properties
 
         //Constructors

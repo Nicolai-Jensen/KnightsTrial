@@ -37,11 +37,14 @@ namespace KnightsTrial
         private bool canEnterPhase3;
 
         private bool dead = false;
+        private bool canMelee = true;
 
         private SoundEffect fallingFire;
         private SoundEffect impactStone;
         private SoundEffect formingStone;
-
+        private SoundEffect iceSound;
+        private SoundEffect swingSound;
+        private SoundEffect arcaneSound;
 
 
         private Vector2 playerPosTemp;
@@ -121,6 +124,9 @@ namespace KnightsTrial
             fallingFire = content.Load<SoundEffect>("SoundEffects/FireFallingSound");
             impactStone = content.Load<SoundEffect>("SoundEffects/StoneImpactSound");
             formingStone = content.Load<SoundEffect>("SoundEffects/StoneFormingSound");
+            iceSound = content.Load<SoundEffect>("SoundEffects/IceSpawnSound");
+            swingSound = content.Load<SoundEffect>("SoundEffects/SwordSwingBossSound");
+            arcaneSound = content.Load<SoundEffect>("SoundEffects/BossProjectileSound");
         }
 
         public override void Update(GameTime gameTime)
@@ -350,6 +356,7 @@ namespace KnightsTrial
                 animationReset = true;
                 canRollAttack = true;
                 attackAnimationActive = false;
+                canMelee = true;
             }
         }
 
@@ -551,6 +558,10 @@ namespace KnightsTrial
             //Sets icicleDirection to a random value between 1 and 4.
             int icicleDirection = rndBehaviour.Next(1, 5);
 
+            SoundEffectInstance ice = iceSound.CreateInstance();
+            ice.Volume = 0.1f;
+            ice.Play();
+
             //Takes in the icicleDirection to choose a direction.
             switch (icicleDirection)
             {
@@ -660,6 +671,9 @@ namespace KnightsTrial
         {
             RangedAttack attack = new RangedAttack(new Vector2(position.X, position.Y - 100));
             GameState.InstantiateGameObject(attack);
+            SoundEffectInstance arcane = arcaneSound.CreateInstance();
+            arcane.Volume = 0.3f;
+            arcane.Play();
         }
 
         /// <summary>
@@ -667,10 +681,15 @@ namespace KnightsTrial
         /// </summary>
         private void MeleeAttack()
         {
-            if (objectSprites == swingAnimation && (int)animationTime == 4)
+            if (objectSprites == swingAnimation && (int)animationTime == 4 && canMelee)
             {
                 SwingProjectile melee = new SwingProjectile(position);
+                SoundEffectInstance swing = swingSound.CreateInstance();
+                swing.Volume = 0.3f;
+                swing.Play();
+                canMelee = false;
             }
+
         }
     }
 }
