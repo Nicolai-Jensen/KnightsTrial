@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// The Charge class determines how the players attacks work, it instantiates the other forms of attack and is controlled by left click
+    /// </summary>
     class HeroWeaponCharge : Weapon
     {
         //Fields

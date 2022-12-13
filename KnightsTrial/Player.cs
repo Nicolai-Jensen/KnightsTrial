@@ -46,7 +46,6 @@ namespace KnightsTrial
         private Texture2D[] deathAnimation;
 
         //All the SoundEffects that play through the player
-        private SoundEffect potionSound;
         private SoundEffect dodgeSound;
         private SoundEffect runSound;
         private SoundEffect hurtSound;

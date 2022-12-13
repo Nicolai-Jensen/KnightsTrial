@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// This class has the functions of the light attack object
+    /// </summary>
     internal class HeroWeapon : Weapon
     {
         //Fields
