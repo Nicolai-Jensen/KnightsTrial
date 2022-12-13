@@ -6,6 +6,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// A class for the potion object. Can be used three times by pressing "Q" when playing.
+    /// Has a short cooldown on use.
+    /// </summary>
     internal class Potion : Weapon
     {
         //Fields

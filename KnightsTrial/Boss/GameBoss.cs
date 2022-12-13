@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// An abstract class used for bosses to inherit from.
+    /// </summary>
     internal abstract class GameBoss : GameObject
     {
         //Fields

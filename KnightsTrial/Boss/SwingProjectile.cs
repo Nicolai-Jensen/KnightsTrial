@@ -5,6 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// A class for the swing attack collisionbox used by the boss.
+    /// </summary>
     internal class SwingProjectile : GameObject
     {
         //Fields

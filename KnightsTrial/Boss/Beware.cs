@@ -3,7 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
 namespace KnightsTrial
-{
+{/// <summary>
+/// A class for the beware object. Used as a warning to the player for some of the boss' attacks.
+/// Has two constructors, one for the Fireball and one for the RockPillar.
+/// </summary>
     internal class Beware : GameObject
     {
         //Fields

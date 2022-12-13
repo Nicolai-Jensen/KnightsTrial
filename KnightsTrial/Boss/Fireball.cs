@@ -5,6 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// A class for the Fireball object used as an attack by the boss.
+    /// </summary>
     internal class Fireball : GameObject
     {
         //Fields

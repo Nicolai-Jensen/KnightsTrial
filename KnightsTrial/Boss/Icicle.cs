@@ -5,6 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// A class for the Icicle object. Used by the oss to make walls of icicles.
+    /// </summary>
     internal class Icicle : GameObject
     {
         //Fields
