@@ -64,7 +64,7 @@ namespace KnightsTrial
             bossHealthUI = new Texture2D[1];
             menuButtonAnimation = new Texture2D[21];
 
-            backgroundMusic = _content.Load<Song>("SoundEffects/MenuMusic");
+            backgroundMusic = _content.Load<Song>("BackgroundMusic/Glory-Eternal");
             MediaPlayer.Play(backgroundMusic);
             MediaPlayer.IsRepeating = true;
 
