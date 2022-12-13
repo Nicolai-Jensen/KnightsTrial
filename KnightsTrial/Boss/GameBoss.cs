@@ -11,12 +11,10 @@ namespace KnightsTrial
     {
         //Fields
         protected int health;
-        protected float damageMultiplier;
 
         protected Texture2D[] walkAnimation;
         protected Texture2D[] swingAnimation;
         protected Texture2D[] magicAnimation;
-        protected Texture2D[] aoeAnimation;
         protected Texture2D[] deathAnimation;
 
         protected bool heavyHit = false;
@@ -29,12 +27,7 @@ namespace KnightsTrial
         Weapon previousHit;
         Weapon currentHit;
 
-        //Properties
-
-        //Constructors
-
         //Methods
-
         /// <summary>
         /// An override of the OnCollision method for the GameBoss object.
         /// Controls what happen when the object collides with other objects.
@@ -42,25 +35,6 @@ namespace KnightsTrial
         /// <param name="other"></param>
         public override void OnCollision(GameObject other)
         {
-
-            //if (other is Weapon)
-            //{
-            //    currentHit = (Weapon)other;
-
-            //    if (currentHit != previousHit)
-            //    {
-            //        health -= Weapon.DamageValue;
-            //        previousHit = (Weapon)other;
-            //    }
-
-
-            //    if (currentHit == previousHit)
-            //    {
-            //        health -= 0;
-            //    }
-
-            //}
-
             //Checks if the boss has made contact with a light attack from the player and utilizes the currentHit/previousHit variables to make sure the light attack can only hit once per attack
             if (other is HeroWeapon && this is BringerOfDeath && this.color == Color.White)
             {
@@ -138,16 +112,5 @@ namespace KnightsTrial
             }
 
         }
-
-
-        public void CheckPhase(GameTime gameTime)
-        {
-            //Do something
-        }
-        public void Death()
-        {
-            //Do something
-        }
-
     }
 }

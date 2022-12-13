@@ -13,7 +13,6 @@ namespace KnightsTrial
         //Fields
 
         private int damageValue;
-        private Vector2 position;
         private bool hasDamaged;
         private float timer;
 
