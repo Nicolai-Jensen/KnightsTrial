@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KnightsTrial
 {
+    /// <summary>
+    /// A class that has the functions of the heavy attack that is initiated from the charge
+    /// </summary>
     class HeroWeaponHeavy : Weapon
     {
 
