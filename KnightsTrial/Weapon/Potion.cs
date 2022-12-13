@@ -93,23 +93,5 @@ namespace KnightsTrial
             }
         }
 
-        /// <summary>
-        /// Gets the player object from the gameObject list in GameWorld.
-        /// If there are no player objects in the list, the methods returns null.
-        /// </summary>
-        /// <returns>The player object</returns>
-        private Player GetPlayer()
-        {
-            //loops through the gameObject list untill it finds the player, then returns it. 
-            foreach (GameObject go in GameState.gameObject)
-            {
-                if (go is Player)
-                {
-                    return (Player)go;
-                }
-            }
-            //if no player object is found, returns null.
-            return null;
-        }
     }
 }
