@@ -4251,7 +4251,7 @@
 /processorParam:TextureFormat=Color
 /build:UI/Trial_logo.png
 
-#begin UI/TutorialBox2.png
+#begin UI/TutorialBox3.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -4261,7 +4261,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:UI/TutorialBox2.png
+/build:UI/TutorialBox3.png
 
 #begin UI/WinBanner.png
 /importer:TextureImporter
