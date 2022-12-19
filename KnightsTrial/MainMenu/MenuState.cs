@@ -57,7 +57,7 @@ namespace KnightsTrial
             godModeButton[0] = _content.Load<Texture2D>("GodModeButton/GodmodeTickBox1");
             godModeButton[1] = _content.Load<Texture2D>("GodModeButton/GodmodeTickBox2");
             godModeBox[0] = _content.Load<Texture2D>("GodModeButton/GodmodeBox");
-            howToPlayScreen[0] = _content.Load<Texture2D>("UI/TutorialBox2");
+            howToPlayScreen[0] = _content.Load<Texture2D>("UI/TutorialBox3");
 
             for (int i = 0; i < howToPlayButtonAnimation.Length; i++)
             {
