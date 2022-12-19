@@ -22,9 +22,13 @@ namespace KnightsTrial
         private Texture2D[] playButtonAnimation;
         private Texture2D[] backgroundSprite;
         private Texture2D[] knightsLogo;
+        private Texture2D[] howToPlayScreen;
+        public static Texture2D[] howToPlayButtonAnimation;
         public static Texture2D[] godModeButton;
         public static Texture2D[] currentGodMode;
         private Texture2D[] godModeBox;
+
+        private bool isHowToPlayVisible = false;
 
         //Constructors
         /// <summary>
@@ -41,16 +45,24 @@ namespace KnightsTrial
             
             playButtonAnimation = new Texture2D[21];
             quitButtonAnimation = new Texture2D[21];
+            howToPlayButtonAnimation = new Texture2D[21];
             
             godModeButton = new Texture2D[2];
             currentGodMode = new Texture2D[1];
             godModeBox = new Texture2D[1];
+            howToPlayScreen = new Texture2D[1];
            
             knightsLogo[0] = _content.Load<Texture2D>("UI/NewKnightsTrialLogo");
             backgroundSprite[0] = _content.Load<Texture2D>("UI/Knights_Trial_MenuScreen");
             godModeButton[0] = _content.Load<Texture2D>("GodModeButton/GodmodeTickBox1");
             godModeButton[1] = _content.Load<Texture2D>("GodModeButton/GodmodeTickBox2");
             godModeBox[0] = _content.Load<Texture2D>("GodModeButton/GodmodeBox");
+            howToPlayScreen[0] = _content.Load<Texture2D>("UI/TutorialBox2");
+
+            for (int i = 0; i < howToPlayButtonAnimation.Length; i++)
+            {
+                howToPlayButtonAnimation[i] = _content.Load<Texture2D>($"HowToPlayButton/HowToButton{i + 1}");
+            }
 
             for (int i = 0; i < playButtonAnimation.Length; i++)
             {
@@ -74,9 +86,12 @@ namespace KnightsTrial
 
             Button godButton = new Button(currentGodMode, new Vector2(1715, 903));
 
+            Button howToPlayButton = new Button(howToPlayButtonAnimation, new Vector2(10, 1000));
+
             startButton.Click += StartButton_Click;
             quitButton.Click += QuitButton_Click;
             godButton.Click += GodButton_Click;
+            howToPlayButton.Click += HowToPlayButton_Click;
 
             components = new List<Component>()
             {
@@ -85,6 +100,7 @@ namespace KnightsTrial
                         startButton,
                         quitButton,
                         godButton,
+                        howToPlayButton,
 
             };
             #endregion
@@ -111,6 +127,9 @@ namespace KnightsTrial
                 co.Draw(gameTime, spriteBatch);
 
             spriteBatch.Draw(knightsLogo[0], new Vector2(475, 50), null, Color.White, 0f, Vector2.Zero, 0.8f, SpriteEffects.None, 1f);
+
+            if (isHowToPlayVisible)
+                spriteBatch.Draw(howToPlayScreen[0], new Vector2(325, 100), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
         }
 
         /// <summary>
@@ -157,6 +176,16 @@ namespace KnightsTrial
                 Player.godMode = false;
                 currentGodMode[0] = godModeButton[0];
             }
+
+        }
+        private void HowToPlayButton_Click(object sender, EventArgs e)
+        {
+            if(isHowToPlayVisible)
+                isHowToPlayVisible = false;
+            else
+                isHowToPlayVisible = true;
+
+
         }
 
     }
